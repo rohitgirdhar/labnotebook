@@ -110,7 +110,7 @@
     <h4>  <a property="account" href="https://github.com/cboettig" onclick="recordOutboundLink(this, 'Outbound Links', 'Github'); return false;"><i class="icon-github" alt="github"></i> Coding </a></h4> 
     <div class="excerpt">
       <div class="scroll">
-        <ul><li>cboettig pushed to master at cboettig/labnotebook: <em>add links to intro to notebook and about me to the README</em> <a href="https://github.com/cboettig/labnotebook/compare/8e92fef5c9...c593ebec80">05:23 2014/05/02</a></li><li>cboettig pushed to gh-pages at cboettig/multiple_uncertainty: <em>smooth unifs, not lognormals. from 2b4b1939e4b02499171dab11e97ab87f59…</em> <a href="https://github.com/cboettig/multiple_uncertainty/compare/e27bf12ac2...5b3b135621">04:24 2014/05/02</a></li><li>cboettig pushed to gh-pages at cboettig/multiple_uncertainty: <em>results from 4c71612448eb6f33378235e786d149abc8ce0074</em> <a href="https://github.com/cboettig/multiple_uncertainty/compare/3c60441810...e27bf12ac2">04:00 2014/05/02</a></li><li>cboettig pushed to master at cboettig/multiple_uncertainty: <em>updated data table plot all scenarios</em> <a href="https://github.com/cboettig/multiple_uncertainty/compare/e740a38bfb...4c71612448">03:59 2014/05/02</a></li><li>cboettig pushed to gh-pages at cboettig/multiple_uncertainty: <em>width 15 moving average</em> <a href="https://github.com/cboettig/multiple_uncertainty/compare/1c9ccbc5ed...3c60441810">10:58 2014/05/01</a></li></ul>
+        <ul><li>cboettig opened issue vim-pandoc/vim-pantondoc#31: <em>Keep header text on folds?</em> <a href="https://github.com/vim-pandoc/vim-pantondoc/issues/31">06:10 2014/05/02</a></li><li>cboettig pushed to master at cboettig/labnotebook: <em>re-order display of technical notes and results draft notes</em> <a href="https://github.com/cboettig/labnotebook/compare/c593ebec80...52f580dbba">06:05 2014/05/02</a></li><li>cboettig pushed to master at cboettig/multiple_uncertainty: <em>metadata file added for scenarios</em> <a href="https://github.com/cboettig/multiple_uncertainty/compare/4c71612448...25cc468419">05:50 2014/05/02</a></li><li>cboettig pushed to gh-pages at cboettig/labnotebook: <em>Built from c593ebec8028b9b9a11871027ea782dfe8fa1421.</em> <a href="https://github.com/cboettig/labnotebook/compare/607479dba1...ab38d02858">05:46 2014/05/02</a></li><li>cboettig pushed to master at cboettig/labnotebook: <em>add links to intro to notebook and about me to the README</em> <a href="https://github.com/cboettig/labnotebook/compare/8e92fef5c9...c593ebec80">05:23 2014/05/02</a></li></ul>
       </div>
     </div>
   </div>
@@ -146,6 +146,100 @@
               'Outbound Links', 'RSS'); return false;"
               style="color: inherit;"
               ><i class="icon-rss" ></i> Entries</a></h4>
+      
+        <div class="col-md-3">
+          <header><h4><a href="/2014/05/02/multiple-uncertainty-notes.html">Multiple Uncertainty Notes</a></h4></header>
+<p><span></span></p>
+<p style="font-style:italic"> 02 May 2014</p>
+
+<article>
+<div class="excerpt">
+<h3 id="logistic-recruitment-uniform-noise">Logistic recruitment, uniform noise</h3>
+<p>(Sethi Fig 3 configuration)</p>
+<figure>
+<img src="http://cboettig.github.io/multiple_uncertainty/5b3b135-scenarios.svg" />
+</figure>
+<h3 id="logistic-recruitment-lognormal-noise">Logistic recruitment, lognormal noise</h3>
+<figure>
+<img src="http://cboettig.github.io/multiple_uncertainty/5b3b135-lognormal.svg" />
+</figure>
+<h3 id="beverton-holt-recruitement-uniform-noise">Beverton-Holt recruitement, uniform noise</h3>
+<figure>
+<img src="http://cboettig.github.io/multiple_uncertainty/5b3b135-bevholt_uniform.svg" />
+</figure>
+<h3 id="beverton-holt-recruitement-lognormal-noise">Beverton-Holt recruitement, lognormal noise</h3>
+<figure>
+<img src="http://cboettig.github.io/multiple_uncertainty/5b3b135-bevholt_lognormal.svg" />
+</figure>
+<h3 id="logistic-recruitment-uniform-noise-small-r">Logistic recruitment, uniform noise, small r</h3>
+<p><img src="http://cboettig.github.io/multiple_uncertainty/5b3b135-logistic_unif_small_r.svg" /> ### Logistic recruitment, lognormal noise, small r</p>
+<figure>
+<img src="http://cboettig.github.io/multiple_uncertainty/5b3b135-logistic_lognormal_small_r.svg" />
+</figure>
+<h2 id="metadata">Metadata</h2>
+<p>From <a href="https://github.com/cboettig/multiple_uncertainty/blob/25cc46841908c6ca4da92b8866b836bfeddd707f/inst/matlab/scenarios_meta.txt">scenarios_meta.txt</a></p>
+<pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">Columns:</span>
+  <span class="fu">y_grid:</span> The observed stock size
+  <span class="fu">escapement:</span> The optimal escapement policy. (y_grid value minus the escapement is the quota).
+  <span class="fu">sigma_g:</span> The growth noise scaling factor
+  <span class="fu">sigma_m:</span> The measurement error scaling factor (between observed stock x and measured stock y)
+  <span class="fu">sigma_i:</span> The implementation noise scaling factor (between quota q set and harvest h realized).
+  <span class="fu">r:</span> The growth rate parameter of the recuitment function
+  <span class="fu">K:</span> The carrying capacity parameter of the recruitment function
+  <span class="fu">recruitment:</span>
+    <span class="fu">1:</span> Logistic, x+r*x.*(1-x/K)
+    <span class="fu">2:</span> Ricker, (1+r)*x.*exp(-(log(1+r)/K)*x)
+    <span class="fu">3:</span> Beverton-Holt, (1+r)*x./(1+r/K*x)
+  <span class="fu">noise:</span>
+    <span class="fu">1:</span> uniform noise distribution
+    <span class="fu">2:</span> lognormal noise distribution
+  <span class="fu">id:</span> a unique id number for the scenario (for subsetting and plotting)
+
+
+<span class="fu">Constants:</span>
+  <span class="fu">delta:</span>
+    <span class="fu">value:</span> 0.05
+    <span class="fu">description:</span> Discount rate
+  <span class="fu">Tmax:</span>
+    <span class="fu">value:</span> 10
+    <span class="fu">description:</span> number of years (iterations) over which policy is optimized
+  <span class="fu">x_grid:</span>
+    <span class="fu">value:</span> linspace(0,200,201)
+    <span class="fu">description:</span> True stock size
+  <span class="fu">y_grid:</span>
+    <span class="fu">value:</span> linspace(0,200,201)
+    <span class="fu">description:</span> Observed stock size
+  <span class="fu">h_grid:</span>
+    <span class="fu">value:</span> linspace(0,120,121)
+    <span class="fu">description:</span> Implemented harvest
+  <span class="fu">q_grid:</span>
+    <span class="fu">value:</span> linspace(0,120,121)
+    <span class="fu">description:</span> Target harvest quota
+
+<span class="fu">Notes:</span>
+  See the scenarios.m file to confirm values of constants used.</code></pre>
+<h2 id="source-code-version-archives">Source code / version archives</h2>
+<ul>
+<li><p>Data for all the plots shown appears in <a href="https://github.com/cboettig/multiple_uncertainty/blob/4c71612448eb6f33378235e786d149abc8ce0074/inst/matlab/scenarios.csv">scenarios.csv</a>. Because my collaborators have me using Matlab for this and Matlab can neither (afaik) write headers to csv files, append to csv files, or even conviently export non-numeric and numeric data (I write a matrix to the csv file), you’ll just have to consult the <a href="https://github.com/cboettig/multiple_uncertainty/blob/25cc46841908c6ca4da92b8866b836bfeddd707f/inst/matlab/scenarios_meta.txt">scenarios_meta.txt</a> for relevant information.</p></li>
+<li><p>All results shown here correspond to files that can be found in <a href="https://github.com/cboettig/multiple_uncertainty/tree/4c71612448eb6f33378235e786d149abc8ce0074/inst/matlab">Commit 4c71612</a>, including the data file. The SVG plots are hosted through the gh-pages branch of the repo, and thus show the most recent versions of those plots. The names have been tagged with the commit hash to avoid accidentally overwriting when programatically generating images. (Clearly that’s not ideal, but cannot link directly to version and have it render).</p></li>
+<li><p>Results generated by running <a href="https://github.com/cboettig/multiple_uncertainty/blob/4c71612448eb6f33378235e786d149abc8ce0074/inst/matlab/scenarios.m">scenarios.m</a></p></li>
+</ul>
+<p><strong>Functions</strong></p>
+<ul>
+<li>The main routine is (still) in <a href="https://github.com/cboettig/multiple_uncertainty/blob/4c71612448eb6f33378235e786d149abc8ce0074/inst/matlab/multiple_uncertainty.m">multiple_uncertainty.m</a></li>
+<li>The scenario template over which we loop is defined as a seperate function in <a href="https://github.com/cboettig/multiple_uncertainty/blob/4c71612448eb6f33378235e786d149abc8ce0074/inst/matlab/scenario.m">scenario.m</a></li>
+<li>scenarios.m also calls the script <a href="https://github.com/cboettig/multiple_uncertainty/blob/4c71612448eb6f33378235e786d149abc8ce0074/inst/matlab/plot_scenarios.m">plot_scenarios.m</a>, which can be run to generate the plots from scenarios.csv directly without first regenerating the results data.</li>
+</ul>
+ 
+<!-- not that raw_content depends on custom generator, 
+     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
+</article> 
+<p> <a href="/2014/05/02/multiple-uncertainty-notes.html"> <em>Read more</em></a> </p>
+<br />
+<br />
+
+
+        </div>
       
         <div class="col-md-3">
           <header><h4><a href="/2014/04/24/notebook-design-notes.html">Notebook Design Notes</a></h4></header>
@@ -245,6 +339,10 @@ end</code></pre>
 
         </div>
       
+    </div>
+
+    <div class="row">
+      
         <div class="col-md-3">
           <header><h4><a href="/2014/04/18/notes.html">Notes</a></h4></header>
 <p><span></span></p>
@@ -278,10 +376,6 @@ end</code></pre>
 
 
         </div>
-      
-    </div>
-
-    <div class="row">
       
         <div class="col-md-3">
           <header><h4><a href="/2014/04/17/notes.html">Notes</a></h4></header>
@@ -403,6 +497,10 @@ character : nominal/textDomain</code></pre>
 
         </div>
       
+    </div>
+
+    <div class="row">
+      
         <div class="col-md-3">
           <header><h4><a href="/2014/04/10/multiple-uncertainty-notes.html">Multiple Uncertainty Notes</a></h4></header>
 <p><span></span></p>
@@ -448,10 +546,6 @@ cd(currentdir)</code></pre>
 
 
         </div>
-      
-    </div>
-
-    <div class="row">
       
         <div class="col-md-3">
           <header><h4><a href="/2014/04/09/multiple-uncertainty-notes.html">Multiple Uncertainty Notes</a></h4></header>
@@ -556,57 +650,6 @@ cd(currentdir)</code></pre>
      see _plugins/jekyll-labnotebook-plugins/raw_content --> 
 </article> 
 <p> <a href="/2014/04/08/multiple-uncertainty-notes.html"> <em>Read more</em></a> </p>
-<br />
-<br />
-
-
-        </div>
-      
-        <div class="col-md-3">
-          <header><h4><a href="/2014/04/07/notes.html">Notes</a></h4></header>
-<p><span></span></p>
-<p style="font-style:italic"> 07 Apr 2014</p>
-
-<article>
-<div class="excerpt">
-<h2 id="ropensci">ropensci</h2>
-<p>Working on proposal. Discussion of section 2: other players in the domain (or rather, the many community interfaces with rOpenSci).</p>
-<h2 id="other">other</h2>
-<ul>
-<li><p>Discussion with Hadley re: API testing and <code>test_if</code> functionality, see <a href="https://github.com/hadley/testthat/issues/141#issuecomment-39737034">testthat/141</a>.</p></li>
-<li><p>Related with Hadley discussion on handling tests and keys for API packages, <a href="https://github.com/hadley/httr/issues/93">httr/93</a></p></li>
-<li><p><a href="http://software-carpentry.org/blog/2014/04/novice-r-discussion-summary.html">Software Carpentry developing R lessons</a></p></li>
-</ul>
-<h2 id="rfishbase">rfishbase</h2>
-<p>Add FAO areas (from 04/05), see <a href="https://github.com/ropensci/rfishbase/issues/20">rfishbase/20</a></p>
-<h2 id="eml">EML</h2>
-<ul>
-<li><p>Discussion of unit handling, feedback from Karen. <a href="https://github.com/ropensci/EML/issues/12#issuecomment-39697171">EML/12</a></p></li>
-<li><p>Need to update creation of filenames for csv files following Matt’s advice: <a href="https://github.com/ropensci/EML/issues/106">EML/106</a></p></li>
-<li><p>No luck with <code>XMLSchema::readSchema</code> parsing the measurement unit schema definitions in <a href="https://raw.githubusercontent.com/cboettig/eml/master/stmml.xsd">STMML</a></p></li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>XMLSchema::<span class="kw">readSchema</span>(<span class="st">&quot;../stmml.xsd&quot;</span>)
-Error in <span class="kw">FUN</span>(X[[1L]], ...) :
-<span class="st">  </span>formal argument <span class="st">&quot;localElements&quot;</span> matched by multiple actual arguments</code></pre>
-<h2 id="miscreading">misc/reading</h2>
-<ul>
-<li>teary: discuss interviews. send copy of materials for archive.</li>
-<li>review request EcoLet</li>
-<li><p>follow-up emails from Wisconsin visit. Follow-up reading:</p></li>
-<li><p><a href="http://www.rdcep.org/people">RDCEP</a></p></li>
-<li><p>Here’s the <a href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2370657">RDCEP robust control paper</a></p></li>
-<li><p>Here are two papers on the value of experimentation, <a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1538-4616.2007.00016.x/abstract;jsessionid=29F390887AD667C409ACF504ECB50B34.f02t01?deniedAccessCustomisedMessage=&amp;userIsAuthenticate">1</a>, <a href="http://economics.yale.edu/sites/default/files/files/Workshops-Seminars/Macroeconomics/hansen-080926.pdf">2</a>. Key references are the two papers by V. Wieland cited there. Steve and Buz discussed one of these in <a href="http://www.pnas.org/content/104/39/15206.full.pdf+html">“Panceas” paper</a></p></li>
-<li><p>Here’s a link to the BDW Brookings paper which has an interesting discussion by <a href="http://www.brookings.edu/~/media/projects/bpea/spring%202003/2003a_bpea_brock.pdf">Sargent and Sims</a></p></li>
-<li><p><a href="http://www.sciencedirect.com/science/article/pii/S0304407605002277">This one</a> proposes an approach to reporting to policy makers that respects uncertainties</p></li>
-<li><p>Here is one we did for the World Bank to deal with <a href="http://elibrary.worldbank.org/doi/abs/10.1093/wber/15.2.229?journalCode=wber">uncertainties in growth policy</a></p></li>
-<li><p>Since optimal control and even robust control can lead to controls that are complicated functions of the state vector, there’s a literature in applications to central banking that stresses “simple rules”, here’s a <a href="http://www.sciencedirect.com/science/article/pii/S0304393207000591">recent example</a> from our shop that has lots of references,</p></li>
-<li><p>Finally, on EWS’s, there’s a general multivariate mathematical approach to variance-convariance matrix approaches to EWS’s in the Mathematical Appendix to this paper by <a href="http://www.pnas.org/content/106/3/826.short">Biggs et al.</a></p></li>
-</ul>
- 
-<!-- not that raw_content depends on custom generator, 
-     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
-</article> 
-<p> <a href="/2014/04/07/notes.html"> <em>Read more</em></a> </p>
 <br />
 <br />
 
