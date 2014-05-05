@@ -4,7 +4,7 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-05-02T18:26:52+00:00</updated>
+ <updated>2014-05-05T11:29:32-07:00</updated>
  <id>http://carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
@@ -13,9 +13,36 @@
 
  
  <entry>
+   <title>why I sign my reviews</title>
+   <link href="/2014/05/04/why-I-sign-my-reviews.html"/>
+   <updated>2014-05-04T00:00:00-07:00</updated>
+   <id>/2014/05/04/why-I-sign-my-reviews</id>
+   <content type="html">&lt;p&gt;For the past four years I have made an effort to sign all my reviews (which I try to keep to about one a month). It isn’t because I believe in radical openness or something crazy like that. Its really just my self interest involved – at least mostly. Writing a review is an incredibly time consuming, and largely thankless task. Supposedly anonymous peer review is supposed to protect the reviewer, particularly the scenario of the less established scientist critiquing the work of the more established. I am sure it occasionally serves that purpose. On the other hand, that very scenario can be the &lt;em&gt;most&lt;/em&gt; profitable time to sign a review. Really, when are you more likely to get an esteemed colleague to closely read your every argument than when you’re holding up their publication?&lt;/p&gt;
+&lt;p&gt;While the possibility of a vindictive and powerful author sounds daunting, but rather inconsistent with my impression of most scientists, who are more apt to be impressed by an intelligent even if flawed critique than by simple praise. I find it hardest to sign a review that I have found very little constructive criticism to offer, though after a decade of being trained to critique science one can always find something. (Of course signing can be hard on the occasional terrible paper for which it is hard to offer much constructive criticism, but fortunately that has been very rare). Both authors and other reviewers (who are sometimes sent the other reviews, a practice I find very educational as a reviewer) have on occasion commented or complemented me on reviews or acknowledged me in the papers, suggesting that the practice does indeed provide for some simple recognition. At times, it may sow seeds for future collaboration.&lt;/p&gt;
+&lt;p&gt;Signing my reviews has on occasion given the author a chance to follow up with me directly. While I’m not certain about journal policies in this regard, I suspect we can assume that we’re all adults capable of civil discussion. In any event, a phone call or even a few back-and-forth emails can be immensely more efficient in allowing an author to clarify elements that I have sometimes misunderstood or been unable to follow from the text, as well as making it easier to communicate my difficulties with the paper. In my experience this has resulted in both a faster and more satisfactory resolution to issues that have led to see some papers published more quickly and without as many tedious multiple rounds of revision. Given that many competitive journals simply cut off papers that might otherwise be successful with a bit more dialog between reviewer and author, because multiple “Revise and resubmits” put too much demand on editors, this seems like a desirable outcome for all involved. I’m not suggesting that such direct dialog is always desirable, but that no doubt many of us have been in the position in which a little dialog might have resolved issues more satisfactorily.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Software Sustainability Issues In R</title>
+   <link href="/2014/03/20/software-sustainability-issues-in-R.html"/>
+   <updated>2014-03-20T00:00:00-07:00</updated>
+   <id>/2014/03/20/software-sustainability-issues-in-R</id>
+   <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Editorial note:&lt;/strong&gt; The following is slightly edited text from my post to R-devel discussing this issue, which I first drafted here.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There seems to be some question of how frequently changes to software packages result in irreproducible results. I am sure that research using functions like &lt;code&gt;glm&lt;/code&gt; and other functions that are shipped with base R are quite reliable; and after all they already benefit from being versioned with R releases (as Jeroen has argued).&lt;/p&gt;
+&lt;p&gt;In my field of ecology and evolution, the situation is quite different. Packages are frequently developed by scientists without any background in programming and become widely used, such as &lt;a href=&quot;http://cran.r-project.org/web/packages/geiger/&quot;&gt;geiger&lt;/a&gt;, with 463 papers citing it and probably many more using it that do not cite it (both because it is sometimes used only as a dependency of another package or just because our community isn’t great at citing packages). The package has changed substantially over the time it has been on CRAN and many functions that would once run based on older versions could no longer run on newer ones. It’s dependencies, notably the phylogenetics package ape, has changed continually over that interval with both bug fixes and substantial changes to the basic data structure. The ape package has 1,276 citations (again a lower bound). I suspect that correctly identifying the right version of the software used in any of these thousands of papers would prove difficult and for a large fraction the results would simply not execute successfully. It would be much harder to track down cases where the bug fixes would have any impact on the result. I have certainly seen both problems in the hundreds of Sweave/knitr files I have produced over the years that use these packages.&lt;/p&gt;
+&lt;p&gt;Even work that simply relies on a package that has been archived becomes a substantial challenge to reproducibility by other scientists even when an expert familiar with the packages (e.g. the original author) would not have a problem, as the informatics team at the Evolutionary Synthesis center recently concluded in an exercise trying to reproduce several papers including my own that used a package that had been archived (odesolve, whose replacement, deSolve, does not use quite the same function call for the same &lt;code&gt;lsoda&lt;/code&gt; function).&lt;/p&gt;
+&lt;p&gt;New methods are being published all the time, and I think it is excellent that in ecology and evolution it is increasingly standard to publish R packages implementing those methods, as a scan of any table of contents in “methods in Ecology and Evolution”, for instance, will quickly show. But unlike &lt;code&gt;glm&lt;/code&gt;, these methods have a long way to go before they are fully tested and debugged, and reproducing any work based on them requires a close eye to the versions (particularly when unit tests and even detailed changelogs are not common). The methods are invariably built by “user-developers”, researchers developing the code for their own needs, and thus these packages can themselves fall afoul of changes as they depend and build upon work of other nascent ecology and evolution packages.&lt;/p&gt;
+&lt;p&gt;Detailed reproducibility studies of published work in this area are still hard to come by, not least because the actual code used by the researchers is seldom published (other than when it is published as it’s own R package). But incompatibilities between successive versions of the 100s of packages in our domain, along with the interdependencies of those packages might provide some window into the difficulties of computational reproducibility. I suspect changes in these fast-moving packages are far more culprit than differences in compilers and operating systems.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>So, you're active on Research Gate?</title>
    <link href="/2013/11/14/research-gate.html"/>
-   <updated>2013-11-14T00:00:00+00:00</updated>
+   <updated>2013-11-14T00:00:00-08:00</updated>
    <id>/2013/11/14/research-gate</id>
    <content type="html">&lt;p&gt;I have occassionally been getting this question:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -35,7 +62,7 @@
  <entry>
    <title>Do we need a culture of Data Science in Academia?</title>
    <link href="/2013/11/13/Data-Science-Center.html"/>
-   <updated>2013-11-13T00:00:00+00:00</updated>
+   <updated>2013-11-13T00:00:00-08:00</updated>
    <id>/2013/11/13/Data-Science-Center</id>
    <content type="html">&lt;p&gt;Just my draft copy of a &lt;a href=&quot;http://dynamicecology.wordpress.com/2013/11/25/do-we-need-a-culture-of-data-science-in-academia-guest-post/&quot;&gt;Guest blog post&lt;/a&gt; I wrote for Dynamic Ecology.&lt;/p&gt;
 &lt;hr /&gt;
@@ -104,7 +131,7 @@ In raising these questions, Perez brings the role of a Data Science Institute do
  <entry>
    <title>Is it time to retire Pagel's lambda?</title>
    <link href="/2013/10/11/is-it-time-to-retire-pagels-lambda.html"/>
-   <updated>2013-10-11T00:00:00+00:00</updated>
+   <updated>2013-10-11T00:00:00-07:00</updated>
    <id>/2013/10/11/is-it-time-to-retire-pagels-lambda</id>
    <content type="html">&lt;p&gt;Pagel’s &lt;span class=&quot;math&quot;&gt;\(\lambda\)&lt;/span&gt; (lambda), introduced in &lt;a href=&quot;http://doi.org/10.1038/44766&quot; title=&quot;Inferring the historical patterns of biological evolution. in Nature.&quot;&gt;Pagel 1999&lt;/a&gt; as a potential measure of “phylogenetic signal,” the extent to which correlations in traits reflect their shared evolutionary history (as approximated by Brownian motion).&lt;/p&gt;
 &lt;p&gt;Numerous critiques and ready alternatives have not appeared to decrease it’s popularity. There are many issues with the statistic, some of which I attempt to summarise below.&lt;/p&gt;
@@ -142,7 +169,7 @@ ex2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot
  <entry>
    <title>Reflections on the Mozilla Science Code Review Pilot</title>
    <link href="/2013/09/25/mozilla-software-review.html"/>
-   <updated>2013-09-25T00:00:00+00:00</updated>
+   <updated>2013-09-25T00:00:00-07:00</updated>
    <id>/2013/09/25/mozilla-software-review</id>
    <content type="html">&lt;p&gt;I was recently interviewed a &lt;em&gt;Nature&lt;/em&gt; senior reporter &lt;a href=&quot;http://twitter.com/erica_check&quot;&gt;Erika Check Hayden&lt;/a&gt; on the subject of the scientific &lt;a href=&quot;http://kaythaney.com/2013/08/08/experiment-exploring-code-review-for-science/&quot;&gt;code review project&lt;/a&gt; being conducted by &lt;a href=&quot;https://wiki.mozilla.org/ScienceLab&quot;&gt;Mozilla Science Lab&lt;/a&gt;. The piece appears in this week’s issue, &lt;a href=&quot;http://doi.org/10.1038/501472a&quot; title=&quot;Mozilla plan seeks to debug scientific code&quot;&gt;Hayden 2013&lt;/a&gt;. &lt;a href=&quot;http://carlboettiger.info/2013/06/13/what-I-look-for-in-software-papers.html&quot;&gt;My blog post&lt;/a&gt; sharing my own approach to code review is mentioned at the beginning of the article, though it is rather Roger Peng’s comments at the end that have stirred &lt;a href=&quot;https://twitter.com/Erika_Check/status/382911015358181376/photo/1&quot;&gt;some interesting discussion&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Roger raises two concerns. First, that increased scrutiny will discourage researchers from sharing code, (which, right or wrong, remains a voluntary choice in most journals):&lt;/p&gt;
@@ -240,7 +267,7 @@ ex2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot
  <entry>
    <title>Forking The R Journal</title>
    <link href="/2013/07/10/forking-the-R-journal.html"/>
-   <updated>2013-07-10T00:00:00+00:00</updated>
+   <updated>2013-07-10T00:00:00-07:00</updated>
    <id>/2013/07/10/forking-the-R-journal</id>
    <content type="html">&lt;p&gt;All I really wanted to do is cite a paper in &lt;em&gt;the R Journal&lt;/em&gt;, which is peer-reviewed, open access (CC-BY), LaTeX based and without author charges. Sure, I could do that already, but I like being able to programmatically generate citation metadata from a URL – we do have this thing called the internet now, and citations are just links, right? Unfortunately, nice as it is, the R journal doesn’t have HTML landing pages for articles that embed the metadata.&lt;/p&gt;
 &lt;p&gt;This makes it harder for Google Scholar to index the articles, and means that we cannot extract citation metadata from the URL using a tool like &lt;a href=&quot;http://greycite.knowledgeblog.org&quot;&gt;greycite&lt;/a&gt;. Until now.&lt;/p&gt;
@@ -253,7 +280,7 @@ ex2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot
  <entry>
    <title>Reviewing Software Revisited</title>
    <link href="/2013/07/09/reviewing-software-revisited.html"/>
-   <updated>2013-07-09T00:00:00+00:00</updated>
+   <updated>2013-07-09T00:00:00-07:00</updated>
    <id>/2013/07/09/reviewing-software-revisited</id>
    <content type="html">&lt;p&gt;Several weeks ago I wrote a &lt;a href=&quot;/2013/06/13/what-I-look-for-in-software-papers.html&quot;&gt;post&lt;/a&gt; describing issues I commonly raise when reviewing software papers. This provoked a lively discussion among authors, editors, and other reviewers of software papers (most of us having been on at least both reviewing and authoring end), with quite varied perspectives as to whether such criteria were appropriate in this context. As I describe there, I view the concept of dedicated software papers as a somewhat necessary “hack” of the publishing system, and hope a more mature system will eventually come into place, as is now happening for data through efforts such as &lt;a href=&quot;http://datadryad.org&quot;&gt;Dryad&lt;/a&gt; and associated journal archiving requirements.&lt;/p&gt;
 &lt;p&gt;Sustainability of the software is important for the same reason archiving the literature is important – without this, we cannot build on existing work. Building on “researcher/developer” software (e.g. the kind of software typically covered in ‘software papers’) is currently an uncommon and risky, as eloquently argued by Brian O’Meara in the comments of &lt;a href=&quot;http://carlboettiger.info/2013/04/23/we-need-more-object-oriented-design-in-comparative-methods.html&quot;&gt;an earlier post&lt;/a&gt; describing just such a failure.&lt;/p&gt;
@@ -295,7 +322,7 @@ ex2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot
  <entry>
    <title>What I look for in 'Software Papers'</title>
    <link href="/2013/06/13/what-I-look-for-in-software-papers.html"/>
-   <updated>2013-06-13T00:00:00+00:00</updated>
+   <updated>2013-06-13T00:00:00-07:00</updated>
    <id>/2013/06/13/what-I-look-for-in-software-papers</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt; Thanks to the rich discussion in the comments and beyond, I’ve revised my thoughts on this somewhat, as I discuss in &lt;a href=&quot;/2013/07/09/reviewing-software-revisited.html&quot;&gt;this more recent post&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I am more and more frequently reviewing ‘software papers:’ which I define as publications whose primary purpose is to publicize a piece of scientific software and provide a traditional research product with hopes that it will receive citations and recognition from other researchers in grant and job reviews. To me this feels very much like hacking the publication recognition system rather than the ideal way to recognize and track the role of software in research communities, but a very practical one in the current climate. I have written two myself, so I have been on both ends of this issue. In this post, I share what I look for in such papers and what omissions I see most frequently.&lt;/p&gt;
@@ -368,7 +395,7 @@ ex2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot
  <entry>
    <title>manuscript reviews on github?</title>
    <link href="/2013/06/10/mansucript-reviews-on-github.html"/>
-   <updated>2013-06-10T00:00:00+00:00</updated>
+   <updated>2013-06-10T00:00:00-07:00</updated>
    <id>/2013/06/10/mansucript-reviews-on-github</id>
    <content type="html">&lt;p&gt;I was recently impressed to learn of Trevor Bedford’s strategy of seeking &lt;a href=&quot;https://twitter.com/trvrb/status/334310856982671361&quot;&gt;pre-approval&lt;/a&gt; for posting his reviewer’s comments as Github issues. Beyond providing links to the data and source-code, I generally don’t advertise the open science nature of papers I submit – I guess I assume that if the reader or reviewers care, it should be easy enough for them to discover it. Consequently I am usually immediately frustrated to realize that upon receiving my reviews I have to create a second, private repository for the review material, our replies to reviewers, etc., as I don’t have permission to disclose that information. &lt;a href=&quot;#fn1&quot; class=&quot;footnoteRef&quot; id=&quot;fnref1&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; I have recently stumbled across &lt;a href=&quot;http://www.steinsaltz.me.uk/pnas.html&quot;&gt;several&lt;/a&gt; &lt;a href=&quot;http://theseamonster.net/2013/05/are-unreasonably-harsh-reviewers-retarding-the-pace-of-coral-reef-science/&quot;&gt;examples&lt;/a&gt; of authors publishing to the web anonymous reviews they have received. Though anonymous, I feel the practice potentially murky without explicit permission, so I would appreciate any insight others have on this.&lt;/p&gt;
 &lt;h3 id=&quot;asking-permission&quot;&gt;Asking permission&lt;/h3&gt;
@@ -417,7 +444,7 @@ http://dx.doi.org/10.1126/science.1213847.&quot;&gt;&lt;a href=&quot;http://dx.d
  <entry>
    <title>DOI != citable</title>
    <link href="/2013/06/03/DOI-citable.html"/>
-   <updated>2013-06-03T00:00:00+00:00</updated>
+   <updated>2013-06-03T00:00:00-07:00</updated>
    <id>/2013/06/03/DOI-citable</id>
    <content type="html">&lt;p&gt;I feel I see this kind of comment almost daily:&lt;/p&gt;
 &lt;blockquote class=&quot;twitter-tweet&quot; data-partner=&quot;tweetdeck&quot;&gt;&lt;p&gt;
@@ -459,7 +486,7 @@ Is there a way to obtain DOI for a &lt;a href=&quot;https://twitter.com/github&q
  <entry>
    <title>Notebook features: digital archiving</title>
    <link href="/2013/05/31/notebook-features-digital-archiving.html"/>
-   <updated>2013-05-31T00:00:00+00:00</updated>
+   <updated>2013-05-31T00:00:00-07:00</updated>
    <id>/2013/05/31/notebook-features-digital-archiving</id>
    <content type="html">&lt;p&gt;Note: this entry is part of a &lt;a href=&quot;http://carlboettiger.info/2013/04/26/notebook-features-introduction.html&quot;&gt;series of posts&lt;/a&gt; which explain some of the technical features of my lab notebook.&lt;/p&gt;
 &lt;p&gt;Archival preservation of digital scholarly content is an important challenge throughout the research community. As the notebook is the permanent record of my regular scholarly endeavors, this provides the opportunity to experiment with tools and techniques for digital archiving while also better preserving the notebook. In the experimental spirit that drives all my exploration here, I am testing several ways to accomplish this. In so doing, I learn which approaches are easiest to implement, to use, and gather feedback from, while also hedging my bets in the event that any given strategy should fail.&lt;/p&gt;
@@ -497,7 +524,7 @@ Is there a way to obtain DOI for a &lt;a href=&quot;https://twitter.com/github&q
  <entry>
    <title>Archiving the lab notebook on figshare</title>
    <link href="/2013/05/31/notebook-features-archiving-with-figshare.html"/>
-   <updated>2013-05-31T00:00:00+00:00</updated>
+   <updated>2013-05-31T00:00:00-07:00</updated>
    <id>/2013/05/31/notebook-features-archiving-with-figshare</id>
    <content type="html">&lt;h2 id=&quot;robust-archiving-through-clockss&quot;&gt;Robust archiving through CLOCKSS&lt;/h2&gt;
 &lt;p&gt;One of the most comprehensive approaches I have come across so far uses fig&lt;strong&gt;share&lt;/strong&gt;. This offers the most promising avenue for content preservation, but is weakest in managing the URIs and associating them with the original content. All fig&lt;strong&gt;share&lt;/strong&gt; content is archived by &lt;a href=&quot;http://clockss.org&quot;&gt;CLOCKSS&lt;/a&gt;, an international library cooperation providing redundant and geopolitically distributed backup of the archives around the world (and used by many academic journals, both subscription based &amp;amp; open access). Should fig&lt;strong&gt;share&lt;/strong&gt; vanish from the face of the planet, it will trigger the release of all of its content to resolve through the CLOCKSS servers, with the same appearance and resolving at the same URLs as the original figshare content. Presumably the DOIs provided to figshare content will also continue to resolve there.&lt;/p&gt;
@@ -531,7 +558,7 @@ Is there a way to obtain DOI for a &lt;a href=&quot;https://twitter.com/github&q
  <entry>
    <title>Comforting Trends In Scientific Software Use</title>
    <link href="/2013/05/21/comforting-trends-in-scientific-software-use.html"/>
-   <updated>2013-05-21T00:00:00+00:00</updated>
+   <updated>2013-05-21T00:00:00-07:00</updated>
    <id>/2013/05/21/comforting-trends-in-scientific-software-use</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;Author’s Note&lt;/strong&gt;: Having refrained from actually posting this for 8 months, as I think I have quite mellowed more my critique. I do believe that education and peer review are the best way forward in tackling these issues, but cannot overstate how much of a long and rocky road that process will be. The Mozilla Science Foundation is really leading these efforts with their code review pilots (as I have discussed in posts since writing this), and through their work with Software Carpentry training. Still, I leave this post as a bookmark of my intial thoughts and a reminder of these challenges.&lt;/p&gt;
 &lt;p&gt;Consider reading these other posts on software review and training:&lt;/p&gt;
@@ -567,7 +594,7 @@ Is there a way to obtain DOI for a &lt;a href=&quot;https://twitter.com/github&q
  <entry>
    <title>Notebook features: SHA Hashes</title>
    <link href="/2013/05/03/notebook-features-hashes-providing-an-immutable-and-verifiable-research-record.html"/>
-   <updated>2013-05-03T00:00:00+00:00</updated>
+   <updated>2013-05-03T00:00:00-07:00</updated>
    <id>/2013/05/03/notebook-features-hashes-providing-an-immutable-and-verifiable-research-record</id>
    <content type="html">&lt;p&gt;Note: this entry is part of a &lt;a href=&quot;http://carlboettiger.info/2013/04/26/notebook-features-introduction.html&quot;&gt;series of posts&lt;/a&gt; which explain some of the technical features of my lab notebook.&lt;/p&gt;
 &lt;p&gt;I version manage all changes to my entry using git. Each page is linked to its source history on Github, which will display a list of all previous edits to the post with an easy-to-read commit log and highlighted diffs. A version history is often considered an essential part of an open lab notebook, where changes to the notebook are documented and preserved. While wikis, Google docs, Dropbox, Wordpress plugins, or just regular backups can provide version history of pages, none come close to comparison with a full version management system such as git. This is because git’s underlying architecture is based on&lt;br /&gt;&lt;a href=&quot;http://www-cs-students.stanford.edu/~blynn/gitmagic/ch08.html&quot;&gt;The magic of cryptographic SHA hashes&lt;/a&gt;.&lt;/p&gt;
@@ -581,7 +608,7 @@ Is there a way to obtain DOI for a &lt;a href=&quot;https://twitter.com/github&q
  <entry>
    <title>Scholarly Infrastructure Thoughts</title>
    <link href="/2013/05/02/scholarly-infrastructure-thoughts.html"/>
-   <updated>2013-05-02T00:00:00+00:00</updated>
+   <updated>2013-05-02T00:00:00-07:00</updated>
    <id>/2013/05/02/scholarly-infrastructure-thoughts</id>
    <content type="html">&lt;h2 id=&quot;sustainable-research&quot;&gt;Sustainable Research&lt;/h2&gt;
 &lt;p&gt;Happened across a provocative &lt;a href=&quot;http://cran.r-project.org/web/packages/mcmc/ChangeLog&quot;&gt;example&lt;/a&gt; of why we need a software ecosystem, though it was certainly not intended to be one, which led me to ask myself:&lt;/p&gt;
@@ -601,7 +628,7 @@ Is there a way to obtain DOI for a &lt;a href=&quot;https://twitter.com/github&q
  <entry>
    <title>Musings On Conservation Literature</title>
    <link href="/2013/05/02/musings-on-conservation-literature.html"/>
-   <updated>2013-05-02T00:00:00+00:00</updated>
+   <updated>2013-05-02T00:00:00-07:00</updated>
    <id>/2013/05/02/musings-on-conservation-literature</id>
    <content type="html">&lt;p&gt;Just because I’m a theorist deeply entrenched in methodological concerns about uncertainty and decision making doesn’t mean I don’t think about practical conservation from time to time. Some musings from my &lt;a href=&quot;http://dynamicecology.wordpress.com/2013/04/29/the-implementation-gap-in-conservation-biology-is-math-contributing-to-the-problem&quot;&gt;comment here&lt;/a&gt;, copied over for my own reference.&lt;/p&gt;
 &lt;p&gt;Though I would like to believe the gap stems from the problems you discuss, I think that differing objectives between research and application may play a much larger role. I suspect that scientific papers that are most useful and influential for conservation practitioners and policymakers are those which confirm what they already believe, or whatever the interests opposed to them least want to hear. Let’s call these “Cassandra” papers, since in this context they usually forecast disaster. For the practitioner it may matters little whether the math is simple or complex, clearly explained or impenetrable, or even right or not so right. Worm et al 2006 paper which the media quickly decided predicted the end of global fisheries within 50 years is perhaps a good example.&lt;/p&gt;
@@ -613,7 +640,7 @@ Is there a way to obtain DOI for a &lt;a href=&quot;https://twitter.com/github&q
  <entry>
    <title>Notebook features: reproducible code</title>
    <link href="/2013/04/26/notebook-features-reproducible-code.html"/>
-   <updated>2013-04-26T00:00:00+00:00</updated>
+   <updated>2013-04-26T00:00:00-07:00</updated>
    <id>/2013/04/26/notebook-features-reproducible-code</id>
    <content type="html">&lt;p&gt;I now use the dynamic documentation software called &lt;a href=&quot;http://yihui.name/knitr&quot;&gt;knitr&lt;/a&gt; to write most entries that shore results and figures. The code to replicate the results is included automatically, ensuring that what I say I did and what code I actually ran to get the results are consistent. Though I have written about knitr before, both regarding its &lt;a href=&quot;http://carlboettiger.info/2012/03/21/knitr-github-and-a-new-phase-for-the-lab-notebook.html&quot;&gt;use in my notebook&lt;/a&gt; and &lt;a href=&quot;http://carlboettiger.info/2012/04/07/writing-reproducibly-in-the-open-with-knitr.html&quot;&gt;in my manuscripts&lt;/a&gt;, here I provide a quick summary of how a reader might actually reproduce a figure or result they come across in the notebook, as well as some of the possible problems involved.&lt;/p&gt;
 &lt;p&gt;As the code required for any given analysis can be quite involved, it is not pratical to provide free-standing scripts in this way. Instead, I write the algorithms as functions provided by an R package dedicated to the project, e.g. &lt;a href=&quot;http://github.com/cboettig/nonparametric-bayes&quot;&gt;nonparametric-bayes&lt;/a&gt;, &lt;a href=&quot;http://github.com/cboettig/multiple_uncertainty&quot;&gt;multiple-uncertainty&lt;/a&gt;, or &lt;a href=&quot;http://github.com/cboettig/earlywarning&quot;&gt;warning-signals&lt;/a&gt;, which is version-managed on Github. The code displayed in the post can then be limited to the specific calls to analysis, data manipulation, and plotting functions unique to the exploration shown, without repeating the code for all algorithms involved.&lt;/p&gt;
@@ -633,7 +660,7 @@ Is there a way to obtain DOI for a &lt;a href=&quot;https://twitter.com/github&q
  <entry>
    <title>Notebook features: an introduction</title>
    <link href="/2013/04/26/notebook-features-introduction.html"/>
-   <updated>2013-04-26T00:00:00+00:00</updated>
+   <updated>2013-04-26T00:00:00-07:00</updated>
    <id>/2013/04/26/notebook-features-introduction</id>
    <content type="html">&lt;p&gt;In keeping this open lab notebook, I have sought to address three goals (in addition to all the traditional reasons for keeping a lab notebook)&lt;/p&gt;
 &lt;ol type=&quot;1&quot;&gt;
@@ -665,7 +692,7 @@ Is there a way to obtain DOI for a &lt;a href=&quot;https://twitter.com/github&q
  <entry>
    <title>Notebook Features: parsing linked data in the semantic notebook</title>
    <link href="/2013/04/04/notebook-parsing.html"/>
-   <updated>2013-04-04T00:00:00+00:00</updated>
+   <updated>2013-04-04T00:00:00-07:00</updated>
    <id>/2013/04/04/notebook-parsing</id>
    <content type="html">&lt;p&gt;In a &lt;a href=&quot;/2011/05/08/building-a-semantic-notebook.html&quot;&gt;post a while back&lt;/a&gt; I originally put forward the idea of a semantic lab notebook. Semantics, or linked data, are among the most powerful concepts to emerge in online science for scholarly data organization and communication. I have slowly been adding and exploring new ways to introduce semantic concepts into the notebook, which I have documented along the way under my &lt;a href=&quot;http://www.carlboettiger.info/tags.html#semantics&quot;&gt;#semantics&lt;/a&gt; tag. In this post, rather than discuss how to generate the semantic data, I try to focus on some of the things we can &lt;em&gt;do&lt;/em&gt; with it. This really just scratches the surface of possibilities, but should at least illustrate the general idea.&lt;/p&gt;
 &lt;p&gt;We will start with some very simple examples exploiting the semantics inherent in HTML5. We can then work up to richer examples that rely on XML-based parsing. The richest potential of the semantic notebook lies in leveraging the RDFa content, whose terms are defined as ontologies over which a machine can apply reasoning and formal logic against other web content (see, e.g. &lt;span class=&quot;showtooltip&quot; title=&quot;Shadbolt N, Berners-Lee T and Hall W (2006). The Semantic Web
@@ -841,7 +868,7 @@ doc &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot
  <entry>
    <title>Semantic Citations For The Notebook And Knitr</title>
    <link href="/2013/02/22/semantic-citations-for-the-notebook-and-knitr.html"/>
-   <updated>2013-02-22T00:00:00+00:00</updated>
+   <updated>2013-02-22T00:00:00-08:00</updated>
    <id>/2013/02/22/semantic-citations-for-the-notebook-and-knitr</id>
    <content type="html">&lt;p&gt;I have on ocassion been exploring the use of &lt;a href=&quot;/tags.html/#semantics&quot;&gt;semantic&lt;/a&gt; markup in the notebook. In this post I illustrate how I am handling semantic citations. One of the more intriguing ideas is the ability to add semantic meaning to citations through the CITO ontology of &lt;span class=&quot;showtooltip&quot; title=&quot;Shotton D (2010). Cito, The Citation Typing Ontology. _Journal
 of Biomedical Semantics_, *1*. ISSN 2041-1480, 
@@ -905,7 +932,7 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
  <entry>
    <title>Github Issues Tracker: The Perfect Research Todo List</title>
    <link href="/2012/12/06/github-issues-tracker%3A-the-perfect-research-todo-list.html"/>
-   <updated>2012-12-06T00:00:00+00:00</updated>
+   <updated>2012-12-06T00:00:00-08:00</updated>
    <id>/2012/12/06/github-issues-tracker:-the-perfect-research-todo-list</id>
    <content type="html">&lt;p&gt;Github issues tracker has increasingly become my research to-do list. Far beyond bugs and features of the code associated with the project, the issues sign-post different directions for investigation and the progress I’ve made in each. Tags serve to group issues related to a common sub-project (as in my &lt;a href=&quot;https://github.com/cboettig/pdg_control/issues&quot;&gt;pdg-control&lt;/a&gt;) repo or priotize tasks (as in my &lt;a href=&quot;https://github.com/cboettig/nonparametric-bayes/issues&quot;&gt;nonparametric-bayes&lt;/a&gt; repo.&lt;/p&gt;
 &lt;p&gt;Issues not only have title and tags, but support a comment thread for progress and discussion of the issue. Thanks to github-flavored-markdown, issues can reference each other simply by number, and can be updated or closed automatically by mentioning the issue number in a commit.&lt;/p&gt;
@@ -928,7 +955,7 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
  <entry>
    <title>Citing Lab Notebook Entries</title>
    <link href="/2012/11/23/citing-lab-notebook-entries.html"/>
-   <updated>2012-11-23T00:00:00+00:00</updated>
+   <updated>2012-11-23T00:00:00-08:00</updated>
    <id>/2012/11/23/citing-lab-notebook-entries</id>
    <content type="html">&lt;p&gt;C. Titus Brown has an excellent &lt;a href=&quot;http://ivory.idyll.org/blog/posting-blog-entries-to-figshare.html&quot;&gt;post&lt;/a&gt; discussing his exploration into the merits and technicalities cross-posting his blog posts to figshare. The &lt;a href=&quot;https://github.com/ropensci/rfigshare&quot;&gt;&lt;code&gt;rfigshare&lt;/code&gt; package&lt;/a&gt; written by &lt;a href=&quot;http://emhart.github.com/&quot;&gt;Ted Hart&lt;/a&gt; and myself can do just this, once we puzzled out some of the same challenges (Notes to Titus: though the documentation doesn’t mention it, you can get a programmatic list of available categories from &lt;a href=&quot;http://api.figshare.com/v1/categories&quot;&gt;http://api.figshare.com/v1/categories&lt;/a&gt;. Figshare can also take code as a fileset or dataset, and may soon add a type for it. The coolest thing about figshare is perhaps the way they add types in response to how they see users using the service).&lt;/p&gt;
 &lt;p&gt;The real discussion, though, is not about &lt;em&gt;how&lt;/em&gt;, but &lt;em&gt;why&lt;/em&gt;? Currently figshare doesn’t render the html or markdown/restructured-text source (other than as plain text), so it’s not a great place to &lt;em&gt;read&lt;/em&gt; the posts. This may change in the near future as well, but the primary motivation for doing this seems to be on the ability to get an honest-to-goodness DOI for your entry. So why a DOI?&lt;/p&gt;
@@ -936,8 +963,8 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
 &lt;p&gt;If you want Google Scholar to count the number of citations to your blog post, I have good news for you. You do not need a DOI and cross-posting to figshare. You just need to follow the &lt;a href=&quot;http://scholar.google.com/intl/en/scholar/inclusion.html#indexing&quot;&gt;metadata requirements&lt;/a&gt; as outlined by Google Scholar itself. This will help Google Scholar identify your blog post as a academic object, and add it to your profile. Anything indexed by Google scholar that cites your blog post will count as a reference. The basics are really simple. Have metadata such as:&lt;/p&gt;
 &lt;pre class=&quot;sourceCode html&quot;&gt;&lt;code class=&quot;sourceCode html&quot;&gt;&lt;span class=&quot;kw&quot;&gt;&amp;lt;meta&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; name=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;resource_type&amp;quot;&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; content=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;Lab Notebook&amp;quot;&lt;/span&gt;&lt;span class=&quot;kw&quot;&gt;/&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;kw&quot;&gt;&amp;lt;meta&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; name=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;citation_journal_title&amp;quot;&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; content=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;Lab Notebook&amp;quot;&lt;/span&gt;&lt;span class=&quot;kw&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;kw&quot;&gt;&amp;lt;meta&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; name=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;citation_publication_date&amp;quot;&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; content=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;2012-11-23 00:00:00 +0000&amp;quot;&lt;/span&gt;&lt;span class=&quot;kw&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;kw&quot;&gt;&amp;lt;meta&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; name=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;citation_date&amp;quot;&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; content=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;2012-11-23 00:00:00 +0000&amp;quot;&lt;/span&gt;&lt;span class=&quot;kw&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kw&quot;&gt;&amp;lt;meta&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; name=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;citation_publication_date&amp;quot;&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; content=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;2012-11-23 00:00:00 -0800&amp;quot;&lt;/span&gt;&lt;span class=&quot;kw&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kw&quot;&gt;&amp;lt;meta&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; name=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;citation_date&amp;quot;&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; content=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;2012-11-23 00:00:00 -0800&amp;quot;&lt;/span&gt;&lt;span class=&quot;kw&quot;&gt;/&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;kw&quot;&gt;&amp;lt;meta&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; name=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;citation_author&amp;quot;&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; content=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;Carl Boettiger&amp;quot;&lt;/span&gt;&lt;span class=&quot;kw&quot;&gt;/&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;kw&quot;&gt;&amp;lt;meta&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; name=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;citation_title&amp;quot;&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt; content=&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&amp;quot;Citing Lab Notebook Entries&amp;quot;&lt;/span&gt;&lt;span class=&quot;kw&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Just replace &lt;code&gt;Lab Notebook&lt;/code&gt; etc. with the correct values for your site. The example above will do so automatically if you use Jekyll using information specified in the YAML header. It seems the entry also needs a section called either “References” or “Bibliography” followed by a list of references. Not sure what format Google Scholar will do best at disambiguating. (Note that what I refer to as “Google Scholar” metadata looks like it was originally the convention adopted by HireWire Press.)&lt;/p&gt;
@@ -957,7 +984,7 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
  <entry>
    <title>Semantic Lab Notebook</title>
    <link href="/2012/10/14/semantic-lab-notebook.html"/>
-   <updated>2012-10-14T00:00:00+00:00</updated>
+   <updated>2012-10-14T00:00:00-07:00</updated>
    <id>/2012/10/14/semantic-lab-notebook</id>
    <content type="html">&lt;p&gt;As the lab notebook grows, to make the maximum use of content it would be particularly useful to maximize the ability for a computer to understand the content, allowing us to identify, manipulate, and connect data using scripts and software. This is the concept of &lt;em&gt;linked data&lt;/em&gt;, or a &lt;em&gt;semantic notebook&lt;/em&gt;. I have explored this this idea before in the context of a &lt;a href=&quot;2011/05/08/building-a-semantic-notebook.html&quot;&gt;wordpress-based platform&lt;/a&gt;, but now that Jekyll has let me strip away some of the abstraction of Wordpress it seems a good time to revisit this idea.&lt;/p&gt;
 &lt;h2 id=&quot;semantics-in-html5&quot;&gt;Semantics in HTML5&lt;/h2&gt;
@@ -1066,7 +1093,7 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
  <entry>
    <title>Welcome to my Lab Notebook - Reloaded</title>
    <link href="/2012/09/28/Welcome-to-my-lab-notebook.html"/>
-   <updated>2012-09-28T00:00:00+00:00</updated>
+   <updated>2012-09-28T00:00:00-07:00</updated>
    <id>/2012/09/28/Welcome-to-my-lab-notebook</id>
    <content type="html">&lt;p&gt;Welcome to my lab notebook, version 3.0. My &lt;a href=&quot;http://openwetware.org/wiki/User:Carl_Boettiger/Notebook&quot;&gt;original open lab notebooks&lt;/a&gt; began on the wiki platform &lt;a href=&quot;http://openwetware.org&quot;&gt;OpenWetWare&lt;/a&gt;, moved to a personally hosted Wordpress platform, and now run on a Jekyll-powered platform (&lt;a href=&quot;http://www.carlboettiger.info/README.html&quot;&gt;site-config&lt;/a&gt;), but the basic idea remains the same. For completeness, earlier entries from both platforms have been migrated here. Quoting from &lt;a href=&quot;http://www.carlboettiger.info/archives/211&quot;&gt;my original introduction&lt;/a&gt; to the Wordpress notebook:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1105,7 +1132,7 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
  <entry>
    <title>Migrating From Wordpress To Jekyll</title>
    <link href="/2012/09/19/migrating-from-wordpress-to-jekyll.html"/>
-   <updated>2012-09-19T00:00:00+00:00</updated>
+   <updated>2012-09-19T00:00:00-07:00</updated>
    <id>/2012/09/19/migrating-from-wordpress-to-jekyll</id>
    <content type="html">&lt;p&gt;Thanks to a recent bugfix in the &lt;a href=&quot;https://github.com/thomasf/exitwp&quot;&gt;exitwp&lt;/a&gt; scripts I was able to export all my Wordpress entries. The script pulls the entries from the Wordpress database and formats them in markdown, along with extracting all metadata such as timestamp, tags, categories, publication status, and Wordpress id number, which are all embedded as YAML header information.&lt;/p&gt;
 &lt;h3 id=&quot;why-migrate-the-old-entries&quot;&gt;Why migrate the old entries?&lt;/h3&gt;
@@ -1138,7 +1165,7 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
  <entry>
    <title>Esa Changes Arxiv Policy Following Community Comments</title>
    <link href="/2012/09/05/ESA-changes-ArXiv-policy-following-community-comments.html"/>
-   <updated>2012-09-05T00:00:00+00:00</updated>
+   <updated>2012-09-05T00:00:00-07:00</updated>
    <id>/2012/09/05/ESA-changes-ArXiv-policy-following-community-comments</id>
    <content type="html">&lt;p&gt;Earlier today, Scott Collins, the president of the Ecological Society of America has &lt;a href=&quot;https://twitter.com/ESA_Prez2013/status/243335363693797376&quot;&gt;announced&lt;/a&gt; that the society will now accept articles that have previously been posted on preprint servers. This comes on the heels of a growing discussion in our community. Ethan White has a good summary over on &lt;a href=&quot;http://jabberwocky.weecology.org/2012/09/05/esa-journals-will-now-allow-papers-with-preprints/&quot;&gt;Jabberwocky Ecology&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Many voices have joined the discussion over the past month, and it is exciting and vindicating to see the Society engage and discuss these questions. With this announcement out, I thought I might share my original letter. Here’s the text of an email I sent on August 1st to Don Strong, editor-in-chief of Ecology and a friend to open science known for his bottom-up view that ecologists should show their publication preferences by their actions. Don kindly forwarded this email to other members of the board.&lt;/p&gt;
@@ -1163,7 +1190,7 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
  <entry>
    <title>knitr, github, and a new phase for the lab notebook</title>
    <link href="/2012/03/21/knitr-github-and-a-new-phase-for-the-lab-notebook.html"/>
-   <updated>2012-03-21T12:13:42+00:00</updated>
+   <updated>2012-03-21T05:13:42-07:00</updated>
    <id>/2012/03/21/knitr-github-and-a-new-phase-for-the-lab-notebook</id>
    <content type="html">&lt;p&gt;I have recently modified the basic workflow of my lab notebook since discovering &lt;a href=&quot;http://yihui.name/knitr/&quot;&gt;knitr&lt;/a&gt;. Before, I would write code files which I could track on &lt;a href=&quot;https://github.com&quot;&gt;github&lt;/a&gt;, push figures created by the code to flickr, and then write a notebook entry on wordpress describing what I was doing. I’d embed each figure I wanted into the entry, and each figure got an automatic link to github for the script that created it (which usually worked, though it didn’t say where in the script the command came from, and it required manually specifying the script name).&lt;/p&gt;
 &lt;p&gt;Because knitr allows me to write a single file containing code and formatted text, and will automatically display the code and embed the images, I can avoid that more convoluted workflow and just write.&lt;/p&gt;
@@ -1193,7 +1220,7 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
  <entry>
    <title>Citing R packages</title>
    <link href="/2012/03/20/citing-r-packages.html"/>
-   <updated>2012-03-20T10:02:09+00:00</updated>
+   <updated>2012-03-20T03:02:09-07:00</updated>
    <id>/2012/03/20/citing-r-packages</id>
    <content type="html">&lt;p&gt;I’m not always careful in citing all the R packages I use. R actually has some rather nice built-in mechanisms to support this, so I really have no excuse. Here’s some quick examples:&lt;/p&gt;
 &lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;
@@ -1275,7 +1302,7 @@ out &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot
  <entry>
    <title>Journey to freedom - a code's tale of open source license migration</title>
    <link href="/2012/01/31/journey-to-freedom-a-codes-tale-of-open-source-license-migration.html"/>
-   <updated>2012-01-31T17:58:08+00:00</updated>
+   <updated>2012-01-31T09:58:08-08:00</updated>
    <id>/2012/01/31/journey-to-freedom-a-codes-tale-of-open-source-license-migration</id>
    <content type="html">&lt;p&gt;My software wants to be free. It wants to be seen and used and loved by as many people as possible. When first it heard of open source licenses, it set sail to join the company of great software in the promised land, but finding true freedom has been a tortured journey.&lt;/p&gt;
 &lt;h3 id=&quot;in-the-clutches-of-the-gpl&quot;&gt;In the clutches of the GPL&lt;/h3&gt;
@@ -1307,7 +1334,7 @@ p =&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kw&quot;&
  <entry>
    <title>Are open lab notebooks considered prior publication?</title>
    <link href="/2012/01/16/are-open-lab-notebooks-considered-prior-publication.html"/>
-   <updated>2012-01-16T10:47:17+00:00</updated>
+   <updated>2012-01-16T02:47:17-08:00</updated>
    <id>/2012/01/16/are-open-lab-notebooks-considered-prior-publication</id>
    <content type="html">&lt;p&gt;This question invariably comes up at some point in any discussion of open notebook science.  This concern is usually voiced in reference to the high-visibility magazines, which many scientists seem to assume will have very restrictive conditions.  A quick read of their policies shows otherwise.  Here are the links to pre-publication policies of major journals, with my short summaries &amp;amp; comments.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.nature.com/authors/policies/confidentiality.html&quot;&gt;Nature&lt;/a&gt; - Go right ahead. Explicit protection clause for open/collaborative blogs/wikis.  Just don’t talk to the press – guess that could include tweeting.  Also &lt;em&gt;Nature&lt;/em&gt; would like to see those links when you submit.&lt;/p&gt;
@@ -1337,7 +1364,7 @@ p =&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kw&quot;&
  <entry>
    <title>How google views me: by search terms or citation counts?</title>
    <link href="/2011/09/09/how-google-views-me-by-search-terms-or-citation-counts.html"/>
-   <updated>2011-09-09T09:55:39+00:00</updated>
+   <updated>2011-09-09T02:55:39-07:00</updated>
    <id>/2011/09/09/how-google-views-me-by-search-terms-or-citation-counts</id>
    <content type="html">&lt;p&gt;How Google search views me: here’s a word cloud of search terms reaching my site in August.  Word cloud produced with R: click-through for link to source-code. Uses the rather convenient tm package for text-mining functions in R. Note that this shows the frequency of individual words used in searches, rather than the whole search term.&lt;/p&gt;
 &lt;figure&gt;
@@ -1393,7 +1420,7 @@ pal2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quo
  <entry>
    <title>Citation tools & Future of Publishing</title>
    <link href="/2011/02/16/citation-tools-future-of-publishing.html"/>
-   <updated>2011-02-16T23:04:50+00:00</updated>
+   <updated>2011-02-16T15:04:50-08:00</updated>
    <id>/2011/02/16/citation-tools-future-of-publishing</id>
    <content type="html">&lt;p&gt;There has been a lot of rapid development in scientific tools based on a Wordpress platform recently, perhaps spurred in part by the recent &lt;a href=&quot;https://sites.google.com/site/beyondthepdf/&quot;&gt;Beyond-the-PDF&lt;/a&gt; and &lt;a href=&quot;http://blogs.plos.org/mfenner/2011/01/11/having-fun-with-citations-at-scienceonline2011/&quot;&gt;sessions in Science Online&lt;/a&gt; conferences.  A new &lt;a href=&quot;https://groups.google.com/forum/#!forum/wordpress-for-scientists&quot;&gt;discussion group&lt;/a&gt; has emerged around these tools, &lt;a href=&quot;http://blogs.plos.org/mfenner/2011/02/04/discussing-wordpress-for-scientists/&quot;&gt;as described by Martin Fenner&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I have been exploring better tools for citation management within my lab notebook. Recently I have been using the &lt;a href=&quot;http://wordpress.org/extend/plugins/papercite/&quot;&gt;papercite plugin&lt;/a&gt;to add citations from my BibTeX files, which are generated from Mendeley, as I &lt;a href=&quot;http://www.carlboettiger.info/archives/570&quot;&gt;described earlier&lt;/a&gt;.  This has a few performance issues on server load and memory, and a somewhat limited format/appearance options, but more importantly lacks some of the features of being developed in these other citation packages.&lt;/p&gt;
@@ -1424,7 +1451,7 @@ pal2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quo
  <entry>
    <title>Data Mangement on UC3 Merritt Repository</title>
    <link href="/2011/02/16/data-mangement-on-uc3-merritt-repository.html"/>
-   <updated>2011-02-16T19:06:11+00:00</updated>
+   <updated>2011-02-16T11:06:11-08:00</updated>
    <id>/2011/02/16/data-mangement-on-uc3-merritt-repository</id>
    <content type="html">&lt;p&gt;I’ve been trying to learn a little more about the potential for data management solutions through the &lt;a href=&quot;http://www.cdlib.org/services/uc3/merritt/index.html&quot;&gt;UC3 Merritt repository&lt;/a&gt;, and decide how this compares to commercial alternatives such as Amazon S3, Picasa/Flickr (obviously for images only), and field-specific and publication specific repositories such as Dryad.  Merritt email support have been very helpful in answering my questions and concerns.&lt;/p&gt;
 &lt;ul&gt;
@@ -1446,7 +1473,7 @@ pal2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quo
  <entry>
    <title>The Future of Data: Plans for a UC Davis workshop</title>
    <link href="/2011/02/01/the-future-of-data-preparing-researchers-to-face-new-funding-and-publishing-policies.html"/>
-   <updated>2011-02-01T09:40:59+00:00</updated>
+   <updated>2011-02-01T01:40:59-08:00</updated>
    <id>/2011/02/01/the-future-of-data-preparing-researchers-to-face-new-funding-and-publishing-policies</id>
    <content type="html">&lt;p&gt;I have been working with several of the faculty of UC Davis to prepare a workshop for our department to (1) help make our researchers &lt;strong&gt;aware&lt;/strong&gt; of the new requirements for NSF proposals and journal submissions with regard to data archiving, (2) To explore what &lt;strong&gt;new opportunities&lt;/strong&gt; this creates and what &lt;strong&gt;tools&lt;/strong&gt; exist that will help our researchers take maximum advantage of it, and (3) to engage our research community in the discussion of &lt;strong&gt;future standards&lt;/strong&gt; for sharing, standardizing, rewarding and funding the archiving of data.&lt;/p&gt;
 &lt;p&gt;I’m very pleased that we have an excellent panel of supportive faculty:&lt;/p&gt;
@@ -1524,7 +1551,7 @@ pal2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quo
  <entry>
    <title>Reflections from #scio11: Saturday's Open Science Track</title>
    <link href="/2011/01/15/reflections-from-scio11-saturdays-open-science-track.html"/>
-   <updated>2011-01-15T23:12:45+00:00</updated>
+   <updated>2011-01-15T15:12:45-08:00</updated>
    <id>/2011/01/15/reflections-from-scio11-saturdays-open-science-track</id>
    <content type="html">&lt;p&gt;Have just returned from the amazing and energetic science online 2011 conference, where I will now, like the rest of the attendees, turn to catching up on sleep, following new online acquaintances, struggling not to append #scio11 to everything I write, and composing that nearly obligatory post-event blog entry we all use like a glass of water after a party; with the hope in may help me metabolize the experience.&lt;/p&gt;
 &lt;p&gt;Never mind that I don’t actually blog. I just have this lab notebook, normally filled with equations, graphs and code. But it is recordings of my research experience, even if it is written only for me most of the time, so let’s just call this part of research and forgive the conversational tone. Meanwhile I will use the excuse to write more at length for myself the notes I wish to remember than would be seemly in writing in a blog with an audience.  In the spirit of this resembling my daily notebook and also in actually finishing this post, here are my notes and thoughts on Saturday’s amazing blur. &lt;a href=&quot;#fn1&quot; class=&quot;footnoteRef&quot; id=&quot;fnref1&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1574,7 +1601,7 @@ pal2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quo
  <entry>
    <title>Thoughts on the New Policies for Data Archiving at NSF and in Common Journals</title>
    <link href="/2010/12/03/nsf-and-journal-data-archiving.html"/>
-   <updated>2010-12-03T19:08:53+00:00</updated>
+   <updated>2010-12-03T11:08:53-08:00</updated>
    <id>/2010/12/03/nsf-and-journal-data-archiving</id>
    <content type="html">&lt;p&gt;This post is a work in progress, a scratch pad for me to start assembling what I’ve been learning about and resources pertaining to the new policies emerging from NSF and journals relevant to ecology and evolution.  Hoping to highlight not only the policies, but the issues, opportunities, and concerns around them.&lt;/p&gt;
 &lt;p&gt;I am hoping to help organize a workshop to discuss these issues in my department this Winter.  The Davis Open Science group, is planning a series of these workshops, hoping to work with departments, the libraries and the UC Davis Office of Research and its &lt;a href=&quot;http://www.research.ucdavis.edu/home.cfm?id=OVC,10,1622,2065&quot;&gt;Responsible Conduct of Research&lt;/a&gt; program (in compliance with NIH/NSF ethics requirements), as well as resident faculty and editors.  Suggestions on what you would like to see in such a workshop much appreciated.&lt;/p&gt;
