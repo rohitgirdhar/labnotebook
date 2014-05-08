@@ -22,12 +22,12 @@
 <meta property="dc:type" content="website" /> 
 <!-- RDFa Metadata (in OpenGraph) -->
 <meta property="og:title" content="Delayed Release Archives" />
-<meta property="og:author" content="http://carlboettiger.info/index.html#me" />  <!-- Should be Liquid? URI? -->
+<meta property="og:author" content="http://www.carlboettiger.info/index.html#me" />  <!-- Should be Liquid? URI? -->
 <meta property="http://ogp.me/ns/profile#first_name" content="Carl"/>
 <meta property="http://ogp.me/ns/profile#last_name" content="Boettiger"/>
 <meta property="http://ogp.me/ns/article#published_time" content="2013-03-02 00:00:00 +0000" />
 <meta property="og:site_name" content="Lab Notebook" /> <!-- Same as dc:source? -->
-<meta property="og:url" content="http://carlboettiger.info/2013/03/02/delayed-release-archives.html" />
+<meta property="og:url" content="http://www.carlboettiger.info/2013/03/02/delayed-release-archives.html" />
 <meta property="og:type" content="website" /> 
 <!-- Google Scholar Metadata -->
 <meta name="citation_author" content="Carl Boettiger"/>
@@ -97,15 +97,12 @@
 
 
     <div class="container"> <!-- Responsive grid layout, doesn't jump to full-width --> 
-
       <header>
-  <h1 class="entry-title">Delayed Release Archives</h1>
-  <h2></h3>
-</header>
+        <h1 class="entry-title">Delayed Release Archives</h1>
+        <h2></h3>
+      </header>
 
-
-
-<div class="row">
+      <div class="row">
   <div class="col-md-7 col-md-offset-1">
     <article>
     <p>Today I dug out a handful (37) posts from the past two years that were published as <a href="http://carlboettiger.info/tags.html#delayed-release">#delayed-release</a> content (and have all been tagged as such to indicate they were not public at their publication date). Many of these were connected to the <a href="http://carlboettiger.info/tags.html#warning-signals">#warning-signals</a> project but involved results that I or Alan weren’t ready to provide ahead of publication, as I discussed in a post when I first began marking some posts for delayed release, <a href="http://www.carlboettiger.info/2011/03/21/challenges-with-collaboration-in-open-science.html">challenges with collaboration in open science</a> These posts were created while on the Wordpress platform and had been marked private, so that they would be invisible to public browsing. Wordpress makes this easy to do, as I discuss in the earlier post. When I switched to a Jekyll platform, these posts all received the yaml header <code>published: false</code> and were also excluded from the Github repository until I could revisit and decide which to release. Managing these posts for release in the Jekyll framework just requires a little command-line fu, <code>grep -l 'published: false' *.md</code> grabs the relevant posts for inspection and release.</p>
@@ -191,11 +188,11 @@
 
 
 
-<footer class="footer">
+      <footer class="footer">
 
 <!--************** FOAF information to social networks ***************************** -->
   <div class="row">
-    <div class="col-md-3 col-xs-4 socialicons" style="font-size:20px" typeof="foaf:Person" about="http://carlboettiger.info#me">
+    <div class="col-md-3 col-xs-4 socialicons" style="font-size:20px" typeof="foaf:Person" about="http://www.carlboettiger.info#me">
       <p>
           <script type="text/javascript" src="/assets/js/obfuscate-email-link.js" language="javascript"></script> 
 
@@ -255,7 +252,7 @@
       &amp;rft.date=2013-03-02
       &amp;rft.language=EN
       &amp;rft.rights=CC0
-      &amp;rft_id=http://carlboettiger.info/2013/03/02/delayed-release-archives.html">
+      &amp;rft_id=http://www.carlboettiger.info/2013/03/02/delayed-release-archives.html">
   </span>
 
 
@@ -264,7 +261,7 @@
 
 
 
-    <!-- Le javascript
+          <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
@@ -281,7 +278,7 @@
 
     
 
-  <script type="text/javascript">
+        <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-18401403-1']);
           _gaq.push(['_trackPageview']);
@@ -307,10 +304,7 @@ function recordOutboundLink(link, category, action) {
 
 
 
-    
-
-
     </div>
   </body>
 </html>
-
+   

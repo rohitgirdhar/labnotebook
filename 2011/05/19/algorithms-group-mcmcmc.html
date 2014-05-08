@@ -22,12 +22,12 @@
 <meta property="dc:type" content="website" /> 
 <!-- RDFa Metadata (in OpenGraph) -->
 <meta property="og:title" content="Algorithms group: MCMCMC" />
-<meta property="og:author" content="http://carlboettiger.info/index.html#me" />  <!-- Should be Liquid? URI? -->
+<meta property="og:author" content="http://www.carlboettiger.info/index.html#me" />  <!-- Should be Liquid? URI? -->
 <meta property="http://ogp.me/ns/profile#first_name" content="Carl"/>
 <meta property="http://ogp.me/ns/profile#last_name" content="Boettiger"/>
 <meta property="http://ogp.me/ns/article#published_time" content="2011-05-19 12:52:34 +0000" />
 <meta property="og:site_name" content="Lab Notebook" /> <!-- Same as dc:source? -->
-<meta property="og:url" content="http://carlboettiger.info/2011/05/19/algorithms-group-mcmcmc.html" />
+<meta property="og:url" content="http://www.carlboettiger.info/2011/05/19/algorithms-group-mcmcmc.html" />
 <meta property="og:type" content="website" /> 
 <!-- Google Scholar Metadata -->
 <meta name="citation_author" content="Carl Boettiger"/>
@@ -97,15 +97,12 @@
 
 
     <div class="container"> <!-- Responsive grid layout, doesn't jump to full-width --> 
-
       <header>
-  <h1 class="entry-title">Algorithms group: MCMCMC</h1>
-  <h2></h3>
-</header>
+        <h1 class="entry-title">Algorithms group: MCMCMC</h1>
+        <h2></h3>
+      </header>
 
-
-
-<div class="row">
+      <div class="row">
   <div class="col-md-7 col-md-offset-1">
     <article>
     <p>Discussed <span class="math">\(\text{MC}^3\)</span>, the <a href="http://en.wikipedia.org/wiki/Bayesian_inference_in_phylogeny#Metropolis-coupled_MCMC_.28Geyer.29">Metropolis coupled Markov Chain Monte Carlo</a>, in Monday’s algorithms group meeting, just getting around to posting code.  The MrBayes paper is a good reference for this (Altekar <em>et. al.</em> 2004).  Our<a href="https://gist.github.com/956311">practice example</a> needed some debugging. I re-wrote a general purpose mcmcmc function in R to illustrate the algorithm, below.  Recall that it modifies our original MCMC in two ways.  The normal proposal step gets weighted by temperature, allowing heated chains to step downhill more often.  We draw a uniform (0,1) random number and accept the move R is larger than it, where:</p>
@@ -250,11 +247,11 @@ prior &lt;-<span class="st"> </span>function(pars){
 
 
 
-<footer class="footer">
+      <footer class="footer">
 
 <!--************** FOAF information to social networks ***************************** -->
   <div class="row">
-    <div class="col-md-3 col-xs-4 socialicons" style="font-size:20px" typeof="foaf:Person" about="http://carlboettiger.info#me">
+    <div class="col-md-3 col-xs-4 socialicons" style="font-size:20px" typeof="foaf:Person" about="http://www.carlboettiger.info#me">
       <p>
           <script type="text/javascript" src="/assets/js/obfuscate-email-link.js" language="javascript"></script> 
 
@@ -314,7 +311,7 @@ prior &lt;-<span class="st"> </span>function(pars){
       &amp;rft.date=2011-05-19
       &amp;rft.language=EN
       &amp;rft.rights=CC0
-      &amp;rft_id=http://carlboettiger.info/2011/05/19/algorithms-group-mcmcmc.html">
+      &amp;rft_id=http://www.carlboettiger.info/2011/05/19/algorithms-group-mcmcmc.html">
   </span>
 
 
@@ -323,7 +320,7 @@ prior &lt;-<span class="st"> </span>function(pars){
 
 
 
-    <!-- Le javascript
+          <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
@@ -340,7 +337,7 @@ prior &lt;-<span class="st"> </span>function(pars){
 
     
 
-  <script type="text/javascript">
+        <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-18401403-1']);
           _gaq.push(['_trackPageview']);
@@ -366,10 +363,7 @@ function recordOutboundLink(link, category, action) {
 
 
 
-    
-
-
     </div>
   </body>
 </html>
-
+   
