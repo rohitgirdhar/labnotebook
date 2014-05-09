@@ -4,13 +4,46 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-05-08T21:26:35+00:00</updated>
+ <updated>2014-05-09T16:58:46+00:00</updated>
  <id>http://www.carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
    <email>cboettig@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Integrating Github Project Repos Into The Notebook</title>
+   <link href="/2014/05/07/integrating-github-project-repos-into-the-notebook.html"/>
+   <updated>2014-05-07T00:00:00+00:00</updated>
+   <id>/2014/05/07/integrating-github-project-repos-into-the-notebook</id>
+   <content type="html">&lt;p&gt;For a while now most of my active research is developed through &lt;code&gt;.Rmd&lt;/code&gt; scripts connected to a particular project repository (something I discuss at length in &lt;a href=&quot;http://www.carlboettiger.info/2014/05/05/knitr-workflow-challenges.html&quot;&gt;deep challenges with knitr workflows&lt;/a&gt;). In the &lt;a href=&quot;http://www.carlboettiger.info/2014/05/06/steps-to-a-more-portable-workflow.html&quot;&gt;previous post&lt;/a&gt; I discuss creating a &lt;code&gt;template&lt;/code&gt; package with a more transparent organization of files, such as moving manuscripts from &lt;code&gt;inst/doc/&lt;/code&gt; to simply &lt;code&gt;manuscripts/&lt;/code&gt;. This left these exploratory analysis scripts in &lt;code&gt;inst/examples&lt;/code&gt; in a similarly unintuitive place. Though I like having these scripts as part of the repository (which keeps everything for a project in one place, as it were), like the manuscript they aren’t really part of the R package, particularly as I have gotten better at creating proper unit tests in place of just rerunning dynamic scripts occasionally.&lt;/p&gt;
+&lt;p&gt;I’ve also been nagged by the idea of having to always just link to these nice dynamic documents from my lab notebook. Sure Github renders the markdown so that it’s easy enough to see highlighted code and figures etc., but it still makes them seem rather external. Occasionally I would copy the complete &lt;code&gt;.md&lt;/code&gt; file into a notebook post, but this divorced it of it’s original version history and associated &lt;code&gt;.Rmd&lt;/code&gt; source.&lt;/p&gt;
+&lt;p&gt;One option would be to move them all directly into my lab notebook, &lt;code&gt;.Rmd&lt;/code&gt; files and all. This would integrate the scripts more nicely than Github’s own rendering, matching the URL and look and feel of my notebook. It would also allow for javascript elements such as MathJax equations, Google Analytics, and Disqus that are not possible when only linking to an &lt;code&gt;.md&lt;/code&gt; file on Github.&lt;/p&gt;
+&lt;p&gt;In the recent &lt;a href=&quot;https://github.com/ropensci/docs&quot;&gt;ropensci/docs&lt;/a&gt; project we are exploring a way to have Jekyll automatically compile (potentially with caching) a site that uses &lt;code&gt;.Rmd&lt;/code&gt; posts and deploy to Github all using &lt;code&gt;travis&lt;/code&gt;, but we’re not quite finished and this is potentially fragile particularly with the hundreds of posts in this notebook. Besides this, the notebook structure is rather temporally oriented, (posts are chronological and reflected in my URL structure) while these scripts are largely project-oriented. (Consistent use of categories and tags would ameliorate this).&lt;/p&gt;
+&lt;h3 id=&quot;embedding-images-in-.rmd-outputs&quot;&gt;Embedding images in &lt;code&gt;.Rmd&lt;/code&gt; outputs&lt;/h3&gt;
+&lt;p&gt;A persistent challenge has been how best to deal with images created by these scripts, some of which I may run many times. By default &lt;code&gt;knitr&lt;/code&gt; creates &lt;code&gt;png&lt;/code&gt; images, which as binary files are ill suited for committing to Github, and which could bloat a repository rather quickly. For a long while I have used custom hooks to push these images to &lt;code&gt;flickr&lt;/code&gt;, (see &lt;a href=&quot;http://flickr.com/cboettig&quot;&gt;flickr.com/cboettig&lt;/a&gt;), inserting the permanent flickr URL into the output markdown.&lt;/p&gt;
+&lt;p&gt;Recently Martin Fenner convinced me that &lt;code&gt;svg&lt;/code&gt; files would both render more nicely across a range of devices (being vector graphics), and could be easily committed to Github as they are text-based (XML) files, so that reproducing the same image in repeated runs wouldn’t take up any more space. We can then browse a nice version history of the any particular figure, and this also keeps all the output material together, making it easier to archive permanently (certainly nicer than my old archiving solution using data URIs.). Lastly, &lt;code&gt;svg&lt;/code&gt; is both web native, being a standard namespace of HTML5, and potentially interactive, as the &lt;a href=&quot;http://www.omegahat.org/SVGAnnotation/&quot;&gt;SVGAnnotation&lt;/a&gt; R package illustrates. So, lots of advantages in using &lt;code&gt;svg&lt;/code&gt; graphics.&lt;/p&gt;
+&lt;p&gt;Using &lt;code&gt;svg&lt;/code&gt; files also bring some unique challenges. Unlike when &lt;code&gt;png&lt;/code&gt; files are added to Github, webpages cannot directly link them since Github enforces rendering them as text instead of an image through its choice of HTML header, for security reasons. This means the only way to link to an &lt;code&gt;svg&lt;/code&gt; file on Github is to have that file on a &lt;code&gt;gh-pages&lt;/code&gt; branch, where it can be rendered as a website. A distinct disadvantage of this approach is that while we can link to a specific version of any file on Github, we see only the most recent version rendered on the website created by a &lt;code&gt;gh-pages&lt;/code&gt; branch.&lt;/p&gt;
+&lt;p&gt;On the other hand, having the &lt;code&gt;svg&lt;/code&gt; files on the &lt;code&gt;gh-pages&lt;/code&gt; branch further keeps down the footprint of the project &lt;code&gt;master&lt;/code&gt; branch. This leads rather naturally to the idea that the &lt;code&gt;.Rmd&lt;/code&gt; files and their &lt;code&gt;.md&lt;/code&gt; outputs should also appear on the &lt;code&gt;gh-pages&lt;/code&gt; branch. This removes them from their awkward home in &lt;code&gt;inst/examples/&lt;/code&gt;, and enables all the benefits of custom CSS, custom javascript, and custom URLs that we don’t have on Github’s rendering.&lt;/p&gt;
+&lt;p&gt;To provide a consistent look and feel, I merely copied over the &lt;code&gt;_layouts&lt;/code&gt; and &lt;code&gt;_includes&lt;/code&gt; from my lab notebook, tweaking them slightly to use the assets already hosted there. I add custom domain name for the all my &lt;code&gt;gh-pages&lt;/code&gt; as a sub-domain, &lt;code&gt;io.carlboettiger.info&lt;/code&gt; &lt;a href=&quot;#fn1&quot; class=&quot;footnoteRef&quot; id=&quot;fnref1&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, and now instead of having script output appear like so:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/cboettig/nonparametric-bayes/blob/7dd8fc444cb9d20d839286eac8068b3099ea9b6a/inst/examples/gaussian-process-basics.md&quot;&gt;nonparametric-bayes/inst/examples/gaussian-process-basics.md&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I have the same page rendered on my &lt;code&gt;io&lt;/code&gt; sub-domain:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://io.carlboettiger.info/nonparametric-bayes/gaussian-process-basics.html&quot;&gt;io.carlboettiger.info/nonparametric-bayes/gaussian-process-basics.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;with its mathjax, disqus, matching css, URL and nav elements.&lt;/p&gt;
+&lt;h2 id=&quot;landing-pages&quot;&gt;Landing pages&lt;/h2&gt;
+&lt;p&gt;An obvious extension of this approach is to grab a copy of the repository README and rename it &lt;code&gt;index.md&lt;/code&gt; and add a yaml header such that it serves as a landing page for the repository. A few lines of Liquid code can then generate the links to the other output scripts, as in this example:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://io.carlboettiger.info/nonparametric-bayes/&quot;&gt;io.carlboettiger.info/nonparametric-bayes&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;template&quot;&gt;Template&lt;/h2&gt;
+&lt;p&gt;I have added a &lt;code&gt;gh-pages&lt;/code&gt; branch with this set up to my new &lt;code&gt;template&lt;/code&gt; repository, with some more &lt;a href=&quot;http://io.carlboettiger.info/template/README&quot;&gt;basic documentation and examples&lt;/a&gt;.&lt;/p&gt;
+&lt;section class=&quot;footnotes&quot;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn1&quot;&gt;&lt;p&gt;There’s no need to use a different sub-domain than the rest of my website, other than that it would require my notebook be hosted on the &lt;a href=&quot;https://github.com/cboettig/cboettig.github.com&quot;&gt;cboettig.github.com&lt;/a&gt; repo instead of &lt;a href=&quot;https://github.com/cboettig/labnotebook&quot;&gt;labnotebook&lt;/a&gt;. However I prefer keeping my hosting on the repository I already have, and it also seems a bit unorthodox to host all my repositories on my main domain. In particular, it increases the chance for URL collisions if I create a repository with the same name as a page or directory on my website. Having gh-pages on the &lt;code&gt;io&lt;/code&gt; sub-domain feels like just the right amount of separation to me.&lt;a href=&quot;#fnref1&quot;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Steps To A More Portable Workflow</title>
