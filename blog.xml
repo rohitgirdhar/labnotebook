@@ -4,13 +4,91 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-06-03T22:19:30+00:00</updated>
+ <updated>2014-06-04T22:31:54+00:00</updated>
  <id>http://www.carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
    <email>cboettig@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Is Statistical Software Harmful</title>
+   <link href="/2014/06/04/is-statistical-software-harmful.html"/>
+   <updated>2014-06-04T00:00:00+00:00</updated>
+   <id>/2014/06/04/is-statistical-software-harmful</id>
+   <content type="html">&lt;p&gt;Ben Bolker has an excellent post on this complex issue over &lt;a href=&quot;http://dynamicecology.wordpress.com/2014/06/04/guest-post-is-statistical-software-harmful&quot;&gt;at Dynamic Ecology&lt;/a&gt;, which got me thinking about writing my own thoughts on the topic in reply.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Google recently announced that it will be making it’s own self-driving cars, rather than modifying those of others. &lt;a href=&quot;http://www.automotive.com/news/1405-google-envisions-self-driving-cars-with-no-steering-wheel/&quot;&gt;Cars that won’t have steering wheels and pedals&lt;/a&gt;. Just a button that says “stop.” What does this tell us about the future of user-friendly complex statistical software?&lt;/p&gt;
+&lt;p&gt;Ben quotes prominent statisticians voicing fears that echo common concerns about self-driving cars:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Andrew Gelman attributes to Brad Efron the idea that “recommending that scientists use Bayes’ theorem is like giving the neighbourhood kids the key to your F-16″.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think it is particularly interesting and instructive that the quote Gelman attributes to Efron is about a mathematical theorem rather than about software (e.g. Bayes Theorem, not WinBUGS). Even relatively simple statistical concepts like &lt;span class=&quot;math&quot;&gt;\(p\)&lt;/span&gt; values can cause plenty of confusion, statistical package or no. The concerns are not unique to software, so the solutions cannot come through limiting access to software.&lt;/p&gt;
+&lt;p&gt;I am very wary of the suggestion that we should address concerns of appropriate application by raising barriers to access. Those arguments have been made about knowledge of all forms, from access to publications, to raw data, to things as basic as education and democratic voting.&lt;/p&gt;
+&lt;p&gt;There are many good reasons for not creating a statistical software implementation of a new method, but I argue here that fear of misuse just is not one of them.&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;em&gt;The barriers created by not having a convenient software implementation are not an appropriate filter to keep out people who can miss-interpret or miss-use the software. As you know, a fundamentally different skillset is required to program a published algorithm (say, MCMC), than to correctly interpret the statistical consequences.&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We must be wary of a different kind of statistical machismo, in which we use the ability to implement a method by one’s self as a proxy for interpreting it correctly.&lt;/p&gt;
+&lt;p&gt;1a) One immediate corollary of (1) is that: &lt;em&gt;Like it or not, someone is going to build a method that is “easy to use”, e.g. remove the programming barriers.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;1b) The second corollary is that: &lt;em&gt;individuals with excellent understanding of the proper interpretation / statistics will frequently make mistakes in the computational implementation.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Both mistakes will happen. And both are much more formidable problems in the complex methodology of today than when computer was a job description.&lt;/p&gt;
+&lt;p&gt;So, what do we do? I think we should abandon the &lt;a href=&quot;http://www.r-bloggers.com/what-is-correctness-for-statistical-software/&quot;&gt;false dichotomy between “usability” and “correctness.”&lt;/a&gt;. Just because software that is easy to use is easy to misuse, does not imply that decreasing usability increases correctness. I think that is a dangerous fallacy.&lt;/p&gt;
+&lt;p&gt;A software implementation should aim first to remove the programming barriers rather than statistical knowledge barriers. Best practices such as modularity and documentation should make it easy for users and developers to understand and build upon it. I agree with Ben that software error messages are poor teachers. I agree that a tool cannot be foolproof, no tool ever has been.&lt;/p&gt;
+&lt;p&gt;Someone does not misuse a piece of software merely because they do not understand it. Misuse comes from mistakenly thinking you understand it. The premise that most researchers will use something they do not understand just because it is easy to use is distasteful.&lt;/p&gt;
+&lt;p&gt;Kevin Slavin gives &lt;a href=&quot;http://www.ted.com/talks/kevin_slavin_how_algorithms_shape_our_world&quot;&gt;a fantastic Ted talk&lt;/a&gt; on the ubiquitous role of algorithms in today’s world. His conclusion is neither one of panacea or doom, but rather that we seek to understand and characterize them, learn their strengths and weaknesses like a naturalist studies a new species.&lt;/p&gt;
+&lt;p&gt;More widespread adoption of software such as BUGS &amp;amp; relatives has indeed increased the amount of misuse and false conclusions. But it has also dramatically increased awareness of issues ranging from computational aspects peculiar to particular implementations to general understanding and discourse about Bayesian methods. Like Kevin, I don’t think we can escape the algorithms, but I do think we can learn to understand and live with them.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Plos Data Sharing Policy Reflections</title>
+   <link href="/2014/05/30/PLoS-data-sharing-policy-reflections.html"/>
+   <updated>2014-05-30T00:00:00+00:00</updated>
+   <id>/2014/05/30/PLoS-data-sharing-policy-reflections</id>
+   <content type="html">&lt;p&gt;PLOS has posted an &lt;a href=&quot;http://blogs.plos.org/biologue/2014/05/30/plos-data-policy-update/&quot;&gt;excellent update&lt;/a&gt; reflecting on their experiences a few months in to their new data sharing policy, which requires authors to include a statement of where the data can be obtained rather than providing it upon request. At the end of the piece they pose several excellent questions, which I reflect on here.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When should an author choose Supplementary Files vs a repository vs figures and tables?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To me, repositories should always be the default. Academic repositories provide robust permanent archiving (such as &lt;a href=&quot;http://clockss.org&quot;&gt;CLOCKSS&lt;/a&gt; backup), independent DOIs to content, often tracking of use metrics, enhanced discoverability, clear and appropriate licenses, richer metadata, as well as frequently providing things like API access and easy-to-use interfaces. They are the Silicon Valley of publishing innovation today.&lt;/p&gt;
+&lt;p&gt;Today I think it is much more likely that some material is not appropriate for a ‘journal supplement’ rather than not being able to find an appropriate repository (enough are free, subject agnostic and accept almost any file types). In my opinion the primary challenge is for publishers to tightly integrate the repository contents with their own website, something that the repositories themselves can support with good APIs and embedding tools (many do, PLOS’s coordination with figshare for individual figures being a great example).&lt;/p&gt;
+&lt;p&gt;I’m not clear on “vs figures and tables”, as this seems like a content question of “What” should be archived rather than “Where” (unless it is referring to separately archiving the figures and tables of the main text, which sounds like a great idea to me).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Should software/code be treated any differently from ‘data’? How should materials-sharing differ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At the highest level I think it is possible to see software as a ‘type’ of data. Like other data, it is in need of appropriate licensing, a management plan, documentation/metadata, and conforming to appropriate standards and placed in appropriate repositories. Of course what is meant by “appropriate” differs, but that is also true between other types of data. The same motivations for requiring data sharing (understanding and replicating the work, facilitating future work, increasing impact) apply.&lt;/p&gt;
+&lt;p&gt;I think we as a scientific community (or rather, many loosely federated communities) are still working out just how best to share scientific code and the unique challenges that it raises. Traditional scientific data repositories are well ahead in establishing best practices for other data, but are rapidly working out approaches to code. The &lt;a href=&quot;http://openresearchsoftware.metajnl.com/about/editorialPolicies&quot;&gt;guidelines&lt;/a&gt; from the Journal of Open Research Software from the UK Software Sustainability Institute are a great example.&lt;/p&gt;
+&lt;p&gt;I’m not informed enough to speak to sharing of non-digital material.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What does peer review of data mean, and should reviewers and editors be paying more attention to data than they did previously, now that they can do so?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In as much as we are satisfied with the current definition of peer review for journal articles I think this is a false dichotomy. Landmark papers, at least in my field, five or six decades ago (e.g. about as old as the current peer review system) frequently contained all the data in the paper (papers were longer and data was smaller). Somehow the data outgrew the paper and it just became okay to omit it, just as methods have gotten more complex and papers today frequently gloss over methodological details. The problem, then, is not one of type but one of scale: how do you review data when it takes up more than half a page of printed text.&lt;/p&gt;
+&lt;p&gt;The problem of scale is of course not limited to data. Papers frequently have many more authors than reviewers, often representing disparate and highly specialized expertise over possibly years of work, depend upon more than 100 citations and be accompanied by as many pages of supplemental material. To the extent that we’re satisfied with how reviewers and editors have coped with these trends, we can hope for the same for data.&lt;/p&gt;
+&lt;p&gt;Meanwhile, data transparency and data reuse may be more effective safe guards. Yes, errors in the data may cause trouble before they can be brought to light, just like bugs in software. But in this way they do eventually come to light, and that is somewhat less worrying if we view data the way we currently build publications (e.g. as fundamental building blocks of research) and publications as we currently view data (e.g. as a means to an ends, illustrated in the idea that it is okay to have mistakes in the data as long as they don’t change the conclusions).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;And getting at the reason why we encourage data sharing: how much data, metadata, and explanation is necessary for replication?&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I agree that the “What” question is a crux issue, and one we are still figuring out by community. There are really two issues here: what data to include, and what metadata (which to me includes any explanation or other documentation of the data) to provide for whatever data is included.&lt;/p&gt;
+&lt;p&gt;On appropriate metadata, we’ll never have a one-size-fits-all answer, but I think the key is to at least uphold current community best-practices (best != mode), whatever they may be. Parts of this are easy: scholarly archives everywhere include basic &lt;a href=&quot;http://en.wikipedia.org/wiki/Dublin_Core&quot;&gt;Dublin Core Elements&lt;/a&gt; metadata like title, author, date, subject and unique identifier, and most data repositories will attach this information in a machine-readable metadata format with minimal burden on the author (e.g. &lt;a href=&quot;http://datadryad.org&quot;&gt;Dryad&lt;/a&gt;, or to lesser extent, &lt;a href=&quot;http://figshare.org&quot;&gt;figshare&lt;/a&gt;). Many fields already have well-established and tested standards for data documentation, such as the [Ecological Metadata Langauge], which helps ecologists document things like column names and units in an appropriate and consistent way without constraining how the data is collected or structured.&lt;/p&gt;
+&lt;p&gt;What data we include in the first place is more challenging, particularly as there is no good definition of ‘raw data’ (one person’s raw data being another person’s highly processed data). I think a useful minimum might be to provide any data shown in a figure or used in a statistical test that appears in the paper.&lt;/p&gt;
+&lt;p&gt;Journal policies can help most in each of these cases by pointing authors to the policies of repositories and to subject-specific publications on these best practices.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A crucial issue that is much wider than PLOS is how to cite data and give academic credit for data reuse, to encourage researchers to make data sharing part of their everyday routine.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Again I agree that credit for data reuse is an important and largely cultural issue. Certainly editors can play there part as they already do in encouraging authors to cite the corresponding papers on the methods used, etc.&lt;/p&gt;
+&lt;p&gt;I think the cultural challenge is much greater for the “long tail” content than it is for the most impactful data. I think most of the top-cited papers over the last two decades have been methods papers (or are cited for the use of a method that has become the standard of a field; often as software). As with any citation, there’s a positive feedback as more people are aware of it. I suspect that the papers announcing the first full genomes of commonly studied organisms (essentially data papers, though published by the most exclusive journals) did not lack citations. For data (or methods for that matter) that do not anticipate that level of reuse, the concern of appropriate credit is more real. Even if a researcher can assume they will be cited by future reuse of their data, they may not feel that sufficient compensation if it means one less paper to their name.&lt;/p&gt;
+&lt;p&gt;Unfortunately I think these are not issues unique to data publication but germane to academic credit in general. Citations, journal names, and so forth are not meaningless metrics, but very noisy ones. I think it is too easy to fool ourselves by looking only at cases where statistical averages are large enough to see the signal – datasets like the human genome and algorithms like BLAST we know are impactful, and the citation record bears this out. Really well cited papers or well-cited journals tend to coincide with our notions of impact, so it is easy to overestimate the fidelity of citation statistics when the sample size is much smaller. Besides, academic work is a high-dimensional creature not easily reduced to a few scalar metrics. &lt;!--(I think that is why, at least in the US, we tend
+to place more trust in the opinions of people over current metrics.)--&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;And for long-term preservation, we must ask who funds the costs of data sharing? What file formats should be acceptable and what will happen in the future with data in obsolete file formats? Is there likely to be universal agreement on how long researchers should store data, given the different current requirements of institutions and funders?&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I think these are questions for the scientific data repositories and the fields they serve, rather than the journals, and for the most part they are handling them well.&lt;/p&gt;
+&lt;p&gt;Repositories like &lt;a href=&quot;http://datadryad.org&quot;&gt;Dryad&lt;/a&gt; have clear pricing schemes closely integrated with other publication costs, and standing at least an order of magnitude less than most journal publication fees look like a bargain. (Not so if you publish in subscription journals I hear you say. Well, I would not be surprised if we start seeing such repositories negotiate institutional subscriptions to cover the costs of their authors).&lt;/p&gt;
+&lt;p&gt;I think the question of data formats is closely tied to that of metadata, as they are all topics of best-practices in archiving. Many scientific data repositories have usually put a lot of thought into these issues and also weigh them against the needs and ease-of-use of the communities they serve. Journal data archiving policies can play their part by encouraging best practices by pointing authors to repository guidelines as well as published articles from their community (such as the &lt;a href=&quot;http://library.queensu.ca/ojs/index.php/IEE/article/view/4608&quot;&gt;Nine Simple Ways&lt;/a&gt; paper by White et al.)&lt;/p&gt;
+&lt;p&gt;I feel the almost rhetorical question about ‘universal agreement’ is unnecessarily pessimistic. I suspect that much of the variance in recommendations for the duration a researcher should archive their own work predates the widespread emergence of data repositories, which have vastly simplified the issue from when it was left up to each individual lab. Do we ask this question of the scientific literature? No, largely because many major journals have already provided robust long term archiving with &lt;a href=&quot;http://clockss.org&quot;&gt;CLOCKSS&lt;/a&gt;/LOCKSS backup agreements. Likewise scientific data repositories seem to have settled for indefinite archiving. It seems both reasonable and practical that data archiving can be held to the same standard as the journal article itself. (Sure there are lots of challenging issues to be worked out here, the key is only to leave it in the hands of those already leading the way and not re-invent the wheel).&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Integrating Github Project Repos Into The Notebook</title>
