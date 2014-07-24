@@ -4,7 +4,7 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-07-11T18:50:51+00:00</updated>
+ <updated>2014-07-24T19:41:52+00:00</updated>
  <id>http://www.carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
@@ -242,6 +242,21 @@ to place more trust in the opinions of people over current metrics.)--&gt;&lt;/p
 &lt;p&gt;Even work that simply relies on a package that has been archived becomes a substantial challenge to reproducibility by other scientists even when an expert familiar with the packages (e.g. the original author) would not have a problem, as the informatics team at the Evolutionary Synthesis center recently concluded in an exercise trying to reproduce several papers including my own that used a package that had been archived (odesolve, whose replacement, deSolve, does not use quite the same function call for the same &lt;code&gt;lsoda&lt;/code&gt; function).&lt;/p&gt;
 &lt;p&gt;New methods are being published all the time, and I think it is excellent that in ecology and evolution it is increasingly standard to publish R packages implementing those methods, as a scan of any table of contents in “methods in Ecology and Evolution”, for instance, will quickly show. But unlike &lt;code&gt;glm&lt;/code&gt;, these methods have a long way to go before they are fully tested and debugged, and reproducing any work based on them requires a close eye to the versions (particularly when unit tests and even detailed changelogs are not common). The methods are invariably built by “user-developers”, researchers developing the code for their own needs, and thus these packages can themselves fall afoul of changes as they depend and build upon work of other nascent ecology and evolution packages.&lt;/p&gt;
 &lt;p&gt;Detailed reproducibility studies of published work in this area are still hard to come by, not least because the actual code used by the researchers is seldom published (other than when it is published as it’s own R package). But incompatibilities between successive versions of the 100s of packages in our domain, along with the interdependencies of those packages might provide some window into the difficulties of computational reproducibility. I suspect changes in these fast-moving packages are far more culprit than differences in compilers and operating systems.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Startup Culture And Platforms For The Academy</title>
+   <link href="/2014/01/23/Startup-Culture-and-Platforms-for-the-Academy.html"/>
+   <updated>2014-01-23T00:00:00+00:00</updated>
+   <id>/2014/01/23/Startup-Culture-and-Platforms-for-the-Academy</id>
+   <content type="html">&lt;h2 id=&quot;scientific-research-moving-beyond-bubbles-to-platforms.&quot;&gt;Scientific Research: Moving beyond bubbles to platforms.&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.economist.com/news/special-report/21593580-cheap-and-ubiquitous-building-blocks-digital-products-and-services-have-caused&quot;&gt;The Economist&lt;/a&gt; contrasts the current start-up culture to that of the dotcom bubble. Their special report argues that while the dotcom bubble was characterized by heavy investment in a single idea with a “Build it and they will come” attitude, the current generation of startups is characterized by tinkering and rapid experimentation. They argue that this is possible thanks to the cheaply available &lt;em&gt;“platforms”&lt;/em&gt; of open source software, cloud computing, APIs, and social media dissemination. And they argue that this time, it is no bubble. That it will eat the world. That these lessons apply far beyond tech startups, to businesses in general and even governments. The special report is well worth reading in full.&lt;/p&gt;
+&lt;h2 id=&quot;so-how-about-science&quot;&gt;So how about science?&lt;/h2&gt;
+&lt;p&gt;After all, experimentation is what science is all about. Yet the platforms that run that world are largely absent from scientific research. Research looks more like the dotcom model, where each research team must make an immense investment in infrastructure and data gathering up front. Must hire expertise in-house for each step of the process, from experimental design to data collection to analysis to writing. Such large teams resemble more the companies of previous decades with their own development, marketing, and research departments, then the agile start-ups currently building the future. The resulting products are monolithic, “build it and they will come”.&lt;/p&gt;
+&lt;p&gt;I believe that this is the cornerstone of the open science and reproducible research movement.&lt;/p&gt;
+&lt;h2 id=&quot;update-2014-07-24&quot;&gt;Update (2014-07-24)&lt;/h2&gt;
+&lt;p&gt;This seems to be exactly what Martin Fenner is talking about in “&lt;a href=&quot;http://blog.martinfenner.org/2014/07/18/roads-not-stagecoaches/&quot;&gt;Roads, not Stagecoaches&lt;/a&gt;” – the value of transformative infrastructure over individual software contributions.&lt;/p&gt;
 </content>
  </entry>
  
