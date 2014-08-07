@@ -4,13 +4,59 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-08-06T21:01:04+00:00</updated>
+ <updated>2014-08-07T21:49:48+00:00</updated>
  <id>http://www.carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
    <email>cboettig@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Too Much Fun With Docker</title>
+   <link href="/2014/08/07/too-much-fun-with-docker.html"/>
+   <updated>2014-08-07T00:00:00+00:00</updated>
+   <id>/2014/08/07/too-much-fun-with-docker</id>
+   <content type="html">&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This post was originally drafted as a set of questions to the revived &lt;a href=&quot;https://groups.google.com/forum/#!forum/ropensci-discuss&quot;&gt;ropensci-discuss list&lt;/a&gt;, hopefully readers might join the discussion from there.&lt;/p&gt;
+&lt;p&gt;Been thinking about Docker and the discussion about reproducible research in the comments of Rich et al’s recent post on the &lt;a href=&quot;ropensci.org/blog/2014/06/09/reproducibility/&quot;&gt;rOpenSci blog&lt;/a&gt; where quite a few of people mentioned the potential for Docker as a way to facilitate this.&lt;/p&gt;
+&lt;p&gt;I’ve only just started playing around with Docker, and though I’m quite impressed, I’m still rather skeptical that non-crazies would ever use it productively. Nevertheless, I’ve worked up some Dockerfiles to explore how one might use this approach to transparently document and manage a computational environment, and I was hoping to get some feedback from all of you.&lt;/p&gt;
+&lt;p&gt;For those of you who are already much more familiar with Docker than me (or are looking for an excuse to explore!), I’d love to get your feedback on some of the particulars. For everyone, I’d be curious what you think about the general concept.&lt;/p&gt;
+&lt;p&gt;So far I’ve created a &lt;a href=&quot;https://github.com/ropensci/docker-ubuntu-r/blob/master/add-r-ropensci/Dockerfile&quot;&gt;dockerfile&lt;/a&gt; and &lt;a href=&quot;https://registry.hub.docker.com/u/cboettig/ropensci-docker/&quot;&gt;image&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you have docker up and running, perhaps you can give it a test drive:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -it cboettig/ropensci-docker /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should find R installed with some common packages. This image builds on Dirk Eddelbuettel’s R docker images and serves as a starting point to test individual R packages or projects.&lt;/p&gt;
+&lt;p&gt;For instance, my RNeXML manuscript draft is a bit more of a bear then usual to run, since it needs &lt;code&gt;rJava&lt;/code&gt; (requires external libs), &lt;code&gt;Sxslt&lt;/code&gt; (only available on Omegahat and requires extra libs) and latest &lt;code&gt;phytools&lt;/code&gt; (a tar.gz file from Liam’s website), along with the usual mess of pandoc/latex environment to compile the manuscript itself. By building on ropensci-docker, we need a &lt;a href=&quot;https://github.com/ropensci/RNeXML/tree/master/manuscripts/Dockerfile&quot;&gt;pretty minimal docker file&lt;/a&gt; to compile this environment:&lt;/p&gt;
+&lt;p&gt;You can test drive it (&lt;a href=&quot;https://registry.hub.docker.com/u/cboettig/rnexml&quot;&gt;docker image here&lt;/a&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -it cboettig/rnexml /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once in bash, launch R and run &lt;code&gt;rmarkdown::render(&amp;quot;manuscript.Rmd&amp;quot;)&lt;/code&gt;. This will recompile the manuscript from cache and leave you to interactively explore any of the R code shown.&lt;/p&gt;
+&lt;h2 id=&quot;advantages-goals&quot;&gt;Advantages / Goals&lt;/h2&gt;
+&lt;p&gt;Being able to download a pre-compiled image means a user can run the code without dependency hell (often not as much an R problem as it is in Python, but nevertheless one that I hit frequently, particularly as my projects age), and also without altering their personal R environment. Third (in principle) this makes it easy to run the code on a cloud server, scaling the computing resources appropriately.&lt;/p&gt;
+&lt;p&gt;I think the real acid test for this is not merely that it recreates the results, but that others can build and extend on the work (with fewer rather than more barriers than usual). I believe most of that has nothing to do with this whole software image thing – providing the methods you use as general-purpose functions in an R package, or publishing the raw (&amp;amp; processed) data to Dryad with good documentation will always make work more modular and easier to re-use than cracking open someone’s virtual machine. But that is really a separate issue.&lt;/p&gt;
+&lt;p&gt;In this context, we look for an easy way to package up whatever a researcher or group is already doing into something portable and extensible. So, is this really portable and extensible?&lt;/p&gt;
+&lt;h2 id=&quot;concerns&quot;&gt;Concerns:&lt;/h2&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;This presupposes someone can run docker on their OS – and from the command line at that. Perhaps that’s the biggest barrier to entry right now, (though given docker’s virulent popularity, maybe something smart people with big money might soon solve).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The only way to interact with thing is through a bash shell running on the container. An RStudio server might be much nicer, but I haven’t been able to get that running. &lt;em&gt;Anyone know how to run RStudio server from docker?&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;(I tried &amp;amp; &lt;a href=&quot;https://github.com/mingfang/docker-druid/issues/2&quot;&gt;failed&lt;/a&gt;)&lt;/p&gt;
+&lt;ol start=&quot;3&quot; type=&quot;1&quot;&gt;
+&lt;li&gt;I don’t see how users can move local files on and off the docker container. In some ways this is a great virtue – forcing all code to use fully resolved paths like pulling data from Dryad instead of their hard-drive, and pushing results to a (possibly private) online site to view them. But obviously a barrier to entry. &lt;em&gt;Is there a better way to do this?&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;alternative-strategies&quot;&gt;Alternative strategies&lt;/h2&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;Docker is just one of many ways to do this (particularly if you’re not concerned about maximum performance speed), and quite probably not the easiest. Our friends at Berkeley D-Lab opted for a GUI-driven virtual machine instead, built with Packer and run in Virtualbox, after their experience proved that students were much more comfortable with the mouse-driven installation and a pixel-identical environment to the instructor’s (see their excellent &lt;a href=&quot;https://berkeley.app.box.com/s/w424gdjot3tgksidyyfl&quot;&gt;paper&lt;/a&gt; on this).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Will/should researchers be willing to work and develop in virtual environments? In some cases, the virtual environment can be closely coupled to the native one – you use your own editors etc to do all the writing, and then execute in the virtual environment (seems this is easier in docker/vagrant approach than in the BCE.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;!--
+
+I would like a way for a collaborator who knows a little R to be able to open my .Rmd manuscript on his/her own computer, edit some parameters, recompile and view the pdf. RStudio w/ rmarkdown has gone a long way to making that happen.
+--&gt;
+
+
+
+
+</content>
+ </entry>
  
  <entry>
    <title>Is statistical software harmful?</title>

@@ -109,9 +109,14 @@
     <h2 id="berkeley-collaborative-environment">Berkeley Collaborative Environment</h2>
 <p>Trying out the Berkeley image (Essentially ubuntu 14.04 XFCE with ipython and RStudio installed, but finely tuned to improve user experience; e.g. solid colors for faster remote window connections.)</p>
 <p>Highly recommend <a href="https://t.co/TJ9ObbL8i8">their paper</a> for the first explanation I’ve actually been able to follow that provides a definition of “DevOpts” (essentially, using scripts rather than documentation to manage consistent cross-platform installation) and explains the differences and similarities between the various programs operating in this sphere, sometimes as alternatives and simultaneously.</p>
+<h4 id="virtual-machines.">Virtual machines.</h4>
+<p>Their approach focuses on running on top of a complete virtual machine. Primarily considers Oracle’s <code>virtualbox</code> for local use, Amazon’s AMI for cloud use. (For an emerging alternative to the full virtual machine approach, they discuss Docker).</p>
+<h4 id="configuration-management-cm-tools">Configuration management (CM) tools:</h4>
 <ul>
-<li><p>Virtual machines. Their approach focuses on running on top of a complete virtual machine. Primarily considers Oracle’s <code>virtualbox</code> for local use, Amazon’s AMI for cloud use. (For an emerging alternative to the full virtual machine approach, they discuss Docker).</p></li>
-<li><p><strong>Ansible</strong> (“playbooks”) used by the BCE to specify the complete software environment. Compares to: <strong>Chef</strong> (Ruby-based, “recipes”), <strong>Salt</strong> (Python based, “states”), and <strong>Puppet</strong> (“manifests”).</p></li>
+<li><strong>Ansible</strong> (“playbooks”) used by the BCE to specify the complete software environment. Compares to: <strong>Chef</strong> (Ruby-based, “recipes”), <strong>Salt</strong> (Python based, “states”), and <strong>Puppet</strong> (“manifests”).</li>
+</ul>
+<h4 id="provisioning-tools">Provisioning tools:</h4>
+<ul>
 <li><p><strong>Packer</strong> Used at build time to create a machine image for the VM. Packer can use Ansible/Chef/Salt/Puppet files to do this. Results in a nice AMI for Amazon web console or an image for the virtualbox GUI.</p></li>
 <li><p><strong>Vagrant</strong> Offers a different approach. Rather than the developer creating a VM image using Packer and Ansible script that is ready to run on virtualbox or Amazon, the end user installs vagrant instead of virtualbox. Vagrant also handles the job of Packer, in preparing an environment to run (on Vagrant’s virtual machine, rather than on virtualbox). (Note that conversely, Packer can create a Vagrant virtual machine just as easily as it can create the Oracle virtualbox or Amazon AMI). Vagrant feels a lot more native, as the user works within their familiar OS tools for editing, etc, while vagrant makes sure that the executation of the software happens in a controlled, identical environment.</p></li>
 <li><p><strong>Docker</strong> offers a more modular alternative to a full virtual machine, with performance that is more like running on ‘bare metal’, sharing the kernel of the native OS; though at the moment it requires that be a linux kernel. Docker is typically deployed using Vagrant, (though stand-alone setup is emerging).</p></li>
@@ -165,8 +170,8 @@
     <p><a class="btn btn-default" rel="prev" href='/2014/07/21/notes.html'><i class="icon-chevron-left"></i> prev</a>
   
   
-    </p>
-    
+  <a class="btn btn-default" rel="next" href='/2014/08/06/notes.html'>next <i class="icon-chevron-right"></i></a></p>
+  
 
   <br />
 
@@ -200,7 +205,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/13ca6599a9b6a2e788b58ab7b4f84caac735223c/_posts/2014-07-31-notes.md"> 13ca6599a9b6a2e788b58ab7b4f84caac735223c</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/094756440e877438635dec4dd147236090738b83/_posts/2014-07-31-notes.md"> 094756440e877438635dec4dd147236090738b83</a></small></p>
     
   <br/>
   
