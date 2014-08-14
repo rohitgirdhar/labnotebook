@@ -4,7 +4,7 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-08-10T19:45:57+00:00</updated>
+ <updated>2014-08-14T22:38:56+00:00</updated>
  <id>http://www.carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
@@ -17,9 +17,9 @@
    <link href="/2014/08/08/an-appropriate-amount-of-fun-with-docker.html"/>
    <updated>2014-08-08T00:00:00+00:00</updated>
    <id>/2014/08/08/an-appropriate-amount-of-fun-with-docker</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;An update on my exploration with Docker. Title curtiousy of &lt;a href=&quot;https://twitter.com/DistribEcology/status/497523435371638784&quot;&gt;Ted&lt;/a&gt;, with my hopes that this really does move us in a direction where we can spend less time thinking about the tools and computational environments. Not there yet though&lt;/em&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;em&gt;An update on my exploration with Docker. Title courtesy of &lt;a href=&quot;https://twitter.com/DistribEcology/status/497523435371638784&quot;&gt;Ted&lt;/a&gt;, with my hopes that this really does move us in a direction where we can spend less time thinking about the tools and computational environments. Not there yet though&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;I’ve gotten RStudio Server working in the &lt;a href=&quot;https://github.com/ropensci/docker-ubuntu-r/blob/master/add-r-ropensci/Dockerfile&quot;&gt;ropensci-docker&lt;/a&gt; image (Issues/pull requests welcome!).&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;docker -d -p 8787:8787 cboettig/ropensci-docker&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;docker run -d -p 8787:8787 cboettig/ropensci-docker&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;will make an RStudio server instance available to you in your browser at localhost:8787. (Change the first number after the -p to have a different address). You can log in with username:pw rstudio:rstudio and have fun.&lt;/p&gt;
 &lt;p&gt;One thing I like about this is the ease with which I can now get an RStudio server up and running in the cloud (e.g. I took this for sail on DigitalOcean.com today). This means in few minutes and 1 penny you have a URL that you and any collaborators could use to interact with R using the familiar RStudio interface, already provisioned with your data and dependencies in place.&lt;/p&gt;
 &lt;hr /&gt;

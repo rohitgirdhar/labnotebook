@@ -6,7 +6,7 @@
   <meta name="author" content="Carl Boettiger" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- HTML5 metadata -->
-<meta name="keywords" content="blog, R" />
+<meta name="keywords" content="blog, R, docker" />
 <meta name="description" content="" />
 <!-- RDFa Metadata (in DublinCore) -->
 <meta property="dc:title" content="An appropriate amount of fun with docker?" />
@@ -106,9 +106,9 @@
       <div class="row">
   <div class="col-md-7 col-md-offset-1">
     <article>
-    <p><em>An update on my exploration with Docker. Title curtiousy of <a href="https://twitter.com/DistribEcology/status/497523435371638784">Ted</a>, with my hopes that this really does move us in a direction where we can spend less time thinking about the tools and computational environments. Not there yet though</em></p>
+    <p><em>An update on my exploration with Docker. Title courtesy of <a href="https://twitter.com/DistribEcology/status/497523435371638784">Ted</a>, with my hopes that this really does move us in a direction where we can spend less time thinking about the tools and computational environments. Not there yet though</em></p>
 <p>I’ve gotten RStudio Server working in the <a href="https://github.com/ropensci/docker-ubuntu-r/blob/master/add-r-ropensci/Dockerfile">ropensci-docker</a> image (Issues/pull requests welcome!).</p>
-<pre><code>docker -d -p 8787:8787 cboettig/ropensci-docker</code></pre>
+<pre><code>docker run -d -p 8787:8787 cboettig/ropensci-docker</code></pre>
 <p>will make an RStudio server instance available to you in your browser at localhost:8787. (Change the first number after the -p to have a different address). You can log in with username:pw rstudio:rstudio and have fun.</p>
 <p>One thing I like about this is the ease with which I can now get an RStudio server up and running in the cloud (e.g. I took this for sail on DigitalOcean.com today). This means in few minutes and 1 penny you have a URL that you and any collaborators could use to interact with R using the familiar RStudio interface, already provisioned with your data and dependencies in place.</p>
 <hr />
@@ -176,7 +176,11 @@
     
     <!-- http://schema.org/BlogPosting/keywords -->
     <a rel="og:tag" class="tag" 
-       href="/tags.html#R">#R</a>
+       href="/tags.html#R">#R</a>, 
+    
+    <!-- http://schema.org/BlogPosting/keywords -->
+    <a rel="og:tag" class="tag" 
+       href="/tags.html#docker">#docker</a>
     </p>
 
   <br/>
@@ -184,7 +188,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/29043927749dd56f794aa40d642d18e463d2b22d/_posts/2014-08-08-an-appropriate-amount-of-fun-with-docker.md"> 29043927749dd56f794aa40d642d18e463d2b22d</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/26c3b36124605783ec8e91274c2bc59b55ec79e2/_posts/2014-08-08-an-appropriate-amount-of-fun-with-docker.md"> 26c3b36124605783ec8e91274c2bc59b55ec79e2</a></small></p>
     
   <br/>
   
