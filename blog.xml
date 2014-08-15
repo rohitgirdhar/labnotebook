@@ -4,13 +4,37 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-08-14T23:39:40+00:00</updated>
+ <updated>2014-08-15T19:08:17+00:00</updated>
  <id>http://www.carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
    <email>cboettig@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Docker Notes</title>
+   <link href="/2014/08/14/docker-notes.html"/>
+   <updated>2014-08-14T00:00:00+00:00</updated>
+   <id>/2014/08/14/docker-notes</id>
+   <content type="html">&lt;p&gt;Ticking through a few more of the challenges I raised in my &lt;a href=&quot;http://www.carlboettiger.info/2014/08/07/too-much-fun-with-docker.html&quot;&gt;first post on docker&lt;/a&gt;; here I explore some of the issues about facilitating interaction with a docker container so that a user’s experience is more similar to working in their own environment and less like working on a remote terminal over ssh. While technically minor, these issues are probably the first stumbling blocks in making this a valid platform for new users.&lt;/p&gt;
+&lt;h2 id=&quot;sharing-a-local-directory&quot;&gt;Sharing a local directory&lt;/h2&gt;
+&lt;p&gt;Launch a bash shell on the container that shares the current working directory of the host machine (from &lt;code&gt;pwd&lt;/code&gt;) with the &lt;code&gt;/host&lt;/code&gt; directory on the container (thanks to Dirk for this solution):&lt;/p&gt;
+&lt;pre class=&quot;sourceCode bash&quot;&gt;&lt;code class=&quot;sourceCode bash&quot;&gt;&lt;span class=&quot;kw&quot;&gt;docker&lt;/span&gt; run -it -v &lt;span class=&quot;ot&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;kw&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;ot&quot;&gt;)&lt;/span&gt;:/host cboettig/ropensci-docker /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This allows a user to move files on and off the container, use a familiar editor and even handle things like git commits / pulls / pushes in their working directory as before. Then the code can be executed in the containerized environment which handles all the dependencies. From the terminal docker opens, we just &lt;code&gt;cd /host&lt;/code&gt; where we find our working directory files, and can launch R and run the scripts. A rather clean way of maintaining the local development experience but containerizing execution.&lt;/p&gt;
+&lt;p&gt;In particular, this frees us from having to pass our git credentials etc to the container, though is not so useful if we’re wanting to interact with the container via the RStudio server instead of R running in the terminal. (More on getting around this below).&lt;/p&gt;
+&lt;p&gt;Unfortunately, Mac and Windows users have to run Docker inside an already-virualized environment such as provided by &lt;code&gt;boot2docker&lt;/code&gt; or &lt;code&gt;vagrant&lt;/code&gt;. This means that it is only the directories on the virtualized environment, not those on the native OS, can be shared in this way. While one could presumably keep a directory synced between this virtual environment and the native OS, (standard in in &lt;code&gt;vagrant&lt;/code&gt;), this is a problem for the easier-to-use &lt;code&gt;boot2docker&lt;/code&gt; at this time: (&lt;a href=&quot;https://github.com/docker/docker/issues/7249&quot;&gt;docker/issues/7249&lt;/a&gt;).&lt;/p&gt;
+&lt;h2 id=&quot;a-docker-desktop&quot;&gt;A Docker Desktop&lt;/h2&gt;
+&lt;p&gt;Dirk brought this &lt;a href=&quot;http://blog.docker.com/2013/07/docker-desktop-your-desktop-over-ssh-running-inside-of-a-docker-container&quot;&gt;docker-desktop&lt;/a&gt; to my attention; which uses Xpra (in place of X11 forwarding) to provide a window with fluxbox running on Ubuntu along with common applications like libreoffce, firefox, and rox file manager. Pretty clever, and worked just fine for me, but needs Xpra on the client machine and requires some extra steps (run the container, query for passwords and ports, run ssh to connect, then run Xpra to launch the window). The result is reasonably responsive but still slower than virtualbox, and probably too slow for real work.&lt;/p&gt;
+&lt;h2 id=&quot;base-images&quot;&gt;Base images?&lt;/h2&gt;
+&lt;p&gt;The basic Ubuntu:14.04 seems like a good lightweight base image (at 192 MB), but other images try to give more useful building blocks, like &lt;a href=&quot;https://github.com/phusion/baseimage-docker#contents&quot;&gt;phusion/baseimage&lt;/a&gt; (423 MB). Their &lt;code&gt;docker-bash&lt;/code&gt; script and other utilities provide some handy features for managing / debugging containers.&lt;/p&gt;
+&lt;h2 id=&quot;other-ways-to-share-files&quot;&gt;Other ways to share files?&lt;/h2&gt;
+&lt;p&gt;Took a quick look at this &lt;a href=&quot;https://github.com/gfjardim/docker-dropbox/blob/master/Dockerfile&quot;&gt;Dockerfile for running dropbox&lt;/a&gt;, which works rather well (at least on a linux machine, since it requires local directory sharing). Could probably be done without explicit linking to local directories to faciliate moving files on and off the container. Of course one can always scp/rsync files on and off containers if ssh is set up, but that is unlikely to be a popular solution for students.&lt;/p&gt;
+&lt;p&gt;While we have rstudio server running nicely in a Docker container for local or cloud use, it’s still an issue getting Github ssh keys set up to be able to push changes to a repo. We can get around this by linking to our keys directory with the same &lt;code&gt;-v&lt;/code&gt; option shown above. We still need a few more steps: setting the Git username and email, and running &lt;code&gt;ssh-add&lt;/code&gt; for the key. Presumably we could do this with environmental variables and some adjustment to the Dockerfile:&lt;/p&gt;
+&lt;pre class=&quot;sourceCode bash&quot;&gt;&lt;code class=&quot;sourceCode bash&quot;&gt;&lt;span class=&quot;kw&quot;&gt;docker&lt;/span&gt; run -it -v /path/to/keys:/home/rstudio/.ssh/ -e &lt;span class=&quot;st&quot;&gt;&amp;quot;USERNAME=Carl Boettiger&amp;quot;&lt;/span&gt; -e &lt;span class=&quot;st&quot;&gt;&amp;quot;EMAIL=cboettig@example.org&amp;quot;&lt;/span&gt; cboettig/ropensci-docker&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;which would prevent storing these secure values on the image itself.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>An appropriate amount of fun with docker?</title>
