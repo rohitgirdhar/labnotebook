@@ -803,6 +803,7 @@ http://carlboettiger.info/wordpress/archives/4482/index.html
 http://carlboettiger.info/archives/4482/index.html 
 
  
+http://carlboettiger.info/2014/08/25/reproducible-research-environments-with-Docker.html  
 http://carlboettiger.info/2014/08/14/pdg-controlfest-notes.html  
 http://carlboettiger.info/2014/08/14/docker-notes.html  
 http://carlboettiger.info/2014/08/08/an-appropriate-amount-of-fun-with-docker.html  
