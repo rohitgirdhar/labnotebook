@@ -118,13 +118,13 @@
 <h4 id="provisioning-tools">Provisioning tools:</h4>
 <ul>
 <li><p><strong>Packer</strong> Used at build time to create a machine image for the VM. Packer can use Ansible/Chef/Salt/Puppet files to do this. Results in a nice AMI for Amazon web console or an image for the virtualbox GUI.</p></li>
-<li><p><strong>Vagrant</strong> Offers a different approach. Rather than the developer creating a VM image using Packer and Ansible script that is ready to run on virtualbox or Amazon, the end user installs vagrant instead of virtualbox. Vagrant also handles the job of Packer, in preparing an environment to run (on Vagrant’s virtual machine, rather than on virtualbox). (Note that conversely, Packer can create a Vagrant virtual machine just as easily as it can create the Oracle virtualbox or Amazon AMI). Vagrant feels a lot more native, as the user works within their familiar OS tools for editing, etc, while vagrant makes sure that the executation of the software happens in a controlled, identical environment.</p></li>
+<li><p><strong>Vagrant</strong> Offers a different approach. Rather than the developer creating a VM image using Packer and Ansible script that is ready to run on virtualbox or Amazon, the end user installs vagrant instead of virtualbox. Vagrant also handles the job of Packer, in preparing an environment to run (on Vagrant’s virtual machine, rather than on virtualbox). (Note that conversely, Packer can create a Vagrant virtual machine just as easily as it can create the Oracle virtualbox or Amazon AMI). Vagrant feels a lot more native, as the user works within their familiar OS tools for editing, etc, while vagrant makes sure that the execution of the software happens in a controlled, identical environment.</p></li>
 <li><p><strong>Docker</strong> offers a more modular alternative to a full virtual machine, with performance that is more like running on ‘bare metal’, sharing the kernel of the native OS; though at the moment it requires that be a linux kernel. Docker is typically deployed using Vagrant, (though stand-alone setup is emerging).</p></li>
 </ul>
 <p>From first glance, Vagrant sounds like a more elegant approach than having end users install Oracle’s virtual machine and then learn to live in a virtual window emulating the Ubuntu-XFCE desktop (particularly if those users are developers!). However, it seems that the BCE team found that Vagrant was harder for students to work with, since it required knowledge of the commandline.</p>
 <p>The paper also provides a fabulous case study of a major scientific software project using the “DevOpts” philosophy but without any of these new and emerging tools, relying only on scripts, makefiles, and Linux distribution package managers.</p>
 <h3 id="test-drive-impressions">Test drive impressions</h3>
-<p>Unfortunately, no luck getting virtualization running on my laptop (due to <a href="ttps://github.com/dlab-berkeley/collaboratool/issues/created_by/cboettig">BIOS issues</a>). Testing on Ubuntu desktop required a newer version of virtualbox than what’s in the 12.04 repos, but otherwise just worked. It’s straight forward to install additional needed software, and virtualbox gives the option of perserving the machine state on exit, presumably with the software. Not clear how that should be managed to avoid re-creating the problems that using a consistent image set out to avoid in the first place; perhaps requires re-provisioning a divergent image?</p>
+<p>Unfortunately, no luck getting virtualization running on my laptop (due to <a href="ttps://github.com/dlab-berkeley/collaboratool/issues/created_by/cboettig">BIOS issues</a>). Testing on Ubuntu desktop required a newer version of virtualbox than what’s in the 12.04 repos, but otherwise just worked. It’s straight forward to install additional needed software, and virtualbox gives the option of preserving the machine state on exit, presumably with the software. Not clear how that should be managed to avoid re-creating the problems that using a consistent image set out to avoid in the first place; perhaps requires re-provisioning a divergent image?</p>
 <p>Nice experience testing out the Amazon machine image, but I think the workflow would be improved if it provided RStudio server for a more interactive interface.</p>
 <h2 id="misc-tasks">Misc tasks</h2>
 <ul>
@@ -144,7 +144,7 @@
 </ul>
 <pre class="vim"><code>au BufRead,BufNewFile *.Rmd set filetype=pandoc</code></pre>
 <ul>
-<li>Enable sytnax highlighting inside code blocks, by language. In vim session, do: <code>PandocHighlight r</code>. Unfortunately doesn’t recognize the default <code>.Rmd</code> format used by RStudio. This then enables syntax highlighting, folding, etc.</li>
+<li>Enable syntax highlighting inside code blocks, by language. In vim session, do: <code>PandocHighlight r</code>. Unfortunately doesn’t recognize the default <code>.Rmd</code> format used by RStudio. This then enables syntax highlighting, folding, etc.</li>
 </ul>
 <p>If I recall correctly, knitr’s default markdown syntax,</p>
 <pre><code>```{r}</code></pre>
@@ -205,7 +205,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/094756440e877438635dec4dd147236090738b83/_posts/2014-07-31-notes.md"> 094756440e877438635dec4dd147236090738b83</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/a5ab4800ebd569cecc1da11148fa5611ef19cb57/_posts/2014-07-31-notes.md"> a5ab4800ebd569cecc1da11148fa5611ef19cb57</a></small></p>
     
   <br/>
   
