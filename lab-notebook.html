@@ -108,7 +108,7 @@
     <h4>  <a property="account" href="https://github.com/cboettig" onclick="recordOutboundLink(this, 'Outbound Links', 'Github'); return false;"><i class="icon-github" alt="github"></i> Coding </a></h4> 
     <div class="excerpt">
       <div class="scroll">
-        <ul><li>cboettig pushed to master at cboettig/labnotebook: <em>new posts</em> <a href="https://github.com/cboettig/labnotebook/compare/abe38d10c9...793ba6c75b">10:36 2014/08/28</a></li><li>cboettig pushed to master at ropensci/docker: <em>update note add rhdf5 support</em> <a href="https://github.com/ropensci/docker/compare/03db5859ff...67326d20e0">10:11 2014/08/28</a></li><li>cboettig forked stat157/fall-2013 to cboettig/fall-2013: <em></em> <a href="https://github.com/cboettig/fall-2013">08:24 2014/08/28</a></li><li>cboettig starred stat157/fall-2013: <em></em> <a href="https://github.com/stat157/fall-2013">08:24 2014/08/28</a></li><li>cboettig commented on issue ropensci/spocc#8: <em>Not yet but can do Carl Boettigerhttp://carlboettiger.info sent from mobile device; my apologies for any terseness or typos On Aug 27, 2014 11:18 P…</em> <a href="https://github.com/ropensci/spocc/issues/8#issuecomment-53738197">03:35 2014/08/28</a></li></ul>
+        <ul><li>cboettig pushed to master at cboettig/labnotebook: <em>update travis keys</em> <a href="https://github.com/cboettig/labnotebook/compare/8017dfc29c...b5632fa6e6">11:38 2014/08/29</a></li><li>cboettig pushed to master at ropensci/RNeXML: <em>fix tests failing from excluded xml files local build, but not docker hub</em> <a href="https://github.com/ropensci/RNeXML/compare/b7be0f4fd1...4092e6a41a">11:25 2014/08/29</a></li><li>cboettig pushed to devel at ropensci/RNeXML: <em>fix tests failing from excluded xml files</em> <a href="https://github.com/ropensci/RNeXML/compare/de2f5c85e4...4092e6a41a">11:25 2014/08/29</a></li><li>cboettig pushed to master at cboettig/labnotebook: <em>update posts, set plugins to use env vars, add Dockerfile</em> <a href="https://github.com/cboettig/labnotebook/compare/793ba6c75b...8017dfc29c">11:21 2014/08/29</a></li><li>cboettig pushed to devel at ropensci/RNeXML: <em>local build, but not docker hub</em> <a href="https://github.com/ropensci/RNeXML/compare/b7be0f4fd1...de2f5c85e4">10:27 2014/08/29</a></li></ul>
       </div>
     </div>
   </div>
@@ -144,95 +144,6 @@
               'Outbound Links', 'RSS'); return false;"
               style="color: inherit;"
               ><i class="icon-rss" ></i> Entries</a></h4>
-      
-        <div class="col-md-3">
-          <header><h4><a href="/2014/08/25/reproducible-research-environments-with-Docker.html">Reproducible research environments with Docker</a></h4></header>
-<p><span></span></p>
-<p style="font-style:italic"> 25 Aug 2014</p>
-
-<article>
-<div class="excerpt">
-<p>Academic research takes place in computational environments of continually increasing complexity. This creates ever-higher barriers not only to reproducing or extending the results of other researchers, but also barriers to collaboration and training of new researchers.</p>
-<p>Wouldn’t it be nice if we could all work in equivalent computing environments, such that whatever worked for me on my computer would work for you on yours? Wouldn’t it be nice if we could just clone and copy our entire software environment when we needed to move our computations over to a more powerful cloud or cluster computer? Or perhaps roll back our environment to the state when everything was working yesterday?</p>
-<p>What is a computational environment anyway?</p>
-<p>TERMS: dependencies. environment</p>
-<p>The situation for users fo R is much better than most, since CRAN not only handles most dependencies but provides binaries for most major operating systems. Though susequent changes in packages can break this chain and cause scripts that once worked to no longer due so, emerging solutions like <a href="">packrat</a> try to tackle this problem.</p>
-<p>Nevertheless, R is not immune from these issues. Many packages make use of code libraries from other languages, from <code>pandoc</code>‘s system for rendering documents to interfaces with SQL databases, to manipulation of other formats like XML, to highly optimized linear algebra libraries. While an experienced user following careful documentation can usually install the appropriate libraries to create a functionally equivalent system, this raises substantial barriers for collaborators, students, and others. A NESCent working group on reproducibility recently found that even computationally savy experts (though not necessarily specific to the computer language or domain in question) working with code provided by authors who were explicitly committed to reproducibility (including me), could not even reconstruct the necessary computational environment. This inability to install all the correct components for software to run in the same way as it did for the original researchers is commonly known as ’dependency hell’ and has often been shown as the primary cause that computational components of research could not be replicated [1] (not least because it is one of the very first steps required before replication can be attempted).</p>
-<p>Just about anyone who has taught a course involving running software in class will be familiar with the challenges and lost instruction time from installing such dependencies on student’s machines. Even when all dependencies are installed successfully, there is a risk that these changes will break some of the user’s existing code by altering it’s environment.</p>
-<h2 id="jumping-in">Jumping in</h2>
-<h2 id="rstudio-on-digital-ocean">RStudio on Digital Ocean</h2>
-<h3 id="creating-a-digital-ocean-account-and-launching-your-droplet-cloud-server">Creating a Digital Ocean account and launching your “droplet” (cloud server)</h3>
-<h3 id="launching-rstudio-server">Launching RStudio-Server</h3>
-<h4 id="enable-swapping-if-testing-on-the-smallest-image">Enable swapping if testing on the smallest image</h4>
-<p>The smallest Digital Ocean servers have only 512 MB of memory and no swap enabled. Adding swap lets the machine cache things it doesn’t need in active memory, which can be important for running things like <code>install.packages</code>. On larger droplets this probably is not so much of an issue. Here, we enable 4GB of swap on a tiny instance:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> fallocate -l 4G /swapfile
-<span class="kw">sudo</span> chmod 600 /swapfile
-<span class="kw">sudo</span> mkswap /swapfile
-<span class="kw">sudo</span> swapon /swapfile</code></pre>
-<h3 id="log-in-and-compute">Log in and compute!</h3>
-<h2 id="running-this-environment-locally-mac-pc">Running this environment locally (Mac, PC)</h2>
-<h3 id="using-docker-with-your-native-tools">Using Docker with your native tools</h3>
-<p>If you already use RStudio for your code/text editor, file manager, and version control manager, then RStudio server gives you everything you need. But what if you want to use your favorite text editor, or moving files around in usual way on your operating system?</p>
-<h2 id="running-on-native-linux">Running on native Linux</h2>
-<p>If you already use linux as your native operating system (and have root access), life is super easy:</p>
-<h2 id="working-in-a-dockerized-world">Working in a Dockerized world</h2>
-<h2 id="what-this-means-for-reproducible-research">What this means for reproducible research</h2>
-<h2 id="docker-for-ropensci">Docker for ROpenSci</h2>
-<p>This repository provides Dockerfiles for provisioning a completely portable environment for reproducible research in R.</p>
-<p>A user creates an R terminal instance or RStudio Server instance running in a complete development environment on either local or cloud computer on any major operating system. A user can install new software and save changes to their image, see (somewhat coarsely) the history of changes made to their image, and roll back to earlier versions.</p>
-<p>These Dockerfiles build on Dirk’s <a href="">eddelbuettel/docker-ubuntu-r:add-r</a> image, which adds the basic current release of the R environment to the <code>ubuntu:latest</code> image.</p>
-<h2 id="getting-started">Getting started:</h2>
-<ul>
-<li><p>See <a href="">Installing Docker</a> for your operating system, or launch a cheap cloud instance with <a href="">docker already installed</a>.</p></li>
-<li><p>Download and run an R terminal instance: <code>sudo docker run -it cboettig/rstudio /usr/bin/R</code></p></li>
-<li><p>Download and run an RStudio server instance: <code>sudo docker run -d -p 8787:8787 cboettig/rstudio</code></p></li>
-<li><p>You can now reach your RStudio server at <code>http://&lt;system_ip_address&gt;:8787</code>. For Windows/Mac users, run <code>boot2docker ip</code> to get the value of <code>system_ip_address</code>. (This should be <code>http://92.168.59.103:8787</code> but may vary as it is set dynamically). For linux users, you can just use <code>localhost</code>. For cloud instances, check your server’s public IP address.</p></li>
-<li><p>login using the default rstudio:rstudio for user:pw, or configure particular users (see below).</p></li>
-</ul>
-<h2 id="options">Options</h2>
-<ul>
-<li>Replace <code>cboettig/rstudio</code> with <code>cboettig/ropensci</code> to run a richer (but larger) development environment. See below for details.</li>
-<li>Set user name and password using environmental variables, e.g.</li>
-</ul>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -d -p 8787:8787 -e USER=<span class="kw">&lt;</span>username<span class="kw">&gt;</span> -e PASSWORD=<span class="kw">&lt;</span>password<span class="kw">&gt;</span> -e EMAIL=you@somewhere.com cboettig/rstudio</code></pre>
-<ul>
-<li>Link the container to a local folder.</li>
-</ul>
-<p>These commands will be slow on the first run since the image must be downloaded. Afterwards they should be pretty quick.</p>
-<h2 id="rstudio-dockerfile">rstudio Dockerfile</h2>
-<p>The <code>rstudio</code> Dockerfile adds an RStudio server and git. You can also set the user name, user email, and login password as environmental variables. The user name is used for RStudio login and as the git user. The email address is only used to set the git email configuration (required for commits). The password is used only for the Rstudio login (and sudo commands in a bash shell in the container). If these variables are not provided, they default to <code>rstudio</code>, <code>rstudio</code> and <code>rstudio@example.com</code>. (While this is fine when running docker locally, you probably don’t want to use these defaults on a webserver with a public IP address).</p>
-<p>Builds of this image from this Dockerfile are avialble on through the Dockerhub as <code>cboettig/rstudio</code>.</p>
-<h2 id="ropensci-dockerfile">ropensci Dockerfile</h2>
-<p>The <code>ropensci</code> Dockerfile provides a rich development environment for R. This environment builds on <code>rstudio</code>, but adds the standard compiler tools required to build R, LaTeX and pandoc support, commonly used packages from Rstudio and the Hadleyverse (including their suggested dependencies), and some useful Omegahat packages that also require additional libraries.</p>
-<h2 id="remote-linux-clusters-without-root">Remote Linux clusters without root</h2>
-<p>You can run the docker images on a remote linux cluster where you don’t have root access, even if it doesn’t have a web-accessible API (such as a university server). Ask your friendly system administrator to install vagrant and virtualbox. Then we can use a lightweight virtualbox in which we can run Docker (this is just what boot2docker does in windows and mac, in fact, we’ll use an image based on boot2docker since it has just what we need, and at just 24 MB is way smaller than a standard ubuntu virtualbox image).</p>
-<p>A Vagrantfile for getting up and running with this image is found in the <code>vagrant</code> directory. This handles exporting ports to the host machine, and sharing files with the host machine (which can also be tricky for boot2docker users on Mac/Windows, so this might be a work-around for them). Run this image with:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">vagrant</span> up</code></pre>
-<p>You may want to first adjust the Vagrantfile to allocate more or less memory and CPU nodes to the virtual machine. Vagrant’s default is 512 MB and 1 CPU, though the file currently puts this at 2 CPUS and 1024 MB RAM.</p>
-<p>You can now connect to the RStudio server using some ssh port forwarding:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ssh</span> -o <span class="st">&quot;ExitOnForwardFailure yes&quot;</span> -f -N -L 8787:localhost:8888 <span class="kw">&lt;</span>your.server<span class="kw">&gt;</span></code></pre>
-<p>The first number (8787) is the port we want things to appear on localhost, e.g. we can now connect by visiting http://localhost:8787. The scond (8888) is the port we configured for the host machine with Vagrant.</p>
-<p>Note that sometimes you need to tunnel through a head node to the compute node where you want R to be running, replacing <code>&lt;your.server&gt;</code> with:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ssh</span> <span class="kw">&lt;</span>head.node.name<span class="kw">&gt;</span> nc -q0 <span class="kw">&lt;</span>compute.node.name<span class="kw">&gt;</span> 22</code></pre>
-<h2 id="author">Author</h2>
-<p>Carl Boettiger <script type="text/javascript">
-<!--
-h='&#114;&#x6f;&#112;&#x65;&#110;&#x73;&#x63;&#x69;&#46;&#x6f;&#114;&#x67;';a='&#64;';n='&#x63;&#98;&#x6f;&#x65;&#116;&#116;&#x69;&#x67;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
-// -->
-</script><noscript>&#x63;&#98;&#x6f;&#x65;&#116;&#116;&#x69;&#x67;&#32;&#x61;&#116;&#32;&#114;&#x6f;&#112;&#x65;&#110;&#x73;&#x63;&#x69;&#32;&#100;&#x6f;&#116;&#32;&#x6f;&#114;&#x67;</noscript></p>
-<h2 id="license">License</h2>
-<p>MIT</p>
- 
-<!-- not that raw_content depends on custom generator, 
-     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
-</article> 
-<p> <a href="/2014/08/25/reproducible-research-environments-with-Docker.html"> <em>Read more</em></a> </p>
-<br />
-<br />
-
-
-        </div>
       
         <div class="col-md-3">
           <header><h4><a href="/2014/08/14/pdg-controlfest-notes.html">Pdg Controlfest Notes</a></h4></header>
@@ -303,10 +214,6 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 
         </div>
       
-    </div>
-
-    <div class="row">
-      
         <div class="col-md-3">
           <header><h4><a href="/2014/08/08/an-appropriate-amount-of-fun-with-docker.html">An appropriate amount of fun with docker?</a></h4></header>
 <p><span></span></p>
@@ -350,6 +257,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 
 
         </div>
+      
+    </div>
+
+    <div class="row">
       
         <div class="col-md-3">
           <header><h4><a href="/2014/08/07/too-much-fun-with-docker.html">Too Much Fun With Docker</a></h4></header>
@@ -439,10 +350,6 @@ I would like a way for a collaborator who knows a little R to be able to open my
 
         </div>
       
-    </div>
-
-    <div class="row">
-      
         <div class="col-md-3">
           <header><h4><a href="/2014/07/31/notes.html">Notes</a></h4></header>
 <p><span></span></p>
@@ -508,6 +415,10 @@ I would like a way for a collaborator who knows a little R to be able to open my
 
         </div>
       
+    </div>
+
+    <div class="row">
+      
         <div class="col-md-3">
           <header><h4><a href="/2014/07/21/notes.html">Notes</a></h4></header>
 <p><span></span></p>
@@ -561,6 +472,48 @@ knitr::knit_hooks$<span class="kw">set</span>(<span class="dt">source=</span>hoo
      see _plugins/jekyll-labnotebook-plugins/raw_content --> 
 </article> 
 <p> <a href="/2014/07/21/UPS-and-data-vs-optimal-control.html"> <em>Read more</em></a> </p>
+<br />
+<br />
+
+
+        </div>
+      
+        <div class="col-md-3">
+          <header><h4><a href="/2014/07/18/notes.html">Notes</a></h4></header>
+<p><span></span></p>
+<p style="font-style:italic"> 18 Jul 2014</p>
+
+<article>
+<div class="excerpt">
+<h2 id="cran-trivia">CRAN trivia</h2>
+<h3 id="when-should-you-bump-version-for-a-rejected-resubmission">When should you bump version for a (rejected) resubmission?</h3>
+<blockquote>
+<p>Once accepted, any change other than to the metadata (essentially the DESCRIPTION file) needs an increased version. For submissions, we prefer (but do not insist on) a new number of each attempt.</p>
+</blockquote>
+<p>–Prof Brian Ripley</p>
+<h3 id="using-non-cran-repositories-in-suggests-or-enahances">Using non-CRAN repositories in SUGGESTS or ENAHANCES</h3>
+<p>More dubious tricks, from Yihui:</p>
+<blockquote>
+<p>FYI, here is how R core checks dependencies: https://github.com/wch/r-source/blob/trunk/src/library/tools/R/QC.R#L5195</p>
+</blockquote>
+<blockquote>
+<p>Because I know this, sometimes I intentionally use something like (function(pkg) library(pkg, character.only = TRUE))(“foo”) to silence R CMD check and cheat when I (optionally) need a package but do not want CRAN maintainers to know it</p>
+</blockquote>
+<h2 id="package-maintainence">Package maintainence</h2>
+<ul>
+<li><p>knitcitations 0.1.1 on CRAN now.</p></li>
+<li><p>See RNeXML check results: http://cran.r-project.org/web/checks/check_results_RNeXML.html</p></li>
+<li><p>RNeXML Submitted a series of patches that allow tests not to fail when external resources (packages, web APIs) that are not available.</p></li>
+<li><p>rfigshare updated <a href="https://github.com/ropensci/rfigshare/issues/84">#84</a>. Triggered occassional errors from API failing, so most tests now skipped if authentication call fails. (Reworked authentication a bit)</p></li>
+<li><p>bugfix: <a href="https://github.com/cboettig/knitcitations/issues/63#issuecomment-49459723">knitcitations/#63</a></p></li>
+</ul>
+<h2 id="misc">Misc</h2>
+<p>Taking a look at <a href="">auto</a> for bifurcation diagrams (ht Noam, who is using the XPP wrapper).</p>
+ 
+<!-- not that raw_content depends on custom generator, 
+     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
+</article> 
+<p> <a href="/2014/07/18/notes.html"> <em>Read more</em></a> </p>
 <br />
 <br />
 
