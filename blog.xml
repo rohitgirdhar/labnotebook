@@ -4,7 +4,7 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-09-03T01:01:11+00:00</updated>
+ <updated>2014-09-03T02:30:54+00:00</updated>
  <id>http://www.carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
@@ -1256,7 +1256,7 @@ http://knowledgeblog.org/greycite [Online. last-accessed:
  
  <entry>
    <title>Github Issues Tracker: The Perfect Research Todo List</title>
-   <link href="/2012/12/06/github-issues-tracker%3A-the-perfect-research-todo-list.html"/>
+   <link href="/2012/12/06/github-issues-tracker:-the-perfect-research-todo-list.html"/>
    <updated>2012-12-06T00:00:00+00:00</updated>
    <id>/2012/12/06/github-issues-tracker:-the-perfect-research-todo-list</id>
    <content type="html">&lt;p&gt;Github issues tracker has increasingly become my research to-do list. Far beyond bugs and features of the code associated with the project, the issues sign-post different directions for investigation and the progress I’ve made in each. Tags serve to group issues related to a common sub-project (as in my &lt;a href=&quot;https://github.com/cboettig/pdg_control/issues&quot;&gt;pdg-control&lt;/a&gt;) repo or priotize tasks (as in my &lt;a href=&quot;https://github.com/cboettig/nonparametric-bayes/issues&quot;&gt;nonparametric-bayes&lt;/a&gt; repo.&lt;/p&gt;
