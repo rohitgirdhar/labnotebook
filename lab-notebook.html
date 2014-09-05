@@ -108,7 +108,7 @@
     <h4>  <a property="account" href="https://github.com/cboettig" onclick="recordOutboundLink(this, 'Outbound Links', 'Github'); return false;"><i class="icon-github" alt="github"></i> Coding </a></h4> 
     <div class="excerpt">
       <div class="scroll">
-        <ul><li>cboettig pushed to master at cboettig/labnotebook: <em>update Dockerfile, drop non-existant layout on atom feed update</em> <a href="https://github.com/cboettig/labnotebook/compare/26552b20c2...8beaad1e82">02:22 2014/09/03</a></li><li>cboettig pushed to gh-pages at cboettig/labnotebook: <em>Updating to cboettig/labnotebook@26552b2.</em> <a href="https://github.com/cboettig/labnotebook/compare/0ffe3deec2...1d20548e53">01:03 2014/09/03</a></li><li>cboettig pushed to master at cboettig/labnotebook: <em>new post, updating Gemfile locale</em> <a href="https://github.com/cboettig/labnotebook/compare/df7730ed29...26552b20c2">12:56 2014/09/03</a></li><li>cboettig pushed to master at ropensci/docker: <em>use the correct debian call for Rdevel install</em> <a href="https://github.com/ropensci/docker/compare/9e27c55f16...c3a5cff004">10:57 2014/09/02</a></li><li>cboettig pushed to master at cboettig/collaboratool: <em>add a Dockerfile providing RStudio-server and BCE image</em> <a href="https://github.com/cboettig/collaboratool/compare/5e580ea2c6...09b5e83025">10:56 2014/09/02</a></li></ul>
+        <ul><li>cboettig pushed to master at cboettig/labnotebook: <em>fix broken link</em> <a href="https://github.com/cboettig/labnotebook/compare/8beaad1e82...bdb9d2aa60">04:56 2014/09/05</a></li><li>cboettig pushed to master at cboettig/docker: <em>Update .drone.yml</em> <a href="https://github.com/cboettig/docker/compare/537fc99244...5b5c8dd9d6">04:48 2014/09/05</a></li><li>cboettig pushed to master at cboettig/docker: <em>Update .drone.yml</em> <a href="https://github.com/cboettig/docker/compare/c18129a2c3...537fc99244">04:46 2014/09/05</a></li><li>cboettig pushed to master at cboettig/docker: <em>Update .drone.yml</em> <a href="https://github.com/cboettig/docker/compare/216d0ee2a9...c18129a2c3">04:29 2014/09/05</a></li><li>cboettig pushed to master at cboettig/docker: <em>Update .drone.yml</em> <a href="https://github.com/cboettig/docker/compare/9514cac3ed...216d0ee2a9">04:28 2014/09/05</a></li></ul>
       </div>
     </div>
   </div>
@@ -116,12 +116,12 @@
     <h4> <a property="account" href="https://twitter.com/cboettig" onclick="recordOutboundLink(this, 'Outbound Links', 'Twitter'); return false;"><i class="icon-twitter"></i> Discussing </a></h4> 
      <div class="excerpt">
       <div class="scroll">
-       <ul><li><p>&quot;Early warnings of regime shifts: evaluation of spatial indicators from a whole-ecosystem experiment&quot; <a href="http://t.co/sI7mbzv4AY">http://t.co/sI7mbzv4AY</a></p>
+       <ul><li><p>RT @Richvn: Bootcamps to teach scientists computing skills @kaythaney discusses @swcarpentry: <a href="http://t.co/l1RA5nRzkW">http://t.co/l1RA5nRzkW</a></p>
+ <a href="http://twitter.com/cboettig/statuses/507592077983506432">06:12 2014/09/04</a> </li><li><p>&quot;Early warnings of regime shifts: evaluation of spatial indicators from a whole-ecosystem experiment&quot; <a href="http://t.co/sI7mbzv4AY">http://t.co/sI7mbzv4AY</a></p>
  <a href="http://twitter.com/cboettig/statuses/506850184760803328">05:04 2014/09/02</a> </li><li><p>@emgbotany Others have also pointed that out for some time, but it&#39;s nice to see this review draw more attention to the issue [2]/[2]</p>
  <a href="http://twitter.com/cboettig/statuses/506295991952093184">04:22 2014/09/01</a> </li><li><p>@emgbotany Yup, I think spatial autocorrelation is routinely mistaken for environmental niche matching and too often ignored [1]/[2]</p>
  <a href="http://twitter.com/cboettig/statuses/506295821168807937">04:21 2014/09/01</a> </li><li><p>Mistaking geography for biology: inferring processes from species distributions: Trends in Ecology &amp; Evolution <a href="http://t.co/7uXR4hca5X">http://t.co/7uXR4hca5X</a></p>
- <a href="http://twitter.com/cboettig/statuses/505750404831780864">04:14 2014/08/30</a> </li><li><p>RT @fperez<em>org: Git That Data: Berkeley students recount their experience in reproducible research #caldatasci @aculich @</em>inundata <a href="http://t%E2%80%A6">http://t…</a></p>
- <a href="http://twitter.com/cboettig/statuses/505094351878242304">08:47 2014/08/28</a> </li></ul>
+ <a href="http://twitter.com/cboettig/statuses/505750404831780864">04:14 2014/08/30</a> </li></ul>
       </div>
     </div> 
   </div> 
@@ -183,7 +183,7 @@
 </ul>
 <h2 id="docker-inside-docker">Docker inside docker:</h2>
 <p>We cannot directly install docker inside a docker container. We can get around this by adding a complete virtualization layer – e.g. docker running in vagrant/virtualbox running in docker.</p>
-<p>Alternatively, we can be somewhat more clever and tell our docker to simply use a different volume to store its AUFS layers. Matt Gruter has a <a href="https://github.com/mattgruter/dockerfile-doubledocker">very clever example</a> of this, which can be used, e.g. to run a Drone server (which runs docker) inside a Docker container (<a href="://registry.hub.docker.com/u/mattgruter/drone/">mattgruter/drone</a>).</p>
+<p>Alternatively, we can be somewhat more clever and tell our docker to simply use a different volume to store its AUFS layers. Matt Gruter has a <a href="https://github.com/mattgruter/dockerfile-doubledocker">very clever example</a> of this, which can be used, e.g. to run a Drone server (which runs docker) inside a Docker container (<a href="http://registry.hub.docker.com/u/mattgruter/drone/">mattgruter/drone</a>).</p>
 <p>I believe this only works if we run the outer docker image with <code>--privileged</code> permissions, e.g. we cannot use this approach on a server like Shippable that is dropping us into a prebuilt docker container.</p>
  
 <!-- not that raw_content depends on custom generator, 

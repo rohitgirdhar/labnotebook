@@ -137,7 +137,7 @@
 </ul>
 <h2 id="docker-inside-docker">Docker inside docker:</h2>
 <p>We cannot directly install docker inside a docker container. We can get around this by adding a complete virtualization layer – e.g. docker running in vagrant/virtualbox running in docker.</p>
-<p>Alternatively, we can be somewhat more clever and tell our docker to simply use a different volume to store its AUFS layers. Matt Gruter has a <a href="https://github.com/mattgruter/dockerfile-doubledocker">very clever example</a> of this, which can be used, e.g. to run a Drone server (which runs docker) inside a Docker container (<a href="://registry.hub.docker.com/u/mattgruter/drone/">mattgruter/drone</a>).</p>
+<p>Alternatively, we can be somewhat more clever and tell our docker to simply use a different volume to store its AUFS layers. Matt Gruter has a <a href="https://github.com/mattgruter/dockerfile-doubledocker">very clever example</a> of this, which can be used, e.g. to run a Drone server (which runs docker) inside a Docker container (<a href="http://registry.hub.docker.com/u/mattgruter/drone/">mattgruter/drone</a>).</p>
 <p>I believe this only works if we run the outer docker image with <code>--privileged</code> permissions, e.g. we cannot use this approach on a server like Shippable that is dropping us into a prebuilt docker container.</p>
 
     </article>
@@ -179,7 +179,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/26552b20c2d63e7bcab0e10766f151b422bb2508/_posts/2014-08-29-docker-notes.md"> 26552b20c2d63e7bcab0e10766f151b422bb2508</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/bdb9d2aa605ecef2ba02da9377f31b710245ee27/_posts/2014-08-29-docker-notes.md"> bdb9d2aa605ecef2ba02da9377f31b710245ee27</a></small></p>
     
   <br/>
   
