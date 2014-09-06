@@ -108,7 +108,7 @@
     <h4>  <a property="account" href="https://github.com/cboettig" onclick="recordOutboundLink(this, 'Outbound Links', 'Github'); return false;"><i class="icon-github" alt="github"></i> Coding </a></h4> 
     <div class="excerpt">
       <div class="scroll">
-        <ul><li>cboettig pushed to master at cboettig/labnotebook: <em>fix broken link</em> <a href="https://github.com/cboettig/labnotebook/compare/8beaad1e82...bdb9d2aa60">04:56 2014/09/05</a></li><li>cboettig pushed to master at cboettig/docker: <em>Update .drone.yml</em> <a href="https://github.com/cboettig/docker/compare/537fc99244...5b5c8dd9d6">04:48 2014/09/05</a></li><li>cboettig pushed to master at cboettig/docker: <em>Update .drone.yml</em> <a href="https://github.com/cboettig/docker/compare/c18129a2c3...537fc99244">04:46 2014/09/05</a></li><li>cboettig pushed to master at cboettig/docker: <em>Update .drone.yml</em> <a href="https://github.com/cboettig/docker/compare/216d0ee2a9...c18129a2c3">04:29 2014/09/05</a></li><li>cboettig pushed to master at cboettig/docker: <em>Update .drone.yml</em> <a href="https://github.com/cboettig/docker/compare/9514cac3ed...216d0ee2a9">04:28 2014/09/05</a></li></ul>
+        <ul><li>cboettig pushed to master at cboettig/labnotebook: <em>Merge branch 'master' of github.com:cboettig/labnotebook new docker post</em> <a href="https://github.com/cboettig/labnotebook/compare/bdb9d2aa60...ad42e783a9">03:22 2014/09/06</a></li><li>cboettig pushed to devel at ropensci/RNeXML: <em>Update README.md fix path</em> <a href="https://github.com/ropensci/RNeXML/compare/4092e6a41a...72b54e89e7">03:10 2014/09/06</a></li><li>cboettig deleted branch mscomm at ropensci/RNeXML: <em></em> <a href="https://github.com/">03:09 2014/09/06</a></li><li>cboettig pushed to master at cboettig/dockerfiles: <em>update readme</em> <a href="https://github.com/cboettig/dockerfiles/compare/e6acc90bd3...a8b54a7584">11:55 2014/09/05</a></li><li>cboettig pushed to master at ropensci/RNeXML: <em>Update README.md</em> <a href="https://github.com/ropensci/RNeXML/compare/7a0eed3b86...72b54e89e7">11:31 2014/09/05</a></li></ul>
       </div>
     </div>
   </div>
@@ -144,6 +144,73 @@
               'Outbound Links', 'RSS'); return false;"
               style="color: inherit;"
               ><i class="icon-rss" ></i> Entries</a></h4>
+      
+        <div class="col-md-3">
+          <header><h4><a href="/2014/09/05/drone-ci-and-docker.html">Drone Ci And Docker</a></h4></header>
+<p><span></span></p>
+<p style="font-style:italic"> 05 Sep 2014</p>
+
+<article>
+<div class="excerpt">
+<h2 id="drone-ci-continous-integration-in-custom-docker-environments">Drone CI: Continous integration in custom docker environments</h2>
+<p>Having gotten accustomed to Docker, configuring the appropriate build environment for a Continuous Integration system like Travis CI or Shippable CI starts to feel incredibly tedious and archaic (particularly if you work primarily in a language like R or haskell that usually isn’t supported out of the box).</p>
+<ul>
+<li>We do not have to hack together a custom image environment</li>
+<li>We can build and test our environment locally instead of having to rely on trial-and-error pushes to the CI server</li>
+<li>We do not have to download, compile and install the development environment each time, (which frequently takes longer than the CI checks themselves and can break)</li>
+</ul>
+<p>(Shippable provides a persistent environment too, by preserving the state of your ‘minion’. But unlike Shippable, I believe the Drone approach is unlikely that you can create troublesome side-effects in your environment, such as removing a necessary dependency from the <code>shippable.yml</code> and yet not catching it since the dependency is still available on the minion from before. In the Drone approach, we start on the same docker image each time, but merely avoid the few minutes it might take to download that image).</p>
+<p>Unfortunately, custom images are not available on the fully hosted <a href="http://drone.io">drone.io</a> system. (Though perhaps they’d accept pull requests that would add an R environment to <a href="https://github.com/drone/images">their image library</a>). Fortunately, the Drone team kindly provides an <a href="https://github.com/drone.drone">open source version</a> of their platform that can be hosted on a self-hosted / private server (such as the new web darling DigitalOcean or Amazon’s EC2). This has other advantages as well – such as using privately hosted repositories (it also integrates with BitBucket and GitLab) or running very long tests / simulations (since we’re now paying for the server time ourselves, after all).</p>
+<h2 id="the-easy-way-use-docker">The easy way: use docker</h2>
+<p>We can deploy the Drone CI server somewhat more seamlessly by running it in a container itself. Rather than worry about the above configuration, we can simply launch an existing docker image for Drone, rather cleverly created by Matt Gruter:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run --name=<span class="st">&#39;drone&#39;</span> -d -p 8080:80 --privileged mattgruter/drone</code></pre>
+<ul>
+<li>Now we can follow the <a href="http://drone.readthedocs.org/en/latest/setup.html">setup instructions</a>. Be sure to use the matching case in the application name (<code>Drone</code> not <code>drone</code>) and the appropriate URLs for the authorization call back.</li>
+</ul>
+<p>Note that we must use a different port than 80, and that we must give this port explicitly in the Authorization callback URL: <code>http://localhost:8080/auth/login/github</code> in order to authenticate.</p>
+<p>Also note that in this approach, the Drone CI’s docker image library will be separate from the docker image library. To manage or update the images available, we have to first <code>nsenter</code> into the Drone CI container.</p>
+<p>This runs rather nicely on a tiny DigitalOcean droplet. Bare in mind that the tiny droplet has only 20 GB of disk space though, which can be consumed rather quickly with too many images. If many of the images use the same base templates, the total disk space required will fortunately be much lower than the sum of their virtual sizes.</p>
+<h3 id="experimenting-with-saving-images">experimenting with saving images</h3>
+<p>Being a docker image, we can snapshot and export it for later use, and meanwhile can even destroy our server instance.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> export drone <span class="kw">&gt;</span> dronedroplet.tar</code></pre>
+<p>Not clear that this works. Consider saving an image instead? Save container named drone as image named drone:droplet</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> commit drone drone:droplet
+<span class="kw">docker</span> save drone:droplet <span class="kw">&gt;</span> dronedroplet.tar</code></pre>
+<p>are these identical?</p>
+<p>Hmm, doesn’t seem to store configuration, login is no longer valid. Starting a stopped container maintains the configuration of course, but not launching from scratch (e.g. the sqlite database is local to the container, not accessible through an externally linked volume).</p>
+<p>Note that this tarball does not include the Drone CI image library itself, which is not part of the container but rather connected as a volume. This makes it quite a bit smaller, and that library can presumably be reconstructed from the docker hub.</p>
+<h2 id="configuring-drone-ci-the-hard-way">Configuring Drone CI: the hard way</h2>
+<ul>
+<li>Install and launch drone: (see <a href="https://github.com/drone/drone">drone/README</a>)</li>
+<li>Add <code>DOCKER_OPTS=&quot;-H 127.0.0.1:4243 -d&quot;</code> to <code>/etc/default/docker</code></li>
+<li>Kill the docker deamon and restart docker. Or run docker with the explicit binding:</li>
+</ul>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> docker -d -H 127.0.0.1:4243 <span class="kw">&amp;</span></code></pre>
+<ul>
+<li>You may need to <a href="http://docs.docker.com/installation/ubuntulinux/#docker-and-ufw">configure firewall</a>, if ufw is running.</li>
+<li>References: <a href="https://github.com/drone/drone/issues/149">drone/issues/149</a>, <a href="https://github.com/drone/drone/issues/24">drone/issues/24</a></li>
+<li>Now we can follow the <a href="http://drone.readthedocs.org/en/latest/setup.html">setup instructions</a>. Be sure to use the matching case in the application name (<code>Drone</code> not <code>drone</code>) and the appropriate URLs for the authorization call back.</li>
+</ul>
+<h2 id="configuring-an-already-running-docker-session">Configuring an already-running docker session</h2>
+<p>Launch a named repository in deamon mode:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -d -p 8787:8787 --name=<span class="st">&#39;rstudio&#39;</span> cboettig/rstudio</code></pre>
+<p>Use a docker-based install to add <code>nsenter</code> into your executable path:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -v /usr/local/bin:/target jpetazzo/nsenter</code></pre>
+<p>Run <code>nsenter</code> to log into the docker image:</p>
+<pre><code>nsenter -m -u -n -i -p -t `docker inspect --format &#39;&#39; rstudio` /bin/bash</code></pre>
+<p>Modify usernames and passwords, etc:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">useradd</span> -m <span class="ot">$USER</span> <span class="kw">&amp;&amp;</span> <span class="kw">echo</span> <span class="st">&quot;</span><span class="ot">$USER</span><span class="st">:</span><span class="ot">$PASSWORD</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="kw">chpasswd</span></code></pre>
+<p>Now exit and find that things are updated. Yay.</p>
+ 
+<!-- not that raw_content depends on custom generator, 
+     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
+</article> 
+<p> <a href="/2014/09/05/drone-ci-and-docker.html"> <em>Read more</em></a> </p>
+<br />
+<br />
+
+
+        </div>
       
         <div class="col-md-3">
           <header><h4><a href="/2014/08/29/docker-notes.html">Docker tricks of the trade and best practices thoughts</a></h4></header>
@@ -231,6 +298,10 @@
 
         </div>
       
+    </div>
+
+    <div class="row">
+      
         <div class="col-md-3">
           <header><h4><a href="/2014/08/14/docker-notes.html">Docker Notes</a></h4></header>
 <p><span></span></p>
@@ -264,10 +335,6 @@
 
 
         </div>
-      
-    </div>
-
-    <div class="row">
       
         <div class="col-md-3">
           <header><h4><a href="/2014/08/08/an-appropriate-amount-of-fun-with-docker.html">An appropriate amount of fun with docker?</a></h4></header>
@@ -369,6 +436,10 @@ I would like a way for a collaborator who knows a little R to be able to open my
 
         </div>
       
+    </div>
+
+    <div class="row">
+      
         <div class="col-md-3">
           <header><h4><a href="/2014/08/06/notes.html">Notes</a></h4></header>
 <p><span></span></p>
@@ -400,10 +471,6 @@ I would like a way for a collaborator who knows a little R to be able to open my
 
 
         </div>
-      
-    </div>
-
-    <div class="row">
       
         <div class="col-md-3">
           <header><h4><a href="/2014/07/31/notes.html">Notes</a></h4></header>
@@ -500,29 +567,6 @@ knitr::knit_hooks$<span class="kw">set</span>(<span class="dt">source=</span>hoo
      see _plugins/jekyll-labnotebook-plugins/raw_content --> 
 </article> 
 <p> <a href="/2014/07/21/notes.html"> <em>Read more</em></a> </p>
-<br />
-<br />
-
-
-        </div>
-      
-        <div class="col-md-3">
-          <header><h4><a href="/2014/07/21/UPS-and-data-vs-optimal-control.html">UPS and data vs optimal control</a></h4></header>
-<p><span></span></p>
-<p style="font-style:italic"> 21 Jul 2014</p>
-
-<article>
-<div class="excerpt">
-<p><em>Random idea for possible further exploration:</em></p>
-<p>The use of ‘big data’ by UPS to perform lots of small efficiency gains seems to be everybody’s favorite example (<a href="http://www.npr.org/blogs/money/2014/05/02/308640135/episode-536-the-future-of-work-looks-like-a-ups-truck">NPR</a>, <a href="http://www.economist.com/news/business/21607816-businesses-should-aim-lots-small-wins-big-data-add-up-something-big-little">The Economist</a>). During a typical applications of optimal control for ecological conservation talk yesterday I couldn’t help thinking back to that story. The paradigm shift is not so much the kind or amount of the data being used as it is the control levers themselves. As the Economist (rightly) argues, everyone typically assumes that a few principle actions are responsible for 80% of possible improvement.</p>
-<p>Optimal control tends to focus on these big things, which are also usually particularly thorny optimizations. Most of the classic textbook hard optimization problems could have come right from the UPS case: the traveling salesman, the inventory packing/set cover problems, and so forth. Impossible to solve exactly on large networks, approximate dynamic programming approaches have since been the work-around. Yet the “Big Data” approach takes a rather different strategy all together, tackling many small problems instead of one big one. Our typical approach of theoretical abstractions to simple models is designed to focus on these big overarching problems. In abstracting the problem, we focus on the big picture stuff that should matter most – stuff like figuring out the optimal route to travel, and so forth. But when the gains through increasing optimization of these things are marginal, focusing on the “other 20%” can make more sense. However, that means abandoning the abstraction and going back to the original messy problem. It means knowing about all the other little levers and switches we can control. In the UPS context, this means thinking about how many times a truck backs up, or idles at a stop light, or what hand the deliveryman holds the pen in. Given both the data and the ability to control so many of these little things, optimizing each one in the first place can be more valuable than focusing on the big abstract optimizations.</p>
-<p>So, does this work only once the heuristic solutions to the big problems are nearly optimal, so improved approximations have very limited gains? Or can this also be a route forward when the big problems are primarily intractable as well? The former certainly seems the more likely, but if the latter is true, it could prove very interesting.</p>
-<p>So this got me thinking – if we accept the latter premise we find a case closely analogous to the very messy optimizations we face in conservation decision-making. Could the many little levers be an alternative? It’s unlikely given both the need for the kind of arbitrarily detailed data at almost no cost available to the UPS problem, and also the kind of totalitarian control UPS can apply to control all the little levers, while the conservation problem more frequently has nothing bit a scrawny blunt stick to toggle in the first place. Nevertheless, it’s hard to know what possible gains we have already excluded when we focus only on the big abstractions and the controls relevant to them. Could conservation decision-making think more outside the box about the many little things we might be able to more effectively influence?</p>
- 
-<!-- not that raw_content depends on custom generator, 
-     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
-</article> 
-<p> <a href="/2014/07/21/UPS-and-data-vs-optimal-control.html"> <em>Read more</em></a> </p>
 <br />
 <br />
 
