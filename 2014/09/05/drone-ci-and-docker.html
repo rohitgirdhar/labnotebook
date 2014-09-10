@@ -151,7 +151,7 @@
 <p>Use a docker-based install to add <code>nsenter</code> into your executable path:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -v /usr/local/bin:/target jpetazzo/nsenter</code></pre>
 <p>Run <code>nsenter</code> to log into the docker image:</p>
-<pre><code>nsenter -m -u -n -i -p -t `docker inspect --format &#39;&#39; rstudio` /bin/bash</code></pre>
+<pre><code>nsenter -m -u -n -i -p -t `docker inspect --format &#39;{{ .State.Pid }}&#39; rstudio` /bin/bash</code></pre>
 <p>Modify usernames and passwords, etc:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">useradd</span> -m <span class="ot">$USER</span> <span class="kw">&amp;&amp;</span> <span class="kw">echo</span> <span class="st">&quot;</span><span class="ot">$USER</span><span class="st">:</span><span class="ot">$PASSWORD</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="kw">chpasswd</span></code></pre>
 <p>Now exit and find that things are updated. Yay.</p>
@@ -203,7 +203,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/c42e0468d9e562ab0181fcac62942333737121c2/_posts/2014-09-05-drone-ci-and-docker.md"> c42e0468d9e562ab0181fcac62942333737121c2</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/ad830aef3a2915465d832eabab916e1f2598f2d0/_posts/2014-09-05-drone-ci-and-docker.md"> ad830aef3a2915465d832eabab916e1f2598f2d0</a></small></p>
     
   <br/>
   

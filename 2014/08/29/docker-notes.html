@@ -121,12 +121,16 @@
 <p>Docker linguistics borrow from git terminology, but it’s rather dangerous to interpret these too literally.</p>
 <h2 id="keeping-a-clean-docker-environment">Keeping a clean docker environment</h2>
 <ul>
-<li>run interactive containers with <code>--rm</code> flag to avoid having to remove them later.</li>
+<li><p>run interactive containers with <code>--rm</code> flag to avoid having to remove them later.</p></li>
+<li><p>Remove all stopped containers:</p></li>
+</ul>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> rm <span class="ot">$(</span><span class="kw">docker</span> ps -a <span class="kw">|</span> <span class="kw">grep</span> Exited <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;{print $1}&#39;</span><span class="ot">)</span></code></pre>
+<ul>
 <li>Clean up un-tagged docker images:</li>
 </ul>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> rmi <span class="ot">$(</span><span class="kw">docker</span> images -q --filter <span class="st">&quot;dangling=true&quot;</span><span class="ot">)</span></code></pre>
 <ul>
-<li>Stop and remove all containers</li>
+<li>Stop and remove all containers (including running containers!)</li>
 </ul>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> rm -f <span class="ot">$(</span><span class="kw">docker</span> ps -a -q<span class="ot">)</span></code></pre>
 <h2 id="docker-and-continuous-integration">Docker and Continuous Integration</h2>
@@ -179,7 +183,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/bdb9d2aa605ecef2ba02da9377f31b710245ee27/_posts/2014-08-29-docker-notes.md"> bdb9d2aa605ecef2ba02da9377f31b710245ee27</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/ad830aef3a2915465d832eabab916e1f2598f2d0/_posts/2014-08-29-docker-notes.md"> ad830aef3a2915465d832eabab916e1f2598f2d0</a></small></p>
     
   <br/>
   
