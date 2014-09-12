@@ -147,14 +147,18 @@
 </ul>
 <h2 id="configuring-an-already-running-docker-session">Configuring an already-running docker session</h2>
 <p>Launch a named repository in deamon mode:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -d -p 8787:8787 --name=<span class="st">&#39;rstudio&#39;</span> cboettig/rstudio</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -d -p 8787:8787 --name=<span class="st">&#39;drone&#39;</span> mattgruter/drone</code></pre>
 <p>Use a docker-based install to add <code>nsenter</code> into your executable path:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -v /usr/local/bin:/target jpetazzo/nsenter</code></pre>
 <p>Run <code>nsenter</code> to log into the docker image:</p>
-<pre><code>nsenter -m -u -n -i -p -t `docker inspect --format &#39;{{ .State.Pid }}&#39; rstudio` /bin/bash</code></pre>
-<p>Modify usernames and passwords, etc:</p>
+<pre><code>nsenter -m -u -n -i -p -t `docker inspect --format &#39;{{ .State.Pid }}&#39; drone` /bin/bash</code></pre>
+<p>Now we can update or delete images with <code>docker pull</code>, <code>docker rmi</code>, etc.</p>
+<p>This is useful with many containers, for instance, with our ssh container or rstudio container we may want to modify usernames and passwords, etc:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">useradd</span> -m <span class="ot">$USER</span> <span class="kw">&amp;&amp;</span> <span class="kw">echo</span> <span class="st">&quot;</span><span class="ot">$USER</span><span class="st">:</span><span class="ot">$PASSWORD</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="kw">chpasswd</span></code></pre>
-<p>Now exit and find that things are updated. Yay.</p>
+<h3 id="making-this-easier">Making this easier:</h3>
+<p>Add to <code>.bashrc</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">function</span><span class="fu"> dock</span> <span class="kw">{</span> <span class="kw">sudo</span> nsenter -m -u -n -i -p -t <span class="kw">`docker</span> inspect --format  <span class="st">&quot;</span><span class="ot">$1</span><span class="st">&quot;</span><span class="kw">`</span> /bin/bash<span class="kw">;</span> <span class="kw">}</span></code></pre>
+<p>This defines the function <code>dock</code> such that <code>dock &lt;name&gt;</code> will enter a running container named <code>&lt;name&gt;</code>. Note that we have to have <code>nsenter</code> bound to the executable path as indicated above. Yay less typing.</p>
 
     </article>
   </div>
@@ -203,7 +207,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/ad830aef3a2915465d832eabab916e1f2598f2d0/_posts/2014-09-05-drone-ci-and-docker.md"> ad830aef3a2915465d832eabab916e1f2598f2d0</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/766326282a5135ae47c8b2966ca08ebd77e96cd8/_posts/2014-09-05-drone-ci-and-docker.md"> 766326282a5135ae47c8b2966ca08ebd77e96cd8</a></small></p>
     
   <br/>
   
