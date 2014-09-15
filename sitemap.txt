@@ -803,6 +803,8 @@ http://carlboettiger.info/wordpress/archives/4482/index.html
 http://carlboettiger.info/archives/4482/index.html 
 
  
+http://carlboettiger.info/2014/09/09/server-backups.html  
+http://carlboettiger.info/2014/09/08/server-security-basics.html  
 http://carlboettiger.info/2014/09/05/drone-ci-and-docker.html  
 http://carlboettiger.info/2014/08/29/docker-notes.html  
 http://carlboettiger.info/2014/08/14/pdg-controlfest-notes.html  
