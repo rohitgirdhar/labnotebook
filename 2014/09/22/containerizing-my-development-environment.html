@@ -110,7 +110,7 @@
 <p>One reason I find docker particularly attractive for reproducible research it the idea of containerizing my development environment into something I can transport or recreate identically anywhere, particularly on another Linux machine. This also provides a convenient backup system for my development environment, no need to remember each different program or how I installed or configured it when moving to a new machine.</p>
 <h2 id="using-aliases">Using aliases</h2>
 <p>For me, a convenient way to do this involves creating a simple alias for running a container. This allows me to distinguish between running any software and the container, while managing my files and data through my native operating system tools. I’ve set the following alias in my <code>bashrc</code>.</p>
-<pre><code>alias c=&#39;docker run --rm -it -v $(pwd):/home/$USER/`basename $PWD` -w /home/$USER/`basename $PWD` -e HOME=$HOME --user=$USER strata&#39;</code></pre>
+<pre><code>alias c=&#39;docker run --rm -it -v $(pwd):/home/$USER/`basename $PWD` -w /home/$USER/`basename $PWD` -e HOME=$HOME -e USER=$USER --user=$USER strata&#39;</code></pre>
 <p>I can then just do <code>c R</code> (think <code>c</code> for container) to get R running in a container, <code>c bash</code> to drop into a bash shell on the container, <code>c pandoc --version</code> echoes the version of pandoc available on our container (or otherwise execute the container version of pandoc), and so forth.</p>
 <h3 id="explanation">explanation</h3>
 <p>The break down of each of these arguments is as follows:</p>
@@ -127,6 +127,7 @@
 <pre><code>-w /home/$USER/`basename $PWD`</code></pre>
 <ul>
 <li><p><code>-e HOME=$HOME</code> sets the value of the environmental variable <code>HOME</code> to whatever it is on the host machine (e.g. <code>/home/username</code>), so that when R tries to access <code>~/</code>, it gets the user’s directory and not the root directory.</p></li>
+<li><p><code>-e USER=$USER</code> though this seems redundant, we set the user environmental variable by default in the cboettig/rstudio image, so this overrides that environmental variable with the current user.</p></li>
 <li><p><code>--user=$USER</code> Specifies the user we log in as. This is rather important, otherwise the we find that we are the root (or whatever user has been set in the Dockerfile). That would cause any files we generate from the container to be owned by the root user, not our local user. Note that this only works if the specific user has already been created (e.g. by <code>adduser</code>) on the container, otherwise this will fail.</p></li>
 <li><p><code>strata</code> the name of the container (could be <code>cboettig/ropensci</code>, but my <code>strata</code> image provides a few additional customizations, created by <a href="">it’s own Dockerfile</a>. That Dockerfile (and its FROM dependencies) specify all the software available on this container. Importantly, it also already creates my username in it’s Dockerfile. Otherwise, the argument given above should use <code>--user=rstudio</code>, since the <code>rstudio</code> user is already created by the base image <code>cboettig/rstudio</code>, and thus available in <code>cboettig/ropensci</code> and <code>strata</code>. Note that this user can be created interactively by passing the environmental variable <code>-e USER=$USER</code> when running in deamon mode, since the user is then created by the start-up script. However, when we provide a custom command (like <code>/usr/bin/R</code> in this example, the <code>CMD</code> from the Dockerfile is overriden and the user isn’t created.</p></li>
 </ul>
@@ -182,7 +183,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/2d43ca1b65ad7b91c93988350345c62b0d966202/_posts/2014-09-22-containerizing-my-development-environment.md"> 2d43ca1b65ad7b91c93988350345c62b0d966202</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/76b154b0d00ca02ad07a99e414683d6fd63c3c84/_posts/2014-09-22-containerizing-my-development-environment.md"> 76b154b0d00ca02ad07a99e414683d6fd63c3c84</a></small></p>
     
   <br/>
   
