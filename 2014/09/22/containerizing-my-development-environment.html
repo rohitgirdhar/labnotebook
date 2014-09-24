@@ -112,8 +112,8 @@
 <p>For me, a convenient way to do this involves creating a simple alias for running a container. This allows me to distinguish between running any software and the container, while managing my files and data through my native operating system tools. I’ve set the following alias in my <code>bashrc</code>.</p>
 <pre><code>alias c=&#39;docker run --rm -it -v $(pwd):/home/$USER/`basename $PWD` -w /home/$USER/`basename $PWD` -e HOME=$HOME -e USER=$USER --user=$USER strata&#39;</code></pre>
 <p>I can then just do <code>c R</code> (think <code>c</code> for container) to get R running in a container, <code>c bash</code> to drop into a bash shell on the container, <code>c pandoc --version</code> echoes the version of pandoc available on our container (or otherwise execute the container version of pandoc), and so forth.</p>
-<h3 id="explanation">explanation</h3>
-<p>The break down of each of these arguments is as follows:</p>
+<h3 id="explanation-a-non-root-container">explanation: a non-root container</h3>
+<p>The trick here is primarily to handle permissions appropriately. Docker is run as a root user by default, which results in any files created or modified become owned by root instead of the user, which is clearly not desirable. Getting around this requires quite a bit of trickery. The break down of each of these arguments is as follows:</p>
 <ul>
 <li><code>--rm</code> remove this container when we quit, we don’t need to let it persist as a stopped container we could later return to.</li>
 <li><code>-it</code> Interactive terminal</li>
@@ -183,7 +183,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/76b154b0d00ca02ad07a99e414683d6fd63c3c84/_posts/2014-09-22-containerizing-my-development-environment.md"> 76b154b0d00ca02ad07a99e414683d6fd63c3c84</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/0c21822749cd5c3a0878c6e1b6ab8c080b8bf6d1/_posts/2014-09-22-containerizing-my-development-environment.md"> 0c21822749cd5c3a0878c6e1b6ab8c080b8bf6d1</a></small></p>
     
   <br/>
   
