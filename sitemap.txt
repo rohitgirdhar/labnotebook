@@ -803,6 +803,7 @@ http://carlboettiger.info/wordpress/archives/4482/index.html
 http://carlboettiger.info/archives/4482/index.html 
 
  
+http://carlboettiger.info/2014/10/02/notes.html  
 http://carlboettiger.info/2014/09/24/notes.html  
 http://carlboettiger.info/2014/09/22/containerizing-my-development-environment.html  
 http://carlboettiger.info/2014/09/09/server-backups.html  
