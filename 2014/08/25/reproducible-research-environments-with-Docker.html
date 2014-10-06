@@ -168,7 +168,7 @@
 <p>We’re now ready to run RStudio. If you didn’t select the <code>docker</code> application while creating your image, you can install it now:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">curl</span> -sSL https://get.docker.io/ubuntu/ <span class="kw">|</span> <span class="kw">sudo</span> sh</code></pre>
 <p>We’re now ready to launch RStudio using docker, just as we did locally above.</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -e USER your_username -e PASSWORD a_secure_pw \
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">docker</span> run -e USER=your_username -e=PASSWORD a_secure_pw \
   <span class="kw">-d</span> -p 8787:8787 --name rstudio cboettig/rstudio</code></pre>
 <p>Note that we pass a custom username and secure password in using the <code>-e</code> arguments since our RStudio instance will be publically reachable by it’s ip. We’ve also given the container a name <code>rstudio</code> so we can easily refer to it later. We now go to <code>http://&lt;your-droplet-ip-address&gt;:8787</code> and login with these custom credentials and we’re ready to compute.</p>
 <h3 id="saving-your-work">Saving your work</h3>
@@ -251,7 +251,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/d00c9a172885c05972c0c75880cf2f4f4d66e9b0/_posts/2014-08-25-reproducible-research-environments-with-Docker.md"> d00c9a172885c05972c0c75880cf2f4f4d66e9b0</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/3839bed9f54b5ae0c14e0cac1aeca7168c217ad2/_posts/2014-08-25-reproducible-research-environments-with-Docker.md"> 3839bed9f54b5ae0c14e0cac1aeca7168c217ad2</a></small></p>
     
   <br/>
   
