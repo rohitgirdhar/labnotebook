@@ -125,6 +125,20 @@
 <p>Data repositories already offer many of the compelling features of this proposal. Many data repositories accept a wide array of file formats including software packages, and would provide such software with a permanent unique identifier in the form of a DataCite DOI, as well as collecting much of the essential metadata listed in report’s Appendix 1, which would then already be accessible through the DataCite API in a nice machine-readable format. This strategy finds several aspects wanting.</p>
 <p>The primary barrier to using data repositories indexed by DataCite arises from the dynamic nature of software relative to data. Data repositories are designed to serve relatively static content with few versions. Software repositories, by contrast, are usually built upon explicit version control platforms such as Git or Subversion designed explicitly for handling continual changes, including branches and mergers, of software code. The report discusses the challenges of software versions as a reason for that citing a software paper as a proxy for citing software is not ideal: the citation to the paper does not convey what version was used. Rapid versioning creates other problems though, both in the number of identifiers that might be created (is each commit a new identifier?) and defining the relationship between different versions of the same software. Branches and merges exacerbate this problem. Existing approaches that provide the user a one-time way to import software from a software repository to a data repository such as those cited in the report (“One significant initiative is a collaboration between Mozilla, figshare, GitHub, and Zenodo”) do nothing to address this issues.</p>
 <p>Less challenging issues involve resolving differences between DataCite metadata and the proposed metadata records for software. Most obviously, the metadata would need a way to declare the object involved software instead of data per se, which would thus allow queries to restrict results to ‘software’ objects to avoid cluttering searches. Ideally, one would also create tools that can import such metadata from the format in which it is usually already defined in software, into the desired format of the index, rather than requiring manual double-entry of this information. These are important but more straight-forward problems which the report already seeks to address.</p>
+<hr />
+<!-- comments
+Ilya raises the question: Why not just use Github? I think it is important to note that:
+
+a) Github isn't forever, repositories come and go all the time, or move to new links, etc
+
+b) Re-creating and running an NIH-Github would be both expensive (Gitlab notwithstanding) and redundant -- researchers would continue to use Github etc.
+
+c) Github provides somewhat limited query-able metadata, that doesn't capture even the minimal list of fields suggested by the report.
+Leveraging existing scientific data repositories by linking them to versioned releases on software repositories addresses each of these problems.
+
+-->
+
+
 <!--
 A. FRAMEWORK SUPPORTING THE SOFTWARE DISCOVERY INDEX
 Unique identifiers
@@ -156,8 +170,8 @@ C. IMPLEMENTATION ROADMAP
     <p><a class="btn btn-default" rel="prev" href='/2014/10/02/notes.html'><i class="icon-chevron-left"></i> prev</a>
   
   
-    </p>
-    
+  <a class="btn btn-default" rel="next" href='/2014/10/14/rocker-versioning.html'>next <i class="icon-chevron-right"></i></a></p>
+  
 
   <br />
 
@@ -187,7 +201,7 @@ C. IMPLEMENTATION ROADMAP
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/8382ecd10446a2f45e0dc4eca0146b1918e1515b/_posts/2014-10-08-response-to-software-discovery-index-report.md"> 8382ecd10446a2f45e0dc4eca0146b1918e1515b</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/42495a09a9d4750c04e2445bb36fa29e7059b8cb/_posts/2014-10-08-response-to-software-discovery-index-report.md"> 42495a09a9d4750c04e2445bb36fa29e7059b8cb</a></small></p>
     
   <br/>
   

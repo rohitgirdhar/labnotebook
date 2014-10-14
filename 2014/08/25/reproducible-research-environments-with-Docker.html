@@ -160,7 +160,7 @@
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ssh</span> root@ip-address</code></pre>
 <h3 id="enable-swapping-if-testing-on-the-smallest-image">Enable swapping if testing on the smallest image</h3>
 <p>The smallest Digital Ocean servers have only 512 MB of memory and no swap enabled. Adding swap lets the machine cache things it doesn’t need in active memory, which can be important for running things like <code>install.packages</code>. On larger droplets this probably is not so much of an issue. Here, we enable 1GB of swap. SSH into your cloud server (or use the shell DigitalOcean provides in the browser), and run:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> fallocate -l 4G /swapfile
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> fallocate -l 1G /swapfile
 <span class="kw">sudo</span> chmod 600 /swapfile
 <span class="kw">sudo</span> mkswap /swapfile
 <span class="kw">sudo</span> swapon /swapfile</code></pre>
@@ -251,7 +251,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/3839bed9f54b5ae0c14e0cac1aeca7168c217ad2/_posts/2014-08-25-reproducible-research-environments-with-Docker.md"> 3839bed9f54b5ae0c14e0cac1aeca7168c217ad2</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/42495a09a9d4750c04e2445bb36fa29e7059b8cb/_posts/2014-08-25-reproducible-research-environments-with-Docker.md"> 42495a09a9d4750c04e2445bb36fa29e7059b8cb</a></small></p>
     
   <br/>
   
