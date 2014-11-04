@@ -803,14 +803,20 @@ http://carlboettiger.info/wordpress/archives/4482/index.html
 http://carlboettiger.info/archives/4482/index.html 
 
  
+http://carlboettiger.info/2014/10/28/jekyll-free.html  
+http://carlboettiger.info/2014/10/21/docker-and-user-permissions-crazyness.html  
+http://carlboettiger.info/2014/10/20/notes.html  
 http://carlboettiger.info/2014/10/16/gitlab-and-other-configuration-notes.html  
 http://carlboettiger.info/2014/10/14/rocker-versioning.html  
+http://carlboettiger.info/2014/10/09/lessons-learned-in-writing-dockerfiles.html  
 http://carlboettiger.info/2014/10/08/response-to-software-discovery-index-report.html  
+http://carlboettiger.info/2014/10/07/notes.html  
 http://carlboettiger.info/2014/10/02/notes.html  
 http://carlboettiger.info/2014/09/24/notes.html  
 http://carlboettiger.info/2014/09/22/containerizing-my-development-environment.html  
 http://carlboettiger.info/2014/09/09/server-backups.html  
 http://carlboettiger.info/2014/09/08/server-security-basics.html  
+http://carlboettiger.info/2014/09/05/thoughts-on-Harte-interview.html  
 http://carlboettiger.info/2014/09/05/drone-ci-and-docker.html  
 http://carlboettiger.info/2014/08/29/docker-notes.html  
 http://carlboettiger.info/2014/08/25/reproducible-research-environments-with-Docker.html  
