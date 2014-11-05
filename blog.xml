@@ -4,13 +4,82 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-11-04T22:36:24+00:00</updated>
+ <updated>2014-11-05T00:26:35+00:00</updated>
  <id>http://www.carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
    <email>cboettig@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Three Interfaces For Docker</title>
+   <link href="/2014/11/03/three-interfaces-for-Docker.html"/>
+   <updated>2014-11-03T00:00:00+00:00</updated>
+   <id>/2014/11/03/three-interfaces-for-Docker</id>
+   <content type="html">&lt;p&gt;Here I outline three broad, different strategies for incorporating Docker into a user’s workflow, particularly from the perspective of an instructor getting a group of students up and running in a containerized environment, but also in the context of more generic collaborations. The options require progressively more setup and result in a progressively more ‘native’ feel to running Docker. My emphasis is on running Dockerized R applications and RStudio, though much the same thing can be accomplished with iPython notebooks and many other web apps.&lt;/p&gt;
+&lt;p&gt;Of course the great strength of Docker is the relative ease with which one can move between these three strategies while using the identical container, maintaining a consistent computational environment in each case.&lt;/p&gt;
+&lt;h2 id=&quot;web-hosted-docker&quot;&gt;Web-hosted Docker&lt;/h2&gt;
+&lt;p&gt;In this approach, RStudio-server is deployed on a web server and accessed through the browser. The use of Docker containers makes it easier for an instructor to deploy a consistent environment quickly with the desired software pre-installed and pre-configured.&lt;/p&gt;
+&lt;h3 id=&quot;advantages&quot;&gt;Advantages:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A user just needs a web browser and the URL of the server.&lt;/li&gt;
+&lt;li&gt;No need to install any local software.&lt;/li&gt;
+&lt;li&gt;No need to download big files.&lt;/li&gt;
+&lt;li&gt;Should work with any device that supports a modern browser, including most tablets.&lt;/li&gt;
+&lt;li&gt;Convenient to temporarily scale computation onto a larger system.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;disadvantages&quot;&gt;Disadvantages:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;requires a network connection (at all times)&lt;/li&gt;
+&lt;li&gt;requires access to a server with sufficient computational power for the task.&lt;/li&gt;
+&lt;li&gt;Someone has to manage user &amp;amp; network security (as with any web server).&lt;/li&gt;
+&lt;li&gt;Need additional mechanisms for moving files on and off the server, such as git.&lt;/li&gt;
+&lt;li&gt;No native interfaces available, must manage files, edit text etc. through the RStudio IDE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;setup&quot;&gt;Setup:&lt;/h3&gt;
+&lt;p&gt;A Docker container running RStudio can be deployed with a single command, see &lt;a href=&quot;https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image&quot;&gt;rocker wiki instructions on RStudio&lt;/a&gt; for details. The instructor or team-member responsible for the setup would simply need to install docker on server. If multiple students will be accessing a single RStudio-server instance, it must be configured for multiple users. Alternately multiple containers can be run on different ports of the same server. (See wiki).&lt;/p&gt;
+&lt;p&gt;Hint: Users can also take advantage of the new R package &lt;a href=&quot;https://github.com/sckott/analogsea&quot;&gt;analogsea&lt;/a&gt; to quickly launch and manage an RStudio Server instance on the Digital Ocean cloud platform. &lt;code&gt;analogsea&lt;/code&gt; can also facilitate transfers of code and other files onto and off of the server.&lt;/p&gt;
+&lt;h2 id=&quot;self-hosted-docker&quot;&gt;Self-hosted Docker&lt;/h2&gt;
+&lt;p&gt;In this approach, the user installs docker (via &lt;code&gt;boot2docker&lt;/code&gt;, if necessary) on their local machine, but still interacts with the container using the same web-based interface (e.g. &lt;code&gt;rstudio-server&lt;/code&gt;, &lt;code&gt;ipython-notebook&lt;/code&gt;) that one would use in the cloud-hosted model.&lt;/p&gt;
+&lt;h3 id=&quot;advantages-1&quot;&gt;Advantages:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;No need for a network connection (at least once the container image is downloaded / transfered)&lt;/li&gt;
+&lt;li&gt;No need to have a server available (with the associated cost and security overhead)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;disadvantages-1&quot;&gt;Disadvantages:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;More initial setup: install &lt;code&gt;docker&lt;/code&gt; locally, or install &lt;code&gt;boot2docker&lt;/code&gt; for Mac/Windows users.&lt;/li&gt;
+&lt;li&gt;Need to use &lt;code&gt;git&lt;/code&gt; or &lt;code&gt;docker copy&lt;/code&gt; to move files from the container to the host or vice versa.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hint: Users might also check out the R package &lt;a href=&quot;https://github.com/wch/harbor&quot;&gt;harbor&lt;/a&gt; for interacting with Docker locally from R.&lt;/p&gt;
+&lt;h3 id=&quot;setup-1&quot;&gt;Setup:&lt;/h3&gt;
+&lt;p&gt;Setup is much the same as on a remote server, though there is no need to set custom usernames or passwords since the instance will be accessible only to local users. See &lt;a href=&quot;https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image&quot;&gt;rocker wiki instructions on RStudio&lt;/a&gt; for details.&lt;/p&gt;
+&lt;h2 id=&quot;integrated-docker&quot;&gt;Integrated Docker&lt;/h2&gt;
+&lt;p&gt;This approach is the same as the self-hosted approach, except that we link shared volumes with the host. At minimum this makes it easier to move files on and off the container without learning git.&lt;/p&gt;
+&lt;p&gt;An intriguing advantage of this approach is that it does not restrict the user to the RStudio IDE as a way of editing text, managing files and versions, etc. Most users do not rely exclusively on RStudio for these tasks, and may find that restriction limiting. The integrated approach may be more suited for experienced users who are set in their ways and do not need a pixel-identical work environment of RStudio useful for following directions in a classroom. In the integrated approach, a user can continue to rely on whatever their preferred native tools are, while ensuring that code execution occurs (invisibly) on a Dockerized container.&lt;/p&gt;
+&lt;h3 id=&quot;advantages-2&quot;&gt;Advantages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Can use native OS tools (text editors, file browsers, version control front ends, etc) for all interactions&lt;/li&gt;
+&lt;li&gt;No network required (once image is downloaded / transfered).&lt;/li&gt;
+&lt;li&gt;No servers required&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;disadvantages-2&quot;&gt;Disadvantages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Additional setup beyond self-hosting: mapping shared volumes, managing user permissions.&lt;/li&gt;
+&lt;li&gt;Potentially less well suited for classroom use, which may benefit from everyone using the identical RStudio interface rather than a range of different text editors, etc. (Of course one can still share volumes while using RStudio as the IDE).&lt;/li&gt;
+&lt;li&gt;Cannot open external windows (e.g. if running R in terminal instead of RStudio, the container running R cannot open an X11 window to display plots. Instead, a user must do something like &lt;code&gt;ggsave()&lt;/code&gt; after plotting interactively to view the resulting graphic in the native file browser. (This is more tedious in base graphics that need &lt;code&gt;dev.off()&lt;/code&gt; etc.). Of course this is not an issue when using RStudio with linked volumes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;setup-2&quot;&gt;Setup&lt;/h3&gt;
+&lt;p&gt;The key here is simply to link the working directory on the host to the file system on the container. That way any changes made to the host copy using the host OS tools are immediately available to the container, and vice versa. Setup requires a bit more effort on Windows at this time, though is natively supported for Mac in Docker 1.3. Some care may also be necessary not to change the permissions of the file. See details in the &lt;a href=&quot;https://github.com/rocker-org/rocker/wiki/Shared-files-with-host-machine&quot;&gt;rocker wiki on shared files&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;aliases&quot;&gt;aliases&lt;/h4&gt;
+&lt;p&gt;The most aggressive form of the integrated approach is to literally alias common commands like &lt;code&gt;R&lt;/code&gt; or &lt;code&gt;rstudio&lt;/code&gt; as the corresponding docker calls in &lt;code&gt;.bashrc&lt;/code&gt;, e.g.&lt;/p&gt;
+&lt;pre class=&quot;sourceCode bash&quot;&gt;&lt;code class=&quot;sourceCode bash&quot;&gt;&lt;span class=&quot;kw&quot;&gt;alias&lt;/span&gt; R=&lt;span class=&quot;st&quot;&gt;&amp;#39;docker run --rm -it --user docker -v $(pwd):/home/docker/`basename $PWD` -w /home/docker/`basename $PWD` rocker/hadleyverse R&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;makes the command &lt;code&gt;R&lt;/code&gt; launch an instance of the &lt;code&gt;rocker/hadleyverse&lt;/code&gt; container sharing the current working directory. Clearly different containers could be substituted in place of &lt;code&gt;rocker/hadleyverse&lt;/code&gt;, including custom extensions. This helps ensure that R is always run in the portable, Dockerized environment. Other than the lack of X11 display for plots, this works and feels identical to an interactive R terminal session.&lt;/p&gt;
+&lt;h4 id=&quot;other-tweaks&quot;&gt;Other tweaks&lt;/h4&gt;
+&lt;p&gt;Mac/Windows users might also want to customize &lt;code&gt;boot2docker&lt;/code&gt;’s resources to make more of the host computer’s memory and processors available to Docker.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Response To Software Discovery Index Report</title>
