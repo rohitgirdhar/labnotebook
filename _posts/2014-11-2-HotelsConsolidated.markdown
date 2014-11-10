@@ -89,6 +89,9 @@ mP10 = 0.201818
 mP20 = 0.177045
 at least 1 hit in 3 = 0.300000
 at least 1 hit in 10 = 0.640909
+
+With Distractors
+TODO: requires training codebook over all the 19K images
 {% endhighlight %}
 
 ### Code Details

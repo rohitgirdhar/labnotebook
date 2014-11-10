@@ -9,7 +9,7 @@ categories: segmentation
 - TPAMI 2010
 - [Project Page](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html)
 - [Results on Selfies-4K](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/007_SegBSR/results/publish/selfies_mix_4K/s001.html)
-- Earlier SoA on BSD500 (gPb method) (before Crisp Boundaries paper)
+- Earlier SoA on BSDS500, 2010 to 2014 (gPb method) (before Crisp Boundaries paper)
 - To run
 
 ```matlab
@@ -38,7 +38,7 @@ categories: segmentation
 - ECCV 2014
 - [Project Page](http://web.mit.edu/phillipi/pmi-boundaries/)
 - [Results on Selfies-4K](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/009_CrispBoundaries/results/publish/selfies_mix_4K/s001.html)
-- Claims to be current SoA on BSD500
+- Claims to be current SoA on BSDS500
 
 #### Notes
 - Method supresses edges in highly textured regions
@@ -58,6 +58,25 @@ categories: segmentation
 ## CPMC: Constrained Parametric Min-Cuts for Automatic Object Segmentation
 - Joao Carreira and Cristian Sminchisescu
 - ICCV 2010
-- [Results on Selfies-4K](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/010_SegCPMC/publish/selfies-4K/s001.html)
-- Buggy and slow code...
+- [Results on Selfies-4K](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/010_SegCPMC/publish/selfies-4K/s001.html). Results available for only few images (buggy and slow code - kept crashing).
+
+#### Notes
+TODO
+
+## Multiscale Combinatorial Grouping
+- Pablo Arbelaez*, Jordi Pont-Tuset*, Jonathan T. Barron, Ferran Marques, Jitendra Malik (UCB)
+- CVPR 2014
+- [Project Page](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/mcg/)
+- [Results on Selfies-4K](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/008_SegMCG/results/publish/selfies_mix_4K/s001.html)
+
+#### Notes
+
+
+## Simultaneous Detection and Segmentation
+- Bharath Hariharan, Pablo Arbeláez, Ross Girshick, Jitendra Malik (UCB)
+- ECCV 2014
+- [Project Page](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/shape/sds/)
+
+#### Notes
+- Uses MCG for initial proposals
 
