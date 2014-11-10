@@ -1,0 +1,108 @@
+---
+layout: post
+title:  "Experiments Recap"
+date:   2014-10-08 03:32:00
+categories: esvm
+---
+
+### Vanilla ESVM
+
+Results [here](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/001_vanilla/www/publish/esvm_matches/esvm_matches001.html).
+Some really good ones: [22](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/001_vanilla/www/publish/esvm_matches/esvm_matches002.html#row21),
+[30](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/001_vanilla/www/publish/esvm_matches/esvm_matches002.html#row30),
+[32](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/001_vanilla/www/publish/esvm_matches/esvm_matches002.html#row32),
+[33](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/001_vanilla/www/publish/esvm_matches/esvm_matches002.html#row33)
+
+### Augmented ESVM
+Added ~15K distractors from MIT67 dataset to existing
+3K retrieval set (good images)
+to make a 18K retrieval set. Used BoW over all images to
+select top 5000, and ran ESVM over this 5000.
+
+#### Qualitative results 
+Are [here](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/004_withDistractors/www/publish/esvm_matches_with_distractors/esvm_matches001.html)[^note].
+Visually comparable performance. Only a small number of queries
+get affected by distractors. Eg, 
+
+[^note]: would require David's web server running to fetch the distractor images to show
+
+#### Quantitative
+
+ Measure   | without distractors | with distractors 
+ ---| ---- | ---   
+mP1 |   0.700000 | 0.672727
+mP3 |   0.562121 | 0.548485
+mP5 |   0.492727 | 0.468182
+mP10|   0.386818 | 0.364545
+mP20|   0.281591 | 0.265000
+one hit in top 3| 0.786364 | 0.777273
+one hit in top 10| 0.786364 | 0.850000
+
+
+### Experiments with people images
+
+Since our original corpus consists images with people,
+the next step is to evaluate how the method performs in precense
+of occlusions - in the form of humans.
+I manually sifted through >10K images from tripadvisor.com
+to get images from the same hotels in the dataset but with people
+in them. The results of esvm with such images is 
+[here](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/002_vanilla_withPeople/www/publish/esvm_matches_with_people/esvm_matches001.html)
+
+Most of the time, small occlusions don't seem to affect the performance (eg 
+[1](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/002_vanilla_withPeople/www/publish/esvm_matches_with_people/esvm_matches001.html#row0)
+[10](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/002_vanilla_withPeople/www/publish/esvm_matches_with_people/esvm_matches001.html#row9)
+)
+However it does when the subject occludes > 20-30% of the image
+eg, [30](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/002_vanilla_withPeople/www/publish/esvm_matches_with_people/esvm_matches002.html#row30)
+
+To verify this hypothesis, we performed another experiment of
+removing context from the images and seeing how well they match.
+I simply masked out a larger and larger box from the query 
+image's HOG and compare its retrieval results with the original
+[here](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/003_reduceContext/www/publish/esvm_matches_context_experiment/esvm_matches001.html).
+I observed the expected, the performance drastically decreases when
+a large context is removed from the image (eg, [12-14](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/003_reduceContext/www/publish/esvm_matches_context_experiment/esvm_matches001.html#row12), the matches become worse when the largest block is removed).
+
+One other consideration was that existance of the HOG descriptors
+from humans in the image can screw up the matches. So we decided to 
+try masking out the humans and see if the matches improve.
+Results [here](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/005_vanilla_withPeople_masked/www/publish/esvm_matches_with_people_masked/esvm_matches001.html).
+I observed marginal change in results by masking humans,
+but that might also be because the humans in my test images 
+anyway occupied very small area. Some results where 
+masking humans could pull some interesting results:
+
+    Eg, 0 (match 7, used drapes to match - without masking this hit didn't appear in top 10),
+1: Match 3 (This hit was not even in top 10 earlier),
+    2: Match 9 in earlier got pulled to position 6, match 10 is a +ve hit with masking,
+    37 : match 8,
+    53: all hits moved up.
+
+    However, sometimes removing a larger bounding box would remove some relevant context too, and lead to worse results. Eg:
+    4 : One of the hit (match 6 in previous) is lost,
+    5 : one hit lost,
+    17: match 3 moved down,
+    36 : multiple hits lost,
+    40 : match 8 moved down,
+    44 : matches lost,
+    49 : some matches moved down,
+    56 : one match lost!
+
+
+### 3DP with ESVM
+
+We tried computing the 3D surface normals for the hotel images.
+The results are [here](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/006_Vanilla3DP_hotels/publish/3DN/3DN001.html).
+Now I'm experimenting with using 3D primitives information
+of the room with ESVM output to further re-rank 
+results and filter out bad matches. 
+The [results](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/008_esvm_3d_newVis/www/publish/esvm_3d/esvm_matches001.html)
+and more details are [here](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/002_memex/weblog/esvm/3dp/visualize/2014/10/07/esvm-3d.html).
+
+For eg, [2](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/008_esvm_3d_newVis/www/publish/esvm_3d/esvm_matches001.html#row1)
+the 3D normals images for both query and match are quite similar,
+giving a low average error.
+
+
+

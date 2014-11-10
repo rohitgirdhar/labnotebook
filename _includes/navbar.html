@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-          <li {% if page.url == "/index.html" %} class="active" {% endif %} >
+<!--          <li {% if page.url == "/index.html" %} class="active" {% endif %} >
           <a href="/index.html">Home</a></li>
           <li {% if page.url == "/vita.html" %} class="active" {% endif %} >
           <a href="/vita.html">Vita</a></li>
@@ -26,13 +26,13 @@
           <li {% if page.url == "/teaching.html" %} class="active" {% endif %} >
           <a href="/teaching.html">Teaching</a></li>
           <li {% if page.url == "/community.html" %} class="active"{% endif %} >
-          <a href="/community.html">Community</a></li>
-          <li {% if page.url == "/lab-notebook.html" %} class="active"{% endif %} >
-          <a href="/lab-notebook.html">Lab Notebook</a></li>
+          <a href="/community.html">Community</a></li> -->
+          <li {% if page.url == "{{ site.url }}/lab-notebook.html" %} class="active"{% endif %} >
+          <a href="{{ site.url }}/lab-notebook.html">Lab Notebook</a></li>
 
         </ul>
 
-      <!-- Search site using Google's index -->
+        <!-- The last thing I want is google indexing my website
         <form class="navbar-form navbar-right" role="search" method="get" action="http://google.com/search">
           <div class="form-group">
             <input type="hidden" name="q" value="site:carlboettiger.info" />
@@ -40,7 +40,7 @@
           </div>
           <button class="btn btn-mini" type="submit"><i class="icon-search"></i></button> 
        </form>
-
+        -->
     </div><!--/.nav-collapse -->
   </div> <!-- /container -->
 </nav>

@@ -1,0 +1,42 @@
+---
+layout: post
+title:  "Weekly update"
+categories: update
+---
+
+### Learning weights of similarity metrics
+I formulated a plan in the direction of idea of 'Paris Hilton #'
+with David. The idea is to estimate various different similarity metrics between
+all the images in the dataset, and then use information on what matches are good
+and what are not to train a Ranking-SVM to give weights for the different similarity measures.
+
+Currently I'm working with my selfies 4K images dataset for experiments.
+I shortlisted some similarity measures that could be reasonable in our scenario:
+
+
+1. CNN Object detection
+2. CNN features `pool5` (nearest neighbours [here](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/006_MixNN_CNN/mix-fc7/s001.html)), `fc7` (nearest neighbours [here](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/006_MixNN_CNN/mix-pool5/s001.html))
+3. Separate CNNs on background, forground
+4. Face matching (Detected and extracted faces. Talked to Vincent about this, he thinks might be too hard, since faces are in very diverse orientations etc. Though he suggested some approaches, will probably get back to him after CVPR.)
+5. Face attributes (age, gender, ethnicity, features: like moustache, etc): Waiting on Vincent to release IntraFace code (after CVPR).
+6. Human Pose: Trying to use [Leonid Pishchulin](http://www.mpi-inf.mpg.de/departments/computer-vision-and-multimodal-computing/research/people-detection-pose-estimation-and-tracking/poselet-conditioned-pictorial-structures/)'s [code](https://github.com/leonid-pishchulin/partapp). Currently trying to compile it.
+
+
+As Martial suggested in the last meeting, we don't want to focus on faces etc
+as that is not our selling point, but I guess it should be OK to use them as features
+if I can find a SoA/good enough implementation for them.
+
+### Hussian's hotels revisited
+Couldn't resist trying out what CNN's can do on the hotels dataset.
+An update on that is [here](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/002_memex/weblog/cnn/hotels/2014/11/02/CNNOnHotels.html).
+
+### Computing resources update
+
+
+- Set up NFS on the OpenStack cluster
+- Installed Caffe for CNN feature extraction
+
+The issue with compiled MATLAB is that it is significantly slower (or so I've heard).
+However, in the worst case we should be able to use that on the cluster.
+
+

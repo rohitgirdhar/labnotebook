@@ -1,0 +1,74 @@
+---
+layout: post
+title:  "ESVM with 3D Primitives. New visualization."
+date:   2014-10-08 00:58:40
+categories: esvm 3dp visualize
+---
+
+### Visualization
+As per Kris' suggestion, I used the actual range of positive and negative scores obtained
+in a match to create a visualization. I didn't use the jet colorspace but weighted the reds
+and green with the dot product score of those feature dimensions - and overlayed over the 
+exemplar image. So, a dense green color denotes that those parts of image contributed
+to a high positive score. Red for a high negative.
+
+The link for results contains the images with this visualization. Mostly expected results.
+Interestingly, light sources give a considerably high score for a match.
+Some notable ones:
+
+1. [Matched on lights and lamp](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/008_esvm_3d_newVis/www/corpus.Adina_Apartment_Berlin_clean/adina-apartment-hotel_055-svm/00001.png)
+2. [This one used the painting gradients](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/008_esvm_3d_newVis/www/corpus.Bardessono_Yountville_clean/filename-2012-01-23-22_001-svm/00001.png)
+3. [Uses the bed frames](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/008_esvm_3d_newVis/www/corpus.French_Quarter_Inn_Charleston_clean/french-quarter-inn_008-svm/00001.png) 
+etc
+
+### 3D Primitives
+I used David's 3D primitives code to extract the 3D structure of bounding boxes being matched. 
+[Results are here][esvm-3d-results].
+For every match, I show 3 images (in order):
+
+1. The surface normals image for bounding box of query image that matched.
+2. The surface normals image of the bounding box detected on matching image.
+3. The error map image, which is simply the angle between the surface normal at that point in both images.
+For the surface normals to match, the angle should be close to 0, or the error map image should be dark.
+4. The number at the end is the average angle between surface normals (averaged over whole image)[^confidence]
+
+Note:
+
+1. Large viewpoint variations give large error values,
+even though images are very similar.
+
+For reference, the full image 3D normals images are present [here](http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/006_Vanilla3DP_hotels/publish/3DN/3DN001.html).
+
+[^confidence]: Not completely confident about the numbers - need to verify.
+
+### Selfie Segmentation
+
+#### Dataset collection
+Came across some websites with probably relevant images
+
+1. http://iconosquare.com/tag/selfie
+2. https://www.flickr.com/search/?q=selfie
+
+There are other options like Google image search, tumblr - though they have kind-of explicit images,
+which might be quite close to the original dataset but probably I'm not supposed to use those.
+
+#### Xinlei's code
+
+I went through his paper and code. Just a thought: the method expects low intra-class variation
+for the 'co-segmentation' to be successful. This is expected from images of aeroplanes/cars which he uses.
+As I understand,  our objective is to determine such classes for selfie images.
+The selfie images I've gone through seem to have very high variations - would probably require quite a large dataset to find meaningful classes.. 
+
+---
+
+#### Coding details (for me)
+
+Code version : [3a64894df00bac0b6fb43cf3e519517548599248](https://github.com/rohitgirdhar/esvm_matching/tree/3a64894df00bac0b6fb43cf3e519517548599248)
+
+Command used
+{% highlight matlab %}
+>> esvm_run_eval('../../datasets/hussain_hotels/corpus', '../../datasets/hussain_hotels/TrainSet.txt', '../../datasets/hussain_hotels/TestSet.txt', '../../datasets/negativeImages_1K', 'sync_folder', 'run_syncs/sync_3d', 'cache_models', 'models-vanilla', 'res_folder', 'results/res_3d/')
+{% endhighlight %}
+
+[esvm-3d-results]:  http://pyrie.vmr.cs.cmu.edu/~rohit/results/esvm/008_esvm_3d_newVis/www/publish/esvm_3d/esvm_matches001.html
+
