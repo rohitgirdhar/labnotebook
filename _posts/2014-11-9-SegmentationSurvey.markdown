@@ -5,10 +5,11 @@ categories: segmentation
 ---
 
 ## Contour Detection and Hierarchical Segmentation
-- Arbelaez, Pablo and Maire, Michael and Fowlkes, Charless and Malik, Jitendra
+- Arbelaez, Pablo and Maire, Michael and Fowlkes, Charless and Malik, Jitendra (UCB)
 - TPAMI 2010
 - [Project Page](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html)
-- [Results on Selfies-4K dataset](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/007_SegBSR/results/publish/selfies_mix_4K/s001.html)
+- [Results on Selfies-4K](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/007_SegBSR/results/publish/selfies_mix_4K/s001.html)
+- Earlier SoA on BSD500 (gPb method) (before Crisp Boundaries paper)
 - To run
 
 ```matlab
@@ -16,7 +17,7 @@ categories: segmentation
 >> runLoop('../../../datasets/selfies_mix_4K/mix_4K/mix/', 'results/mix_4K')
 ```
 
-### Notes
+#### Notes
 - contour detection and image segmentation
 - contour: gPb
     - couple multiscale local brightness, color and texture cues
@@ -31,4 +32,32 @@ categories: segmentation
     - UCM: a real valued bw image (weighted edges)
     - hierarchy constructed by greedy merging algorithm (initially segment at finest level)
         - dissimilarity between 2 regions = strength of common boundary
+
+## Crisp Boundary Detection Using Pointwise Mutual Information
+- Phillip Isola, Daniel Zoran, Dilip Krishnan, and Edward H. Adelson (MIT)
+- ECCV 2014
+- [Project Page](http://web.mit.edu/phillipi/pmi-boundaries/)
+- [Results on Selfies-4K](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/009_CrispBoundaries/results/publish/selfies_mix_4K/s001.html)
+- Claims to be current SoA on BSD500
+
+#### Notes
+- Method supresses edges in highly textured regions
+- statistical association within object high compared to across objects or obj-background
+- uses pixel color values and very local variance info
+    - P(A,B) is prob of A and B pixel values to occur in the image (formula in paper)
+    - Pointwise mutual information (PMI) = $log \frac{P(A,B)^\rho}{P(A)P(B)}$ : A measure of affinity between pixels. It is predictive of whether 2 points are on the same object or not.
+    - P(A,B) learnt specific to every image
+- Boundary detection using spectral clustering on affinity matrix
+    - Affinity (W): $W_{ij} = e^{PMI_\rho(f_i, f_j)}$
+    - $f_i$ : feature at the pixel $i$: pixel color (in LAB space), diagonal of RGB color variance matrix in a 3x3 window around the pixel $\implies$ 2 3D vectors for each pixel.
+    - Spectral clustering similar to Berkeley paper, also use OWT as post processing step, generates UCM.
+    - They observe PMI is more effective in telling (given just 2 pixels), if they form a boundary of object or not (Empirically) 
+- Uses Ultrameric contour map to generate segmentations (Arbelaez 2010)
+
+
+## CPMC: Constrained Parametric Min-Cuts for Automatic Object Segmentation
+- Joao Carreira and Cristian Sminchisescu
+- ICCV 2010
+- [Results on Selfies-4K](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/010_SegCPMC/publish/selfies-4K/s001.html)
+- Buggy and slow code...
 
