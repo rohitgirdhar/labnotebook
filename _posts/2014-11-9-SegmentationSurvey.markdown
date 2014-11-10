@@ -22,8 +22,13 @@ categories: segmentation
     - couple multiscale local brightness, color and texture cues
         - Process L, A, B, texture channels using Pb contour detector (oriented gradient signal) - basically gives a gradient map for every orientation $\theta$
         - Use linear combination of gradient in these 4 channels
-        - sample $\theta$ at in 8 equal intervals in 0 and $\pi$, take max - get measure of boundary strength at each pixel ($= mPb(x,y)$)
-    - Use spectral clustering (largest eig valued eig vector of M) for globalization
+        - sample $\theta$ at in 8 equal intervals in 0 and $\pi$, take max. Essentially get measure of boundary strength at each pixel ($= mPb(x,y)$)
+    - Use spectral clustering (largest eig valued eig vector of M) for globalization (?)
         -  Affinity matrix constructed using `intervening contour cue`, which is max value of mPb joining the 2 pixels
-
+- Segmentation
+    - gPb contours might not be closed. Hence can't segment
+    - Hierarchical segmentation - using Oriented Watershed Tranform (OWT), produces Ultrameric Contour Map (OCW)
+    - UCM: a real valued bw image (weighted edges)
+    - hierarchy constructed by greedy merging algorithm (initially segment at finest level)
+        - dissimilarity between 2 regions = strength of common boundary
 
