@@ -43,7 +43,7 @@ $ service nfs-kernel-server start
 {% highlight bash %}
 $ sudo apt-get install nfs-common
 $ sudo mkdir -p /exports/cyclops
-$ sudo mount -v -t nfs -o proto=tcp,port=2049 192.168.7.11:/exports/cyclops /exports/cyclops/
+$ sudo mount -v -t nfs -o proto=tcp,port=2049 192.168.7.18:/exports/cyclops /exports/cyclops/
 $ # where 192.. is the pvt IP of the server (on the internal network)
 {% endhighlight %}
 

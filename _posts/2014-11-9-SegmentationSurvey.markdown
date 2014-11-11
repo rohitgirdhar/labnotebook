@@ -70,7 +70,9 @@ TODO
 - [Results on Selfies-4K](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/008_SegMCG/results/publish/selfies_mix_4K/s001.html)
 
 #### Notes
-
+- Somehow get a 20x speedup in eigen vector computation for spectral
+clsutering
+- 
 
 ## Simultaneous Detection and Segmentation
 - Bharath Hariharan, Pablo Arbeláez, Ross Girshick, Jitendra Malik (UCB)
@@ -78,5 +80,13 @@ TODO
 - [Project Page](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/shape/sds/)
 
 #### Notes
-- Uses MCG for initial proposals
+- Uses MCG for initial proposals for regions and bounding boxes
+- Use R-CNN style CNN feature extraction from the initial proposal, and train a SVM classifier
+    - Use both networks (for bounding box and regions) together, each finetuned
+    - Finetune the regions network by replacing the background regions with the mean image
+- For test image, use above region classifier (SVM) to score each region, get the closest segmentation (class)
+- Finally, region refinement
+    - top down procedure to divide image into 10x10 blocks and classify as FG/BG
+
+
 
