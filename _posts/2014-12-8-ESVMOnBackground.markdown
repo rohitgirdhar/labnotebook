@@ -26,4 +26,6 @@ Some interesting results:
 [6](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/013_ESVMWithSeg/results2/publish/esvm_matches_with_people_masked/esvm_matches001.html#row5) Observe match 4   
 
 Will add more comments/observations as more results get computed.
+(Couldn't set it up earlier as was a little busy with end-sem projects, assignments etc..)
+
 
