@@ -94,9 +94,45 @@ With Distractors
 TODO: requires training codebook over all the 19K images
 {% endhighlight %}
 
-### Code Details
+
+#### Code Details
 1. Evaluated using 
 {% highlight matlab %}
 >> esvm_compute_scores('/IUS/vmr105/rohytg/projects/001_ESVM/CNN/publish/www', '/IUS/vmr105/rohytg/projects/001_ESVM/CNN/publish/TestSet.txt')
 {% endhighlight %}
+
+
+#### Scalable BOW using LIRE
+
+**update**Sat 13 Dec 2014 06:36:18 PM EST 
+
+- SIFT BoW, 5K vocab over all images of Hussian Hotels (including test images)
+- Evaluated after removing the top match
+- Qualitative Results [here](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/001_IR/001_BoW/bow_LIRE_SIFT/m001.html)
+
+```txt
+mP1 = 0.100000
+mP3 = 0.096970
+mP5 = 0.095455
+mP10 = 0.087727
+mP20 = 0.075455
+at least 1 hit in 3 = 0.209091
+at least 1 hit in 10 = 0.463636
+```
+
+**update** Sun 14 Dec 2014 01:34:04 PM EST 
+
+- SURF BoW, 5K vocab over all hussian hotels (including test images)
+- Evaluated after removing top match
+- Qualitative Results [here](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/001_IR/001_BoW/bow_LIRE_SURF/m001.html)
+
+```txt
+mP1 = 0.304545
+mP3 = 0.268182
+mP5 = 0.244545
+mP10 = 0.200000
+mP20 = 0.157273
+at least 1 hit in 3 = 0.454545
+at least 1 hit in 10 = 0.622727
+```
 
