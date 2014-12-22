@@ -35,10 +35,36 @@ mean recall 20 = 0.103763
 at least 1 hit in 3 = 0.185654
 at least 1 hit in 10 = 0.362869
 
+With Inpainting -Thu 18 Dec 2014 01:55:29 PM EST 
+---------------
+mP1 = 0.113924
+mP3 = 0.068917
+mP5 = 0.059072
+mP10 = 0.047257
+mP20 = 0.040295
+mean recall 20 = 0.105723
+at least 1 hit in 3 = 0.185654
+at least 1 hit in 10 = 0.358650
+
+With maxpooling -Sun 21 Dec 2014 07:14:25 PM EST 
+---------------
+(Divide image into 4x4 blocks and maxpool CNN features from those blocks that are mostly background)
+mP1 = 0.037975
+mP3 = 0.035162
+mP5 = 0.032911
+mP10 = 0.034599
+mP20 = 0.033544
+mean recall 20 = 0.081246
+at least 1 hit in 3 = 0.105485
+at least 1 hit in 10 = 0.291139
+
 ```
 
 The output without masking is almost comparable to the ESVM output-WITH masking.
 However, as also evident from qualitative results, performance significantly degrades by replacing the human segmented portion with the model mean image.
+
+
+
 
 A slight technicality:     
 Note that I rank using cosine distance between segmented images with segmented images, and unsegmented with unsegmented. (This is different from ESVM, where the segmented features are removed only from the detector - or the test image. The corpus remains the same.)
