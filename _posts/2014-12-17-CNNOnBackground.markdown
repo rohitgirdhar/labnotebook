@@ -48,7 +48,7 @@ at least 1 hit in 10 = 0.358650
 
 With maxpooling -Sun 21 Dec 2014 07:14:25 PM EST 
 ---------------
-(Divide image into 4x4 blocks and maxpool CNN features from those blocks that are mostly background)
+(Divide image into 4x4 blocks and maxpool CNN features from those blocks that are mostly background (>70%))
 mP1 = 0.037975
 mP3 = 0.035162
 mP5 = 0.032911
