@@ -16,7 +16,7 @@ An idea I've had is to use object detection for retrieval. As a first step, I pl
 5. Taken the score of most similar bounding box for any retrieval image as the score for that image.
 
 #### Note
-- I went with selective search instead of sliding window (even after begin adviced otherwise by David) 
+- I went with selective search instead of sliding window (even after being advised otherwise by David) 
 mainly for the ease of implementation and computational tractability :-). However I can try with
 sliding window if needed..
 
