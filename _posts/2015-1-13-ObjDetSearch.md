@@ -18,7 +18,7 @@ An idea I've had is to use object detection for retrieval. As a first step, I pl
 #### Note
 - I went with selective search instead of sliding window (even after being advised otherwise by David) 
 mainly for the ease of implementation and computational tractability :-). However I can try with
-sliding window if needed..
+sliding window if needed
 
 ### Results 
 
