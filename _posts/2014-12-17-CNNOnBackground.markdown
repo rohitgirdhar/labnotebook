@@ -24,30 +24,31 @@ mean recall 20 = 0.325678
 at least 1 hit in 3 = 0.590717
 at least 1 hit in 10 = 0.789030
 
-With Masking
+With Masking - update Wed 07 Jan 2015 12:55:39 PM EST 
 ------------
-mP1 = 0.105485
-mP3 = 0.070323
-mP5 = 0.063291
-mP10 = 0.048101
-mP20 = 0.039241
-mean recall 20 = 0.103763
-at least 1 hit in 3 = 0.185654
-at least 1 hit in 10 = 0.362869
+mP1 = 0.291139
+mP3 = 0.210970
+mP5 = 0.167089
+mP10 = 0.119831
+mP20 = 0.089662
+mean recall 20 = 0.227719
+at least 1 hit in 3 = 0.447257
+at least 1 hit in 10 = 0.632911
 
-With Inpainting -Thu 18 Dec 2014 01:55:29 PM EST 
+With Inpainting - update -Wed 07 Jan 2015 01:31:23 PM EST 
 ---------------
-mP1 = 0.113924
-mP3 = 0.068917
-mP5 = 0.059072
-mP10 = 0.047257
-mP20 = 0.040295
-mean recall 20 = 0.105723
-at least 1 hit in 3 = 0.185654
-at least 1 hit in 10 = 0.358650
+mP1 = 0.459916
+mP3 = 0.343179
+mP5 = 0.284388
+mP10 = 0.200000
+mP20 = 0.130591
+mean recall 20 = 0.335202
+at least 1 hit in 3 = 0.645570
+at least 1 hit in 10 = 0.827004
 
 With maxpooling -Sun 21 Dec 2014 07:14:25 PM EST 
 ---------------
+Wed 07 Jan 2015 12:56:15 PM EST : ** INCORRECT RESULTS, ignore ** 
 (Divide image into 4x4 blocks and maxpool CNN features from those blocks that are mostly background (>70%))
 mP1 = 0.037975
 mP3 = 0.035162
