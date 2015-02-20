@@ -16,9 +16,14 @@ but it expected all the features to be loaded to memory - and seemed a little ha
 
 ### Results
 - **Note**: The matches for an image are in **no**-particular **order**. I simply show the patches that made it to the same bucket as the query feature.
+    - Ofcourse, can be sorted as a post-processing step.
 - **Note2**: I was only able to index first 50000 features (would correspond to first 18 images). This is due to some scalability issues (discussed later).
 - [Qualitative Results](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/015_ObjDetRetrieval/out_hash_matlab/1.html)
 - Results are sort-of reasonable. Also very highly dependent on the parameters (# of bits, # of tables).
+
+**update** Sun 25 Jan 2015 06:12:21 PM EST 
+- [Results](http://pyrie.vmr.cs.cmu.edu/~rohit/projects/003_SelfieSegmentation/results/015_ObjDetRetrieval/out_hash_matlab_130/1.html)
+on 130 images with 200 bits/5 tables.
 
 ### Scalability Issues
 - It takes ages to load the features into memory.
@@ -28,6 +33,6 @@ but it expected all the features to be loaded to memory - and seemed a little ha
 ### Possible Solutions
 1. Compute hashes as features are generated from caffe (probably not a scalable approach - if we choose to change hashing scheme, we recompute features etc)
 2. Use a distributed file system
-    - Fortunately, we have access to a DataTactics hadoop cluster. It seems to have TBs of free HDFS (hadoop distributed file system) space, and ~100 nodes (not sure of these numbers though)
+    - Fortunately, we have access to a DataTactics hadoop cluster. It seems to have TBs of free HDFS (hadoop distributed file system) space, and ~20 nodes (not sure of these numbers though)
     - I think if we have to deal with the complete dataset, we will have to eventually move to such a distributed system.
 
